@@ -17,9 +17,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/brand.css?v=20261127j">
-  <link rel="stylesheet" href="assets/case-file/case-file.css?v=20261127j">
-  <link rel="stylesheet" href="site/site.css?v=20261127j">
+  <link rel="stylesheet" href="assets/brand.css?v=20261127k">
+  <link rel="stylesheet" href="assets/case-file/case-file.css?v=20261127k">
+  <link rel="stylesheet" href="site/site.css?v=20261127k">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -223,7 +223,9 @@
     <section class="band" id="cases">
       <div class="wrap">
         <h2>Who you'll meet</h2>
-        <div class="cases">
+        <p class="cases-sub">There are 105 patients in the bank now: the first five, plus 100 more across ten areas of physio. Each day you get five of them at random. Tap an area to see who's in it.</p>
+        <div class="chips case-tabs" id="caseTabs" role="tablist" aria-label="Practice areas"><button class="chip glass" type="button" role="tab" aria-selected="true" data-area="">First five</button></div>
+        <div class="cases" id="caseGrid">
           <article><img src="assets/characters/sprites/ankle-front.png" alt="" loading="lazy"><span class="tag">Musculoskeletal</span><h3>Mia, 19</h3><p>Rolled her ankle at netball. Handy for PHTY1040 and PHTY2020.</p></article>
           <article><img src="assets/characters/sprites/sciatica-front.png" alt="" loading="lazy"><span class="tag">Musculoskeletal</span><h3>Daniel, 42</h3><p>Hurt his back lifting boxes, and now it's going down his leg.</p></article>
           <article><img src="assets/characters/sprites/stroke-front.png" alt="" loading="lazy"><span class="tag">Neurological</span><h3>Margaret, 68</h3><p>Her left leg gives way when she stands. Good for PHTY2030 and PHTY3070.</p></article>
@@ -260,6 +262,7 @@
     <p><a href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">Buy me a coffee</a> · <a href="research/viva-research.md">Research and sources</a> · <a href="classic/">Classic exam and practical modes</a></p>
   </footer>
 
-  <script src="site/game.js?v=20261127j"></script>
+  <script src="site/game.js?v=20261127k"></script>
+  <script src="site/roster.js?v=20261127k"></script>
 </body>
 </html>

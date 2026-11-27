@@ -355,3 +355,12 @@ footer p { margin: 4px 0; }
 @media (prefers-reduced-motion: reduce) {
   .answer-sheet:not([hidden]), .answer-card { animation: none; }
 }
+
+/* Who you'll meet: practice area tabs over the patient grid */
+.cases-sub { margin: -4px 0 14px; color: var(--muted); max-width: 62ch; }
+.case-tabs { margin: 0 -2px 16px; flex-wrap: wrap; }
+.case-tabs .chip[aria-selected="true"] { background: var(--violet); color: #fff; }
+@media (max-width: 820px) {
+  .case-tabs { flex-wrap: nowrap; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); }
+  .cases p { font-size: 14px; }
+}

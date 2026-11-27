@@ -266,6 +266,7 @@ struct ResultSheet: View {
             Button(action: next) {
                 Text("Next patient")
                     .font(Brand.text(17, relativeTo: .headline, bold: true))
+                    .foregroundStyle(Brand.onAction)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 4)
             }

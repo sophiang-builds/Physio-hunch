@@ -213,7 +213,12 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeMenu(); if (st.phase !== "done") $("sheet").hidden = true; } });
   $("callNow").onclick = () => { closeMenu(); if (st.phase === "assessing") { st.phase = "calling"; render(); $("ask").focus(); } };
   $("howTo").onclick = howTo;
-  $("play").onclick = () => { if (daily.tries >= TRIES) return showDone(); setOpen(true); setTimeout(() => { startClock(); $("ask").focus({ preventScroll: true }); }, RM ? 0 : 720); };
+  $("play").onclick = () => {
+    if (daily.tries >= TRIES) return showDone();
+    const desktop = matchMedia("(min-width: 821px)").matches;
+    setOpen(true);   // desktop: the folder flips open; phone: the start screen lifts
+    setTimeout(() => { startClock(); if (desktop) $("ask").focus({ preventScroll: true }); }, desktop && !RM ? 720 : 0);
+  };
   $("sheet").addEventListener("click", (e) => { if (e.target === $("sheet") && st.phase !== "done") $("sheet").hidden = true; });
   $("dock").addEventListener("submit", (e) => { e.preventDefault(); submit($("ask").value); });
   $("ask").addEventListener("input", () => ($("go").disabled = !$("ask").value.trim()));

@@ -35,6 +35,10 @@ Everything is deterministic code.
 
 The [interactive folder demo](demo/case-file.html) shows the yellow cover, clipped patient portrait, case notes and pass reveal. See the [case file handoff](docs/case-file.md) for the reusable art layers and bindings.
 
+## 100-patient expansion
+
+The [expansion roster](demo/expansion-roster.html) previews 100 case briefs, portraits and 16-angle turning sheets. See the [case and asset handoff](docs/expansion.md) for practice areas, source data and app integration.
+
 ## Characters
 
 The patients come from the [turnaround sheet](assets/characters/patient-turnarounds.png). See [docs/characters.md](docs/characters.md) for the style and the turn-and-zoom rules.

@@ -4,7 +4,15 @@ A practice game for physiotherapy practical vivas. Question a simulated patient,
 
 ![Physio Hunch](assets/social-preview.png)
 
-## Modes
+## Brand resources for the new app
+
+Start with the [brand guide](docs/brand.md) for the patient and character direction, five-assessment interaction, typography and colour roles.
+
+- Use the [light logo](assets/logo.svg) or [dark logo](assets/logo-dark.svg), and the [standalone mark](assets/mark.svg) for compact spaces.
+- Tag the [SVG favicon](assets/favicon.svg) with [16 px](assets/favicon-16.png) and [32 px](assets/favicon-32.png) PNG fallbacks. The [Apple touch icon](assets/apple-touch-icon.png), [512 px app icon](assets/icon-512.png) and [social preview](assets/social-preview.png) are ready to export or reference.
+- Import [brand.css](assets/brand.css) and copy the adjacent [fonts folder](assets/fonts) with its licence files to reuse the type and palette without a font service.
+
+## Modes in the static prototype
 
 Exam mode runs the full station. You introduce yourself, confirm identity, gain consent and handle privacy before you assess. To pass you need 50% or more and a clear safety hurdle. Touching before consent or doing something unsafe fails the hurdle, the same way the viva safety requirement does.
 
@@ -22,6 +30,6 @@ It's a static site with no build step. Open `index.html`, or publish with GitHub
 - `js/character.js` generates the vector patient portraits.
 - `js/app.js` is the game engine.
 - `research/viva-research.md` has the evidence base, the marking model and the case catalogue.
-- `assets/` holds the logo, favicon (SVG plus 32px PNG), apple touch icon, a 512px icon and `social-preview.png`, sized 1280×640 for GitHub's social preview setting.
+- `assets/` holds the production brand files, fonts and share graphics.
 
 The cases are for study practice and aren't official University of Newcastle material.

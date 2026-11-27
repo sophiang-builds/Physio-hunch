@@ -1,29 +1,32 @@
 :root {
-  --bg: #f6f4ef;
-  --ink: #1d2430;
-  --muted: #6b7280;
-  --card: #ffffff;
+  --bg: var(--ph-room);
+  --ink: var(--ph-ink);
+  --muted: var(--ph-muted);
+  --card: var(--ph-paper);
   --line: #e4e1d8;
-  --brand: #12a38a;
-  --brand-2: #ff7a59;
-  --good: #12a38a;
-  --warn: #e0533d;
+  --brand: var(--ph-violet);
+  --brand-2: var(--ph-lilac);
+  --good: var(--ph-violet);
+  --warn: var(--ph-safety);
   --shadow: 0 10px 30px rgba(29, 36, 48, .08);
 }
 @media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo { content: url("assets/logo-dark.svg"); }
   :root:not([data-theme="light"]) {
     --bg: #12161d; --ink: #eef1f5; --muted: #9aa3b2; --card: #1b212b; --line: #2a323e; --shadow: 0 10px 30px rgba(0,0,0,.35);
   }
 }
+:root[data-theme="dark"] .logo { content: url("assets/logo-dark.svg"); }
 :root[data-theme="dark"] { --bg: #12161d; --ink: #eef1f5; --muted: #9aa3b2; --card: #1b212b; --line: #2a323e; }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
 body {
   background: var(--bg); color: var(--ink);
-  font: 16px/1.5 ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 16px/1.5 var(--ph-font-body);
 }
 button { font: inherit; cursor: pointer; }
+.card h2, .case strong { font-family: var(--ph-font-display); font-weight: 650; }
 [hidden] { display: none !important; }
 
 /* ---------- menu ---------- */
@@ -55,7 +58,8 @@ button { font: inherit; cursor: pointer; }
 .ask { width: 100%; display: flex; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px; box-shadow: var(--shadow); margin-top: 32px; }
 .ask input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--ink); font: inherit; padding: 8px 14px; }
 .ask button { flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; }
-.ask:focus-within { border-color: var(--brand); }
+.ask:focus-within { border-color: var(--ink); }
+:where(button):focus-visible, .ask:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
 .you { min-height: 1.5em; margin: 18px 0 4px; color: var(--muted); font-size: 14px; text-align: center; }
 .reply { min-height: 4.5em; margin: 0; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; width: 100%; text-align: center; position: relative; }
 .reply::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 16px; height: 16px; background: var(--card); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: translateX(-50%) rotate(45deg); }

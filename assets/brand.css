@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root {
+  --ph-room: #f7f3ea;
+  --ph-paper: #ffffff;
+  --ph-ink: #24203c;
+  --ph-muted: #5d586c;
+  --ph-violet: #543c86;
+  --ph-lilac: #d7c8f1;
+  --ph-safety: #9a3d38;
+  --ph-on-action: #ffffff;
+  --ph-font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --ph-font-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+}

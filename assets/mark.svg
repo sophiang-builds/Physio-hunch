@@ -1,14 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#12a38a"/><stop offset="1" stop-color="#ff7a59"/></linearGradient>
-    <clipPath id="r"><rect x="32" y="0" width="32" height="64"/></clipPath>
-    <clipPath id="sq"><rect width="64" height="64" rx="16"/></clipPath>
-  </defs>
-  <g clip-path="url(#sq)">
-    <rect width="64" height="64" fill="#d9dcdf"/>
-    <rect width="64" height="64" fill="url(#g)" clip-path="url(#r)"/>
-    <g fill="#9aa1a8"><circle cx="32" cy="25" r="11"/><path d="M10 64c0-14 10-22 22-22s22 8 22 22z"/></g>
-    <g fill="#ffffff" clip-path="url(#r)"><circle cx="32" cy="25" r="11"/><path d="M10 64c0-14 10-22 22-22s22 8 22 22z"/></g>
-    <path d="M32 0v64" stroke="#1d2430" stroke-width="2" stroke-dasharray="3 3" opacity=".35"/>
-  </g>
+  <rect width="64" height="64" rx="14" fill="#543c86"/>
+  <path fill="#f7f3ea" d="M32 9a13 13 0 1 1 0 26 13 13 0 0 1 0-26ZM13 49c0-6 8-12 19-12s19 6 19 12v2H28l-9 6v-6h-6Z"/>
+  <path fill="#d7c8f1" d="M32 9a13 13 0 0 1 0 26Zm0 28c11 0 19 6 19 12v2H32Z"/>
 </svg>

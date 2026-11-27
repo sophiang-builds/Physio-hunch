@@ -60,7 +60,15 @@
    "mmt": "Eversion strength 4/5 and painful. Everything else 5/5."
   },
   "safety": [],
-  "turnaround": "Patient-ankle"
+  "turnaround": "Patient-ankle",
+  "call": {
+   "correct": "Sprained ankle ligament (lateral ankle sprain)",
+   "decoys": [
+    "Broken ankle bone",
+    "Torn Achilles tendon",
+    "Plantar fasciitis (heel pain)"
+   ]
+  }
  },
  {
   "id": "sciatica",
@@ -130,7 +138,15 @@
    "questionnaire": "Oswestry 46%."
   },
   "safety": [],
-  "turnaround": "Patient-sciatica"
+  "turnaround": "Patient-sciatica",
+  "call": {
+   "correct": "Pinched nerve from a slipped disc (sciatica)",
+   "decoys": [
+    "Kidney stone",
+    "Torn hamstring muscle",
+    "Hip arthritis"
+   ]
+  }
  },
  {
   "id": "stroke",
@@ -215,7 +231,15 @@
     "message": "Stood Margaret up before checking medical clearance and vital signs."
    }
   ],
-  "turnaround": "Patient-stroke"
+  "turnaround": "Patient-stroke",
+  "call": {
+   "correct": "Stroke affecting the right side of the brain",
+   "decoys": [
+    "Worn-out knee (knee arthritis)",
+    "Low blood sugar",
+    "Inner ear vertigo"
+   ]
+  }
  },
  {
   "id": "postop",
@@ -294,7 +318,15 @@
     "message": "Mobilised Robert before checking his vital signs."
    }
   ],
-  "turnaround": "Patient-postop"
+  "turnaround": "Patient-postop",
+  "call": {
+   "correct": "Collapsed lung bases after surgery (atelectasis)",
+   "decoys": [
+    "Blood clot in the lung",
+    "Heart failure",
+    "Asthma attack"
+   ]
+  }
  },
  {
   "id": "cardiac",
@@ -377,6 +409,14 @@
     "message": "Ran an exertional test on Gary while he had active cardiac symptoms."
    }
   ],
-  "turnaround": "Patient-cardiac"
+  "turnaround": "Patient-cardiac",
+  "call": {
+   "correct": "Heart problem (angina): call 000",
+   "decoys": [
+    "Torn rotator cuff",
+    "Frozen shoulder",
+    "Pulled shoulder muscle"
+   ]
+  }
  }
 ]

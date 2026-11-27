@@ -24,6 +24,21 @@ for c in library.cases {
     for id in Array(c.findings.keys) + c.key { expect(library.assessment(id) != nil, "\(c.id) uses unknown assessment \(id)") }
 }
 
+// Multiple-choice calls: the right option is correct, decoys are wrong
+for c in library.cases {
+    expect(TextMatch.matchesAny(c.answers, in: c.call.correct), "\(c.id) correct option doesn't match its answers")
+    for d in c.call.decoys {
+        expect(!TextMatch.matchesAny(c.answers, in: d) && !TextMatch.matchesAny(c.close, in: d), "\(c.id) decoy '\(d)' would score")
+    }
+}
+// Suggestions are stable and always include something useful
+do {
+    let g = Game(caseIndex: 0, library: library)
+    let a = g.suggestions.map(\.id), b = g.suggestions.map(\.id)
+    expect(a == b && a.count == 6, "suggestions not stable")
+    expect(g.suggestions.contains { g.state.patient.findings[$0.id] != nil }, "suggestions have nothing useful")
+}
+
 // Full games
 func play(_ id: String, _ moves: [String]) -> GameState {
     let index = library.cases.firstIndex { $0.id == id }!

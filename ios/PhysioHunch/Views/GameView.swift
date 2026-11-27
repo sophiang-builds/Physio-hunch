@@ -6,6 +6,7 @@ struct GameView: View {
     @State private var input = ""
     @State private var toast: String?
     @State private var reading: Turn?
+    @State private var showingHowTo = false
     @FocusState private var fieldFocused: Bool
 
     private var state: GameState { game.state }
@@ -13,16 +14,15 @@ struct GameView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 12) {
-                // The patient, situation and slots stay pinned in the middle.
-                PatientStage(patient: state.patient, hits: state.hits, reveal: game.reveal)
+                // The patient and situation stay pinned in the middle.
+                PatientStage(patient: state.patient, hits: state.hits, misses: state.misses,
+                             reveal: game.reveal, compact: fieldFocused)
 
                 Text(state.patient.situation)
                     .font(Brand.text(17, bold: true))
                     .foregroundStyle(Brand.ink)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-
-                SlotsBar(state: state) { reading = $0 }
 
                 // Only the findings scroll.
                 ScrollViewReader { proxy in
@@ -52,26 +52,24 @@ struct GameView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Image("Mark")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .accessibilityLabel("Physio Hunch")
-                }
-                ToolbarItem(placement: .principal) {
-                    Text(title)
-                        .font(Brand.text(16, relativeTo: .headline, bold: true))
-                        .foregroundStyle(Brand.ink)
-                        .contentTransition(.numericText())
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Make your call") {
-                        game.beginCall()
-                        fieldFocused = true
+                    HStack(spacing: 8) {
+                        Image("Mark")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                        Text("Physio Hunch")
+                            .font(Brand.display(20, relativeTo: .headline))
+                            .foregroundStyle(Brand.ink)
                     }
-                    .font(Brand.text(15, relativeTo: .subheadline, bold: true))
-                    .disabled(state.phase != .assessing)
+                    .fixedSize()
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Physio Hunch")
+                }
+                .sharedBackgroundVisibility(.hidden)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("How to play", systemImage: "questionmark") { showingHowTo = true }
                 }
             }
+            .sheet(isPresented: $showingHowTo) { HowToSheet() }
             .sheet(item: $reading) { turn in
                 FindingSheet(turn: turn)
             }
@@ -89,21 +87,14 @@ struct GameView: View {
         }
     }
 
-    private var title: String {
-        switch state.phase {
-        case .assessing: return state.remaining == 1 ? "1 assessment left" : "\(state.remaining) assessments left"
-        case .calling: return "Make your call"
-        case .done: return "Debrief"
-        }
-    }
-
     private var placeholder: String {
         state.phase == .assessing
-            ? "Assessment \(state.turns.count + 1) of \(state.limit), e.g. slump test"
-            : "What's wrong with \(state.patient.name)?"
+            ? "What assessment would you give \(state.patient.name)?"
+            : "Or type your own diagnosis"
     }
 
-    // Typing field with the send button right below it.
+    // Suggestions (or diagnosis choices), the field with its five chances,
+    // and the Assess button with a dropdown for making the call early.
     private var composer: some View {
         GlassEffectContainer(spacing: 10) {
             VStack(spacing: 10) {
@@ -121,28 +112,54 @@ struct GameView: View {
                         }
                 }
 
-                TextField(placeholder, text: $input)
-                    .font(Brand.text())
-                    .foregroundStyle(Brand.ink)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .submitLabel(.send)
-                    .focused($fieldFocused)
-                    .onSubmit(send)
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 14)
-                    .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 24))
-
-                Button(action: send) {
-                    Text(state.phase == .assessing ? "Assess" : "Make your call")
-                        .font(Brand.text(17, relativeTo: .headline, bold: true))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 4)
+                if state.phase == .assessing {
+                    suggestionChips
+                } else if state.phase == .calling {
+                    callChoices
                 }
-                .buttonStyle(.glassProminent)
-                .tint(Brand.violet)
-                .controlSize(.large)
-                .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty || state.phase == .done)
+
+                HStack(spacing: 10) {
+                    TextField(placeholder, text: $input)
+                        .font(Brand.text())
+                        .foregroundStyle(Brand.ink)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .submitLabel(.send)
+                        .focused($fieldFocused)
+                        .onSubmit { send() }
+                    ChancesDots(state: state)
+                }
+                .padding(.horizontal, 18)
+                .padding(.vertical, 14)
+                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 24))
+
+                HStack(spacing: 8) {
+                    Button { send() } label: {
+                        Text(state.phase == .assessing ? "Assess" : "Make your call")
+                            .font(Brand.text(17, relativeTo: .headline, bold: true))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 4)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .tint(Brand.violet)
+                    .controlSize(.large)
+                    .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty || state.phase == .done)
+
+                    Menu {
+                        Button("Make your call now", systemImage: "stethoscope") {
+                            withAnimation(.smooth) { game.beginCall() }
+                        }
+                        .disabled(state.phase != .assessing)
+                        Button("How to play", systemImage: "questionmark.circle") { showingHowTo = true }
+                    } label: {
+                        Image(systemName: "chevron.down")
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundStyle(Brand.onAction)
+                            .frame(width: 52, height: 52)
+                    }
+                    .glassEffect(.regular.tint(Brand.violet).interactive(), in: .circle)
+                    .accessibilityLabel("More options")
+                }
             }
         }
         .padding(.horizontal, 16)
@@ -151,12 +168,72 @@ struct GameView: View {
         .frame(maxWidth: 600)
     }
 
+    /// Tap a suggestion to run that assessment. Some help, some don't.
+    private var suggestionChips: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 8) {
+                ForEach(game.suggestions) { assessment in
+                    Button(assessment.name) { send(assessment.name) }
+                        .font(Brand.text(15, relativeTo: .subheadline, bold: true))
+                        .buttonStyle(.glass)
+                        .tint(Brand.ink)
+                }
+            }
+            .padding(.horizontal, 2)
+            .padding(.vertical, 2)
+        }
+        .scrollIndicators(.hidden)
+        .accessibilityLabel("Suggested assessments")
+    }
+
+    /// Four possible diagnoses to choose from.
+    private var callChoices: some View {
+        VStack(spacing: 8) {
+            Text("What's wrong with \(state.patient.name)?")
+                .font(Brand.display(20, relativeTo: .headline))
+                .foregroundStyle(Brand.ink)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            ForEach(game.callOptions, id: \.self) { option in
+                Button { send(option) } label: {
+                    Text(option)
+                        .font(Brand.text(16, bold: true))
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 2)
+                }
+                .buttonStyle(.glass)
+                .tint(Brand.ink)
+                .controlSize(.large)
+            }
+        }
+    }
+
     /// Screen-recording demo, used by CI on the iPhone 15 simulator.
-    /// Launch with: -demoMoves "what happened|ottawa|anterior drawer|lateral ankle sprain"
+    /// Launch with -demoMoves "type:what happened|tap:Ottawa ankle and foot rules|call|choose"
+    ///   type:<text>  types into the field and taps Assess
+    ///   tap:<name>   taps that suggestion chip
+    ///   call         opens "Make your call now"
+    ///   choose       picks the correct diagnosis
     private func playDemoIfRequested() async {
         guard let script = UserDefaults.standard.string(forKey: "demoMoves") else { return }
         try? await Task.sleep(for: .seconds(2.5))
-        for move in script.split(separator: "|").map(String.init) {
+        for step in script.split(separator: "|").map(String.init) {
+            if step.hasPrefix("tap:") {
+                send(String(step.dropFirst(4)))
+                try? await Task.sleep(for: .seconds(2.8))
+                continue
+            }
+            if step == "call" {
+                withAnimation(.smooth) { game.beginCall() }
+                try? await Task.sleep(for: .seconds(2.2))
+                continue
+            }
+            if step == "choose" {
+                send(state.patient.call.correct)
+                try? await Task.sleep(for: .seconds(2.8))
+                continue
+            }
+            let move = step.hasPrefix("type:") ? String(step.dropFirst(5)) : step
             input = ""
             for character in move {
                 input.append(character)
@@ -168,8 +245,8 @@ struct GameView: View {
         }
     }
 
-    private func send() {
-        let outcome = withAnimation(.spring(duration: 0.45)) { game.submit(input) }
+    private func send(_ text: String? = nil) {
+        let outcome = withAnimation(.spring(duration: 0.45)) { game.submit(text ?? input) }
         switch outcome {
         case .rejected(let message):
             withAnimation { toast = message }
@@ -177,7 +254,7 @@ struct GameView: View {
             withAnimation { toast = "Not an assessment I know. Try \u{201C}straight leg raise\u{201D}." }
         case .revealed, .silent, .called:
             input = ""
-            if state.phase == .calling { fieldFocused = true }
+            if state.phase != .assessing { fieldFocused = false }
         }
     }
 }

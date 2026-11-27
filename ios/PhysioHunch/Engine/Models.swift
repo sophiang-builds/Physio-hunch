@@ -20,6 +20,13 @@ struct SafetyRule: Codable, Hashable {
     let message: String
 }
 
+/// Multiple-choice diagnoses for players without physio knowledge.
+/// `correct` must match one of the case's answers; decoys must match neither answers nor close answers.
+struct CallOptions: Codable, Hashable {
+    let correct: String
+    let decoys: [String]
+}
+
 /// A patient. Loaded from cases.json.
 struct PatientCase: Codable, Identifiable, Hashable {
     let id: String
@@ -38,6 +45,7 @@ struct PatientCase: Codable, Identifiable, Hashable {
     /// assessment id -> what the player learns. Anything not listed gets silence.
     let findings: [String: String]
     let safety: [SafetyRule]
+    let call: CallOptions
 }
 
 /// One committed assessment.
@@ -75,5 +83,6 @@ struct GameState {
 
     var remaining: Int { max(0, limit - turns.count) }
     var hits: Int { turns.filter(\.isHit).count }
+    var misses: Int { turns.count - hits }
     func has(_ assessmentId: String) -> Bool { turns.contains { $0.assessment.id == assessmentId } }
 }

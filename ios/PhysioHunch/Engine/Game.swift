@@ -90,6 +90,12 @@ final class Game {
         return turn.isHit ? .revealed(turn) : .silent(turn)
     }
 
+    /// Tappable assessment ideas for this turn (see Hints).
+    var suggestions: [Assessment] { Hints.suggestions(for: state, from: library) }
+
+    /// Multiple-choice diagnoses for the call.
+    var callOptions: [String] { Hints.callOptions(for: state.patient) }
+
     /// Lets the player stop early and make the call.
     func beginCall() {
         if state.phase == .assessing { state.phase = .calling }

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physio Hunch case file</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/brand.css">
+  <link rel="stylesheet" href="../assets/case-file/case-file.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      gap: 1rem;
+      padding: 1rem .4rem;
+      background: #e5dfed;
+      color: var(--ph-ink);
+      font: 1rem var(--ph-font-body);
+    }
+    .phone {
+      position: relative;
+      width: min(100%, 411px);
+      height: min(870px, max(590px, 88svh));
+      border: 8px solid #27232e;
+      border-radius: 50px;
+      box-shadow: 0 0 0 1px #655d69, 0 12px 26px #24203c35;
+      overflow: hidden;
+      background: var(--ph-room);
+    }
+    .phone::before {
+      position: absolute;
+      z-index: 5;
+      top: 9px;
+      left: 50%;
+      translate: -50%;
+      content: "";
+      width: 28%;
+      height: 25px;
+      border-radius: 20px;
+      background: #27232e;
+      pointer-events: none;
+    }
+    .case-file { padding-block: 3.5rem 1.2rem; }
+    .phone__screen { height: 100%; overflow: auto; }
+    .demo-controls { display: flex; gap: .6rem; }
+    .demo-controls[hidden], [hidden] { display: none !important; }
+    .demo-controls button {
+      border: 1px solid #736289;
+      background: #faf6ff;
+      color: var(--ph-ink);
+      padding: .45rem .8rem;
+      font: inherit;
+      cursor: pointer;
+    }
+    @media (max-height: 640px) {
+      body { align-content: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="phone__screen">
+      <main class="case-file" aria-label="Case file">
+        <div class="case-file__folder">
+          <div class="case-file__inside" aria-hidden="true"></div>
+          <div class="case-file__cover" aria-hidden="true">
+            <div class="case-file__face case-file__face--front"></div>
+            <div class="case-file__face case-file__face--back"></div>
+          </div>
+          <article class="case-file__page" id="case-page" hidden>
+            <figure class="case-file__photo"><img data-patient-photo alt=""></figure>
+            <div class="case-file__paper">
+              <h1 tabindex="-1" data-patient-name></h1>
+              <h2>Case background</h2>
+              <p data-case-background></p>
+              <h2>History of presenting complaint</h2>
+              <p data-case-history></p>
+              <section class="case-file__answer" data-case-answer aria-live="polite" hidden>
+                <h2>Answer</h2>
+                <p data-case-diagnosis></p>
+              </section>
+            </div>
+          </article>
+        </div>
+        <button class="case-file__play" type="button" aria-controls="case-page" aria-expanded="false" disabled>Play</button>
+      </main>
+    </div>
+  </div>
+  <div class="demo-controls" hidden>
+    <button type="button" id="preview-pass">Preview pass</button>
+    <button type="button" id="reset">Reset preview</button>
+  </div>
+  <p id="load-error" role="alert" hidden>The case could not load. Open this preview through a local server or GitHub Pages.</p>
+  <script type="module">
+    import { createCaseFile } from "../assets/case-file/case-file.js";
+
+    const root = document.querySelector(".case-file");
+    const file = createCaseFile(root);
+    const controls = document.querySelector(".demo-controls");
+    const previewPass = document.querySelector("#preview-pass");
+    const caseId = new URLSearchParams(location.search).get("case");
+    try {
+      const response = await fetch("../ios/PhysioHunch/Resources/Data/cases.json");
+      if (!response.ok) throw new Error(`Case data returned ${response.status}`);
+      const cases = await response.json();
+      const selected = cases.find(candidate => candidate.id === caseId) ?? cases[0];
+      const patient = {
+        name: `${selected.name}, ${selected.age}`,
+        photo: `../ios/PhysioHunch/Assets.xcassets/${selected.turnaround}-00.imageset/${selected.id}-00.png`,
+        background: selected.situation,
+        history: selected.findings.hpc,
+        diagnosis: selected.diagnosis
+      };
+      file.setCase(patient);
+      root.querySelector(".case-file__play").addEventListener("click", () => { controls.hidden = false; });
+      previewPass.addEventListener("click", () => {
+        file.setPassed(true);
+        root.querySelector("[data-case-answer]").scrollIntoView({ block: "nearest" });
+      });
+      document.querySelector("#reset").addEventListener("click", () => {
+        file.setCase(patient);
+        controls.hidden = true;
+        root.querySelector(".case-file__play").focus();
+      });
+    } catch (error) {
+      console.error(error);
+      document.querySelector("#load-error").hidden = false;
+    }
+  </script>
+</body>
+</html>

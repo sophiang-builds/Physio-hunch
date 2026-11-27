@@ -31,6 +31,10 @@ Everything is deterministic code.
 - To add a mechanic, write a struct conforming to `Mechanic`, implement only the hooks you need, and add it to `Mechanics.standard`.
 - To add a character, add a row to the turnaround sheet, extend the row and column lists in `tools/cut_turnarounds.py`, and re-run it.
 
+## Case file opening
+
+The [interactive folder demo](demo/case-file.html) shows the yellow cover, clipped patient portrait, case notes and pass reveal. See the [case file handoff](docs/case-file.md) for the reusable art layers and bindings.
+
 ## Characters
 
 The patients come from the [turnaround sheet](assets/characters/patient-turnarounds.png). See [docs/characters.md](docs/characters.md) for the style and the turn-and-zoom rules.

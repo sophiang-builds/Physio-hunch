@@ -59,8 +59,8 @@
     const text = (raw || "").trim(); if (!text || st.phase === "done") return; closeMenu();
     if (st.phase === "calling" || ["i think", "i reckon", "my diagnosis", "diagnosis", "my call"].some((x) => norm(text).startsWith(x))) return call(text);
     const a = resolve(text, st.p);
-    if (!a) return toast("Not a test I know. Try a suggestion above.");
-    if (has(a.id)) return toast("Already done. Its finding is in your list.");
+    if (!a) return toast("Hmm, I don\u2019t know that one. Try one of the ideas above.");
+    if (has(a.id)) return toast("You\u2019ve already checked that. It\u2019s in your list.");
     const t = { n: st.turns.length + 1, a, finding: st.p.findings[a.id] ?? null, flag: null };
     for (const r of st.p.safety) if (r.assessments.includes(a.id) && !r.requires.every(has)) t.flag = r.message;
     st.turns.push(t); if (t.flag && !st.flags.includes(t.flag)) st.flags.push(t.flag);
@@ -97,7 +97,7 @@
     $("findings").innerHTML = st.turns.map((t) => `<li class="card ${t.finding ? "hit" : "miss"}"><h4>${t.n}. ${esc(t.a.name)}</h4><p>${esc(t.finding || "No response.")}</p>${t.flag ? `<p class="flag">⚠ ${esc(t.flag)}</p>` : ""}</li>`).join("");
     $("chips").hidden = !assessing;
     if (assessing) $("chips").innerHTML = suggestions().map((a) => `<button type="button" class="chip glass" data-t="${esc(a.name)}">${esc(a.name)}</button>`).join("");
-    $("ask").placeholder = assessing ? `What test would you give ${p.name}?` : `What’s wrong with ${p.name}?`;
+    $("ask").placeholder = assessing ? `What would you check on ${p.name}?` : `What do you think is wrong with ${p.name}?`;
     $("ask").setAttribute("aria-label", assessing ? "Assessment" : "Diagnosis");
     $("go").textContent = assessing ? "Assess" : "Make your call"; $("go").disabled = !$("ask").value.trim();
     $("callNow").disabled = !assessing;
@@ -114,7 +114,7 @@
       <h5>It was</h5><p style="font-weight:700;font-size:17px">${esc(p.diagnosis)}</p>
       ${st.flags.length ? `<h5>Safety</h5>${st.flags.map((f) => `<p style="color:var(--safety);font-weight:700;font-size:14px">⚠ ${esc(f)}</p>`).join("")}` : ""}
       <h5>What was going on</h5><p>${esc(p.story)}</p>
-      <h5>Most telling tests</h5><div class="keys">${p.key.map((id) => `<span style="color:${has(id) ? "#543C86" : "#5D586C"}">${has(id) ? "✓" : "○"} ${esc(A.find((a) => a.id === id).name)}</span>`).join("")}</div>
+      <h5>The checks that mattered most</h5><div class="keys">${p.key.map((id) => `<span style="color:${has(id) ? "#543C86" : "#5D586C"}">${has(id) ? "✓" : "○"} ${esc(A.find((a) => a.id === id).name)}</span>`).join("")}</div>
     </div><button class="go" id="next">Next patient</button>`);
     $("next").onclick = () => load((ci + 1) % C.length);
   }
@@ -122,10 +122,10 @@
   function howTo() {
     closeMenu();
     openSheet(`<div class="body"><h2 id="sheetTitle">How to play</h2><ol class="steps" style="margin-top:16px">
-      <li><b>1</b><span>Read why the patient is here.</span></li>
-      <li><b>2</b><span>Tap a suggested test, or type one. You get five. A useful test reveals a finding and the patient turns. A useless one gets no response.</span></li>
-      <li><b>3</b><span>Open the arrow next to Assess and choose “Make your call now” when you're ready, or after your fifth test. Type what you think is wrong.</span></li>
-      <li><b>4</b><span>The debrief shows what was really going on and which tests mattered most.</span></li></ol></div>
+      <li><b>1</b><span>Read why the patient has come in.</span></li>
+      <li><b>2</b><span>You get five chances to check them. Tap an idea or type your own, like \u201cwhere does it hurt\u201d or \u201creflexes\u201d. Good checks give you a clue and the patient turns around. Unhelpful ones give you nothing.</span></li>
+      <li><b>3</b><span>When you think you know, open the arrow next to Assess, choose \u201cMake your call now\u201d and type what you think is wrong.</span></li>
+      <li><b>4</b><span>You'll see what was really going on and which checks mattered most.</span></li></ol></div>
       <button class="go" id="gotit">Got it</button>`);
     $("gotit").onclick = () => ($("sheet").hidden = true);
   }
@@ -139,6 +139,7 @@
   $("callNow").onclick = () => { closeMenu(); if (st.phase === "assessing") { st.phase = "calling"; render(); $("ask").focus(); } };
   $("howTo").onclick = howTo;
   $("nextCase").onclick = () => { closeMenu(); load((ci + 1) % C.length); };
+  $("playAgain").onclick = (e) => { e.preventDefault(); if (st.turns.length) load((ci + 1) % C.length); $("title").scrollIntoView({ behavior: RM ? "auto" : "smooth" }); };
   $("sheet").addEventListener("click", (e) => { if (e.target === $("sheet") && st.phase !== "done") $("sheet").hidden = true; });
   $("chips").addEventListener("click", (e) => { const b = e.target.closest("[data-t]"); if (b) submit(b.dataset.t); });
   $("dock").addEventListener("submit", (e) => { e.preventDefault(); submit($("ask").value); });

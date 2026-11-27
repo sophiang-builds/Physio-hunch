@@ -18,6 +18,7 @@
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/brand.css">
+  <link rel="stylesheet" href="assets/case-file/case-file.css">
   <link rel="stylesheet" href="site/site.css">
   <script type="application/ld+json">
   {
@@ -71,7 +72,38 @@
     <!-- Hero: the patient is the hero -->
     <!-- Hero: the consult room. Patient on one side, your case notes on the other. -->
     <section class="play hero" aria-labelledby="title">
+      <!-- Desktop only: the case file. Closed with Play on the right; flips open to show the case. -->
+      <div class="case-file casefile" id="casefile" aria-label="Case file">
+        <div class="case-file__folder">
+          <div class="case-file__inside" aria-hidden="true"></div>
+          <div class="case-file__cover" aria-hidden="true">
+            <div class="case-file__face case-file__face--front">
+              <div class="cover-label"><span>Patient case</span><b>Can you work out what's wrong?</b></div>
+            </div>
+            <div class="case-file__face case-file__face--back"></div>
+          </div>
+          <article class="case-file__page" id="casePage">
+            <figure class="case-file__photo"><div class="pose pose-photo" role="img" id="posePhoto" aria-label="Patient photo"></div></figure>
+            <div class="case-file__paper">
+              <p class="cf-name" id="cfName"></p>
+              <p class="cf-label">Case background</p>
+              <p id="cfBackground"></p>
+              <p class="cf-label">History of presenting complaint</p>
+              <p id="cfHistory"></p>
+              <section class="case-file__answer" id="cfAnswer" aria-live="polite" hidden>
+                <p class="cf-label">Answer</p>
+                <p id="cfDiagnosis"></p>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+
       <div class="game" id="game">
+        <div class="playbox">
+          <button class="case-file__play" id="play" type="button" aria-controls="casePage" aria-expanded="false">Play</button>
+          <p>Five chances to check your patient, then make your best guess.</p>
+        </div>
         <div class="intro">
           <h1 id="title">Can you work out what's wrong?</h1>
           <p class="sub">You've got five chances to check your patient. Then make your best guess.</p>

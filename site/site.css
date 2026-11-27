@@ -234,3 +234,39 @@ footer p { margin: 4px 0; }
   .story textarea { min-height: 200px; }
 }
 @media (prefers-reduced-motion: reduce) { .mic[aria-pressed="true"] { animation: none; } }
+
+/* ---------- Desktop case file (assets/case-file, docs/case-file.md) ---------- */
+.casefile, .playbox { display: none; }
+@media (min-width: 821px) {
+  .hero { position: relative; overflow: hidden; min-height: calc(100svh - 68px); display: flex; align-items: center; background: radial-gradient(55% 70% at 25% 50%, color-mix(in srgb, var(--lilac) 45%, transparent), transparent 70%); }
+  /* the folder lives in the background of the left half */
+  .casefile { display: block; position: absolute; inset: 0 50% 0 0; min-block-size: 0; background: none; overflow: visible; z-index: 0; }
+  .casefile .case-file__folder { --leaf: min(34vw, 520px, calc((100svh - 120px) / 1.3125)); position: absolute; margin: 0; inline-size: var(--leaf); block-size: calc(var(--leaf) * 1.3125); min-block-size: 0; left: calc(50% - var(--leaf) / 2); top: 50%; translate: 0 -50%; transition: translate 620ms cubic-bezier(.26, .71, .21, 1); }
+  /* closed: whole folder sits in the left half; open: the right panel stays centred there and the cover bleeds off the left edge */
+  .casefile[data-open] .case-file__folder { translate: 0 -50%; }
+  .casefile:not([data-open]) .case-file__page { visibility: hidden; }
+  .cover-label { position: absolute; left: 14%; right: 12%; top: 30%; padding: 18px 20px; background: #fffaf0; border: 3px solid #86623e; box-shadow: 4px 4px 0 #86623e33; display: grid; gap: 6px; rotate: -2deg; image-rendering: pixelated; }
+  .cover-label span { font: 700 13px var(--body); letter-spacing: .02em; color: #86623e; }
+  .cover-label b { font: 650 clamp(22px, 2.2vw, 32px)/1.08 var(--display); color: var(--ink); }
+  .casefile .case-file__page { margin: 13% 8% 7% 9%; max-block-size: 80%; overflow: auto; scrollbar-width: none; }
+  .casefile .case-file__photo { inline-size: min(9rem, 42%); }
+  .pose-photo { position: absolute; inset: 8% 11% auto 9%; width: 80%; height: auto; aspect-ratio: 1; transform: none; left: 9%; top: 8%; }
+  .case-file__paper { font-size: 16px; line-height: 1.45; }
+  .cf-name { font: 650 22px/1.1 var(--display); margin: 0 0 8px !important; }
+  .cf-label { font: 700 13px var(--body); color: #86623e; margin: 0 0 2px !important; }
+  .case-file__answer p:last-child { font-weight: 700; }
+
+  /* the game sits on the right half, above the folder */
+  .game { position: relative; z-index: 1; width: 100%; max-width: none; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr); grid-template-areas: ". right"; height: min(720px, calc(100svh - 110px)); min-height: 560px; column-gap: 40px; padding-right: max(4vw, 24px); }
+  .game .patient { display: none; }
+  .game .intro { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .playbox, .consult { grid-area: right; }
+  .game:not(.open) .consult { display: none; }
+  .game:not(.open) .playbox { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; }
+  .playbox .case-file__play { position: static; translate: none; font-size: 2rem; padding: .7rem 2.6rem; min-block-size: 64px; }
+  .playbox p { margin: 0; color: var(--muted); font-size: 18px; max-width: 28ch; }
+  .game.open .consult { animation: rise .5s .25s both; }
+}
+@media (min-width: 821px) and (prefers-reduced-motion: reduce) {
+  .game.open .consult { animation: none; }
+}

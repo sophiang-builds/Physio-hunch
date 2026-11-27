@@ -43,7 +43,14 @@
     ci = i; try { localStorage.setItem("ph-case", i); } catch (e) {}
     st = { p: C[i], limit: 5, turns: [], phase: "assessing", flags: [] };
     view = 0; dir = Math.random() < .5 ? 1 : -1; clearInterval(timer);
-    $("pose").style.backgroundImage = `url(${ATLAS(st.p.id)})`;
+    document.querySelectorAll(".pose").forEach((el) => (el.style.backgroundImage = `url(${ATLAS(st.p.id)})`));
+    // Desktop case file: fill the paper, close the folder, hide the answer.
+    $("cfName").textContent = `${st.p.name}, ${st.p.age}`;
+    $("cfBackground").textContent = st.p.situation;
+    $("cfHistory").textContent = (st.p.given || []).map((id) => st.p.findings[id]).filter(Boolean).join(" ");
+    $("cfDiagnosis").textContent = st.p.diagnosis;
+    $("cfAnswer").hidden = true;
+    setOpen(false);
     $("pose").setAttribute("aria-label", `${st.p.name}, ${st.p.age}`);
     setPose(0); camera(); $("ask").value = ""; $("sheet").hidden = true; render();
   }
@@ -64,17 +71,23 @@
     const f = $("findings"); f.scrollTo({ top: f.scrollHeight, behavior: RM ? "auto" : "smooth" });
   }
 
+  function setOpen(open) {
+    $("casefile").toggleAttribute("data-open", open);
+    $("game").classList.toggle("open", open);
+    $("play").setAttribute("aria-expanded", String(open));
+  }
+
   function call(text) {
     st.call = text; st.verdict = any(st.p.answers, text) ? "correct" : any(st.p.close, text) ? "close" : "wrong"; st.phase = "done";
     // Fewer checks, more marks: 50 for a right call + 10 per unused check; close is half; -20 per safety flag.
     const unused = st.limit - st.turns.length, full = 50 + 10 * unused;
     let pts = { correct: full, close: Math.floor(full / 2) }[st.verdict] || 0; pts -= 20 * st.flags.length;
     st.unused = unused;
-    st.score = Math.max(0, Math.min(100, pts)); $("ask").value = ""; $("ask").blur(); render(); setTimeout(result, 500);
+    st.score = Math.max(0, Math.min(100, pts)); $("cfAnswer").hidden = st.verdict !== "correct"; $("ask").value = ""; $("ask").blur(); render(); setTimeout(result, 500);
   }
 
   // ---------- motion: 16-pose atlas, quarter turn per finding ----------
-  function setPose(i) { $("pose").style.backgroundPosition = `${(i % 4) * 100 / 3}% ${Math.floor(i / 4) * 100 / 3}%`; }
+  function setPose(i) { document.querySelectorAll(".pose").forEach((el) => (el.style.backgroundPosition = `${(i % 4) * 100 / 3}% ${Math.floor(i / 4) * 100 / 3}%`)); }
   function camera(v = view) { const [z, a] = CAMERA[VIEWS[v]]; $("cam").style.transformOrigin = `50% ${a * 100}%`; $("cam").style.transform = `scale(${z})`; }
   function turn() {
     const start = view, target = (view + dir + 4) % 4; camera(target); view = target;
@@ -143,6 +156,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeMenu(); if (st.phase !== "done") $("sheet").hidden = true; } });
   $("callNow").onclick = () => { closeMenu(); if (st.phase === "assessing") { st.phase = "calling"; render(); $("ask").focus(); } };
   $("howTo").onclick = howTo;
+  $("play").onclick = () => { setOpen(true); setTimeout(() => $("ask").focus({ preventScroll: true }), RM ? 0 : 720); };
   $("nextCase").onclick = () => { closeMenu(); load((ci + 1) % C.length); };
   $("sheet").addEventListener("click", (e) => { if (e.target === $("sheet") && st.phase !== "done") $("sheet").hidden = true; });
   $("dock").addEventListener("submit", (e) => { e.preventDefault(); submit($("ask").value); });

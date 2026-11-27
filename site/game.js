@@ -6,7 +6,7 @@
 (async () => {
   const DATA = "ios/PhysioHunch/Resources/Data/";
   const ATLAS = (p) => p.atlas || `assets/characters/pose-atlases/${p.id}.png`;
-  const BRIEFS = "cases/expansion/cases.psv";            // 100 expansion briefs, read at runtime
+  const BRIEFS = "cases/expansion/cases.psv";            // 100 expansion briefs, read at runtime (only those with finished art play)
   const PER_DAY = 5;                                     // random patients per day
   const VIEWS = ["front", "right", "back", "left"];
   // zooms from assets/characters/turn-clips/manifest.json; push-ins centre on the face
@@ -80,7 +80,7 @@
     const [psv, ill] = await Promise.all([fetch(BRIEFS).then((r) => r.text()), fetch("assets/characters/expansion/illustrated.json").then((r) => r.json()).catch(() => [])]);
     const [head, ...rows] = psv.trim().split(/\r?\n/);
     const cols = head.split("|"), illustrated = new Set(ill.map(String));
-    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer) C.push(briefCase(r, illustrated)); });
+    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer && illustrated.has(r.id)) C.push(briefCase(r, illustrated)); });   // finished art only; drafts join when listed in illustrated.json
   } catch (e) { /* the original cases still play if the briefs can't load */ }
   // How many answers each keyword appears in, to spot the distinctive ones.
   const DF = new Map();

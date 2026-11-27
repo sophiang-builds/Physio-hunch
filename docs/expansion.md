@@ -39,7 +39,7 @@ After reviewing one patient, register the square green-screen 4 × 4 source shee
 
 ## How the website plays the briefs
 
-The website (`site/game.js`) reads `cases/expansion/cases.psv` when the page loads and adds every row to the case bank, next to the five fully authored cases. Each day draws five random patients from the whole bank, which stay the same after a refresh and change the next day.
+The website (`site/game.js`) reads `cases/expansion/cases.psv` when the page loads and adds every row whose patient is listed in `assets/characters/expansion/illustrated.json` to the case bank. Patients with draft art stay out of the game until they're registered there, next to the five fully authored cases. Each day draws five random patients from the whole bank, which stay the same after a refresh and change the next day.
 
 Until a brief gets full findings, it plays like this:
 

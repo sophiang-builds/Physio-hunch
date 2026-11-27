@@ -27,11 +27,11 @@ The entries are case briefs for expansion authoring. They need clinical educator
 
 [See all 100 patients together](../assets/characters/expansion/contact-sheet.png). The rows follow the practice area order above.
 
-Use [portraits](../assets/characters/expansion/portraits) for case folders and [atlases](../assets/characters/expansion/atlases) for turning. In both folders, use `<id>.png`. The 100 transparent atlases follow the original production layout: 1024 × 1024 with a 4 × 4 grid of 256 × 256 cells, row-major from front (0), right (4), back (8), and left (12), with a 22.5° step between cells. Use nearest-neighbour scaling. The portrait is the front cell of the character’s atlas. Earlier draft portraits are 96 × 96 and use the same framing when enlarged.
+Use [portraits](../assets/characters/expansion/portraits) for case folders and [atlases](../assets/characters/expansion/atlases) for turning. In both folders, use `<id>.png`. The 100 transparent atlases follow the original production layout: 1024 × 1024 with a 4 × 4 grid of 256 × 256 cells, row-major from front (0), right (4), back (8), and left (12), with a 22.5° step between cells. Use nearest-neighbour scaling. The portrait is the front cell of the character’s atlas.
 
 ## Individual artwork
 
-Use the [artwork status list](../assets/characters/expansion/illustrated.json) to select the patients with individual illustrations. The preview labels all other portraits as drafts.
+All 100 expansion patients (cases 101–200) have individually illustrated turnarounds and matching front portraits. The [artwork manifest](../assets/characters/expansion/illustrated.json) lists every registered case ID.
 
 Use the [original five turnarounds](../assets/characters/pose-atlases) as the art reference for each new patient. Match their waist-up crop and believable proportions, crisp plum contours, separately drawn views and stepped shadow clusters. Carry the character’s hair and facial details through the turn, including when an ear or glasses arm becomes occluded. Give the garment its own folds and seams, and preserve those design details across the 16 angles. Review the first, right, back and left views and inspect the intervening angles for jumps in silhouette or changes in costume.
 
@@ -39,7 +39,7 @@ After reviewing one patient, register the square green-screen 4 × 4 source shee
 
 ## How the website plays the briefs
 
-The website (`site/game.js`) reads `cases/expansion/cases.psv` when the page loads and adds every row whose patient is listed in `assets/characters/expansion/illustrated.json` to the case bank. Patients with draft art stay out of the game until they're registered there, next to the five fully authored cases. Each day draws five random patients from the whole bank, which stay the same after a refresh and change the next day.
+The website (`site/game.js`) reads `cases/expansion/cases.psv` when the page loads and adds every row whose patient is listed in `assets/characters/expansion/illustrated.json` to the case bank. All 100 expansion patients are registered, giving a bank of 105 with the five original cases. Each day draws five random patients from the whole bank, which stay the same after a refresh and change the next day.
 
 Until a brief gets full findings, it plays like this:
 

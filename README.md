@@ -37,11 +37,11 @@ The [interactive folder demo](demo/case-file.html) shows the yellow cover, clipp
 
 ## 100-patient expansion
 
-The [expansion roster](demo/expansion-roster.html) previews 100 case briefs, portraits and 16-angle turning sheets. See the [case and asset handoff](docs/expansion.md) for practice areas, source data and app integration.
+The [expansion roster](demo/expansion-roster.html) previews all 100 individually illustrated patients, with case briefs, front portraits and 16-angle turning sheets. See the [case and asset handoff](docs/expansion.md) for practice areas, source data and app integration.
 
 ## Daily cases
 
-Every day the website draws five random patients from the whole bank: the five authored cases plus the expansion briefs in `cases/expansion/cases.psv` whose patients have finished art (listed in `assets/characters/expansion/illustrated.json`). Draft-art patients join automatically once they're listed. Each of those patients has a full written case in `ios/PhysioHunch/Resources/Data/expansion-cases.json`, built like the original five. The draw survives a refresh and changes the next day. See [docs/expansion.md](docs/expansion.md#how-the-website-plays-the-briefs) for how briefs play before they get full findings.
+Every day the website draws five random patients from the whole bank: the five original cases plus all 100 expansion cases. The roster is in `cases/expansion/cases.psv` and the artwork manifest is in `assets/characters/expansion/illustrated.json`. Each of those patients has a full written case in `ios/PhysioHunch/Resources/Data/expansion-cases.json`, built like the original five. The draw survives a refresh and changes the next day. See [docs/expansion.md](docs/expansion.md#how-the-website-plays-the-briefs) for how briefs play before they get full findings.
 
 ## Characters
 

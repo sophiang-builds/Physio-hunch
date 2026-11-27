@@ -17,9 +17,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/brand.css">
-  <link rel="stylesheet" href="assets/case-file/case-file.css">
-  <link rel="stylesheet" href="site/site.css">
+  <link rel="stylesheet" href="assets/brand.css?v=20261127c">
+  <link rel="stylesheet" href="assets/case-file/case-file.css?v=20261127c">
+  <link rel="stylesheet" href="site/site.css?v=20261127c">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,6 +82,11 @@
             </div>
             <div class="case-file__face case-file__face--back"></div>
           </div>
+<div class="hud hud-folder" aria-live="polite">
+            <div class="hud-time"><span>Time</span><b class="hud-time-n">0:45</b><i class="hud-delta"></i></div>
+            <div class="hud-score"><span>Score</span><b class="hud-score-n">0</b><i class="hud-gain"></i></div>
+            <p class="hud-tries"></p>
+          </div>
           <article class="case-file__page" id="casePage">
             <figure class="case-file__photo"><div class="pose pose-photo" role="img" id="posePhoto" aria-label="Patient photo"></div></figure>
             <div class="case-file__paper">
@@ -100,9 +105,14 @@
       </div>
 
       <div class="game" id="game">
+        <div class="donebox" id="donebox" hidden>
+          <h2>That's your five for today</h2>
+          <p>You scored <b id="doneTotal">0</b> points.</p>
+          <p>Five new tries tomorrow. Come back and beat it.</p>
+        </div>
         <div class="playbox">
           <button class="case-file__play" id="play" type="button" aria-controls="casePage" aria-expanded="false">Play</button>
-          <p>Five chances to check your patient, then make your best guess.</p>
+          <p>45 seconds and five chances to check your patient, then make your best guess. Five patients a day.</p>
         </div>
         <div class="intro">
           <h1 id="title">Can you work out what's wrong?</h1>
@@ -110,6 +120,11 @@
         </div>
 
         <div class="patient">
+          <div class="hud hud-card" aria-hidden="true">
+            <div class="hud-time"><span>Time</span><b class="hud-time-n">0:45</b><i class="hud-delta"></i></div>
+            <div class="hud-score"><span>Score</span><b class="hud-score-n">0</b><i class="hud-gain"></i></div>
+            <p class="hud-tries"></p>
+          </div>
           <div class="stage" id="stage">
             <div class="cam" id="cam">
               <div class="disc"><i id="bloom"></i></div>
@@ -141,7 +156,6 @@
               <div class="menu glass" id="menu" hidden>
                 <button type="button" id="callNow">Make your call now</button>
                 <button type="button" id="howTo">How to play</button>
-                <button type="button" id="nextCase">Try a different patient</button>
               </div>
             </div>
           </form>
@@ -167,7 +181,7 @@
         <ol class="steps three">
           <li><b>1</b><div><h3>Meet the patient</h3><p>You'll see who they are and why they've come in. That's all you get to start with.</p></div></li>
           <li><b>2</b><div><h3>Check them five times</h3><p>Type what you want to check, like "where does it hurt", "reflexes" or "listen to the chest". Good checks get you a clue and they turn around. Unhelpful ones get you nothing, and that chance is gone.</p></div></li>
-          <li><b>3</b><div><h3>Make your guess</h3><p>When you think you know, open the arrow next to Assess and make your call. The fewer checks you needed, the more points you get, so you don't have to use all five.</p></div></li>
+          <li><b>3</b><div><h3>Make your guess</h3><p>When you think you know, open the arrow next to Assess and make your call. The fewer checks you needed, the more points you get. Get it right and the next patient's file flips straight open. You get five patients a day.</p></div></li>
         </ol>
       </div>
     </section>
@@ -195,12 +209,12 @@
           <div class="good">
             <p class="ask">You ask Mia: <b>"What happened?"</b></p>
             <p class="said">"I went up for a rebound, landed on someone's foot and rolled my ankle inwards. Felt a pop on the outside."</p>
-            <p class="verdict-line">That's a clue. Mia turns, and you've still got four chances left.</p>
+            <p class="verdict-line">That's a clue. Mia turns, you gain 5 seconds, and you've still got four chances left.</p>
           </div>
           <div class="bad">
             <p class="ask">You try a <b>Lachman test</b>.</p>
             <p class="said">No response.</p>
-            <p class="verdict-line">That's a knee test, and her problem is her ankle. The chance is gone, and nothing turns.</p>
+            <p class="verdict-line">That's a knee test, and her problem is her ankle. The chance is gone, nothing turns, and it costs you 5 seconds.</p>
           </div>
         </div>
       </div>
@@ -246,6 +260,6 @@
     <p><a href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">Buy me a coffee</a> · <a href="research/viva-research.md">Research and sources</a> · <a href="classic/">Classic exam and practical modes</a></p>
   </footer>
 
-  <script src="site/game.js"></script>
+  <script src="site/game.js?v=20261127c"></script>
 </body>
 </html>

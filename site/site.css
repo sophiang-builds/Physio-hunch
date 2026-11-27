@@ -270,3 +270,43 @@ footer p { margin: 4px 0; }
 @media (min-width: 821px) and (prefers-reduced-motion: reduce) {
   .game.open .consult { animation: none; }
 }
+
+/* ---------- Score, timer and daily tries ---------- */
+.hud { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; font-family: var(--body); }
+.hud > div { position: relative; background: #fffaf0; border: 3px solid #86623e; box-shadow: 3px 3px 0 #86623e40; padding: 4px 12px 6px; min-width: 84px; text-align: center; }
+.hud span { display: block; font: 700 11px var(--body); letter-spacing: .04em; color: #86623e; }
+.hud b { display: block; font: 650 28px/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+.hud-time-n.low { color: var(--safety); animation: tick 1s steps(2) infinite; }
+@keyframes tick { 50% { opacity: .55; } }
+.hud-score-n.bump { animation: bump .6s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.45); color: var(--violet); } 100% { transform: scale(1); } }
+.hud i { position: absolute; left: 50%; top: -6px; translate: -50% 0; font: 700 14px var(--body); font-style: normal; opacity: 0; pointer-events: none; white-space: nowrap; }
+.hud-delta.up, .hud-gain { color: var(--violet); }
+.hud-delta.down { color: var(--safety); }
+.hud i.show { animation: floatup 1.1s ease-out; }
+@keyframes floatup { 0% { opacity: 0; translate: -50% 6px; } 20% { opacity: 1; } 100% { opacity: 0; translate: -50% -22px; } }
+.hud-tries { flex-basis: 100%; margin: 0; font-size: 13px; font-weight: 700; color: var(--muted); text-align: right; }
+/* desktop: on the bottom-right of the folder */
+.hud-folder { display: none; }
+/* phone: in the corner of the patient card */
+.patient { position: relative; }
+.hud-card { position: absolute; z-index: 2; top: 14px; left: 14px; right: 14px; justify-content: space-between; flex-wrap: nowrap; pointer-events: none; }
+.hud-card .hud-tries { display: none; }
+.hud-card > div { min-width: 62px; padding: 2px 8px 4px; border-width: 2px; }
+.hud-card b { font-size: 20px; }
+.hud-card span { font-size: 10px; }
+.hud-card .hud-tries { font-size: 11px; }
+/* end of the day */
+.donebox { text-align: center; padding: 24px; background: var(--paper); border-radius: 26px; }
+.donebox h2 { font-size: clamp(24px, 3vw, 34px); margin: 0 0 8px; }
+.donebox p { margin: 4px 0; font-size: 17px; }
+.donebox b { font: 650 1.3em var(--display); color: var(--violet); }
+.game.done .consult, .game.done .playbox { display: none !important; }
+@media (min-width: 821px) {
+  .hud-folder { display: flex; position: absolute; z-index: 3; right: 5%; bottom: 4%; justify-content: flex-end; max-width: 60%; }
+  .hud-card { display: none; }
+  .donebox { grid-area: right; align-self: center; text-align: left; background: none; padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hud-score-n.bump, .hud i.show, .hud-time-n.low { animation: none; }
+}

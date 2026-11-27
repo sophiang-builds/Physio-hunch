@@ -69,11 +69,14 @@
 
   <main>
     <!-- Hero: the patient is the hero -->
+    <!-- Hero: the consult room. Patient on one side, your case notes on the other. -->
     <section class="play hero" aria-labelledby="title">
-      <h1 id="title">Can you work out what's wrong?</h1>
-      <p class="sub">You've got five chances to check your patient. Then make your best guess.</p>
-
       <div class="game" id="game">
+        <div class="intro">
+          <h1 id="title">Can you work out what's wrong?</h1>
+          <p class="sub">You've got five chances to check your patient. Then make your best guess.</p>
+        </div>
+
         <div class="patient">
           <div class="stage" id="stage">
             <div class="cam" id="cam">
@@ -81,11 +84,14 @@
               <div class="pose" id="pose" role="img" aria-label="Patient"></div>
             </div>
           </div>
-          <p class="situation" id="situation">Loading your patient…</p>
         </div>
 
         <div class="consult">
-          <ol class="findings" id="findings" aria-live="polite"></ol>
+          <div class="notes">
+            <p class="notes-head"><span>Case notes</span><span id="who"></span></p>
+            <p class="situation" id="situation">Loading your patient…</p>
+            <ol class="findings" id="findings" aria-live="polite"></ol>
+          </div>
           <form class="dock" id="dock" autocomplete="off">
             <p class="toast glass" id="toast" role="status" hidden></p>
             <div class="chips" id="chips" aria-label="Ideas for what to check"></div>
@@ -114,6 +120,16 @@
     <section class="band" id="how">
       <div class="wrap">
         <h2>Here's how it works</h2>
+        <figure class="turnstrip">
+          <img src="assets/characters/sprites/ankle-front.png" alt="Mia facing you">
+          <span aria-hidden="true">→</span>
+          <img src="assets/characters/sprites/ankle-right.png" alt="Mia turned to the side">
+          <span aria-hidden="true">→</span>
+          <img src="assets/characters/sprites/ankle-back.png" alt="Mia facing away">
+          <span aria-hidden="true">→</span>
+          <img src="assets/characters/sprites/ankle-left.png" alt="Mia turned to the other side">
+          <figcaption>Every good check turns your patient a little further.</figcaption>
+        </figure>
         <ol class="steps three">
           <li><b>1</b><div><h3>Meet the patient</h3><p>You'll see who they are and why they've come in. That's all you get to start with.</p></div></li>
           <li><b>2</b><div><h3>Check them five times</h3><p>Ask about their pain, test their reflexes, listen to their chest. Pick from the ideas or type your own. Good checks get you a clue and they turn around. Unhelpful ones get you nothing, and that chance is gone.</p></div></li>
@@ -135,6 +151,24 @@
           <li><b>Hands-on tests.</b> Range of motion, strength, reflexes, sensation, SLR, slump and special tests.</li>
           <li><b>Putting it together.</b> Getting from a handful of clues to a diagnosis you can explain.</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Pick your checks like you would in the room</h2>
+        <div class="compare">
+          <div class="good">
+            <p class="ask">You ask Mia: <b>"What happened?"</b></p>
+            <p class="said">"I went up for a rebound, landed on someone's foot and rolled my ankle inwards. Felt a pop on the outside."</p>
+            <p class="verdict-line">That's a clue. Mia turns, and you've still got four chances left.</p>
+          </div>
+          <div class="bad">
+            <p class="ask">You try a <b>Lachman test</b>.</p>
+            <p class="said">No response.</p>
+            <p class="verdict-line">That's a knee test, and her problem is her ankle. The chance is gone, and nothing turns.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -174,6 +208,7 @@
 
   <footer>
     <p>Physio Hunch is a free study game for physiotherapy students. It isn't connected to the University of Newcastle, and the cases are simplified for practice, not clinical advice.</p>
+    <p>How the cases are built: each one draws on Newcastle physiotherapy course outlines, the Assessment of Physiotherapy Practice and standard physio assessment. The full notes and sources are in our research page.</p>
     <p><a href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">Buy me a coffee</a> · <a href="research/viva-research.md">Research and sources</a> · <a href="classic/">Classic exam and practical modes</a></p>
   </footer>
 

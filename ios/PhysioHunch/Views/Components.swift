@@ -2,18 +2,22 @@ import SwiftUI
 
 /// The patient from the turnaround sheet, filmed like a short scene.
 ///
-/// Right test: the patient turns one view (front, right, back, left) while the camera
-/// glides to a new shot. Shots go wide (waist up), medium (chest and face), close (face),
-/// then pick randomly between pushing in and pulling out.
+/// Right test: the patient makes a quarter turn while the camera glides to that view's shot.
+/// Camera and timing follow assets/characters/turn-clips/manifest.json: sides push in to 1.12x,
+/// the back opens to 0.94x, the front resets to 1.0x. The first direction is random and kept
+/// for four turns so every angle is seen.
 /// Wrong test: the head gives a small "no" shake while the shoulders stay still.
 /// Reduce Motion: frames and shots change without movement.
-/// The same motion is rendered to GIFs by tools/make_turn_gifs.py.
+/// The same motion is exported as one-shot clips by tools/make_turn_clips.py.
 struct PatientStage: View {
     static let views = ["front", "right", "back", "left"]
-    /// zoom, and the vertical point the camera centres on (0 top, 1 bottom)
-    static let shots: [(zoom: CGFloat, anchorY: CGFloat)] = [(1.0, 0.55), (1.32, 0.40), (1.72, 0.30)]
+    /// Per view: zoom, and the vertical point the camera centres on (0 top, 1 bottom).
+    /// Same values as assets/characters/turn-clips/manifest.json.
+    static let camera: [String: (zoom: CGFloat, anchorY: CGFloat)] = [
+        "front": (1.00, 0.55), "right": (1.12, 0.40), "back": (0.94, 0.55), "left": (1.12, 0.40)
+    ]
     static let neck: CGFloat = 0.50
-    static let turnDuration = 0.85
+    static let turnDuration = 0.72
 
     let patient: PatientCase
     let hits: Int
@@ -25,13 +29,14 @@ struct PatientStage: View {
     @State private var from = 0
     @State private var to = 0
     @State private var progress: CGFloat = 1
-    @State private var shot = 0
+    @State private var direction = Bool.random() ? 1 : -1
+    @State private var cameraView = 0
     @State private var breathing = false
 
     private var height: CGFloat { compact ? 190 : 300 }
 
     var body: some View {
-        let camera = Self.shots[shot]
+        let camera = Self.camera[Self.views[cameraView]] ?? (1, 0.55)
         ZStack(alignment: .bottom) {
             Circle()
                 .fill(Brand.lilac)
@@ -66,7 +71,7 @@ struct PatientStage: View {
         .onChange(of: patient.id) { _, _ in
             var reset = Transaction()
             reset.disablesAnimations = true
-            withTransaction(reset) { from = 0; to = 0; progress = 1; shot = 0 }
+            withTransaction(reset) { from = 0; to = 0; cameraView = 0; progress = 1; direction = Bool.random() ? 1 : -1 }
         }
         .onAppear {
             guard !reduceMotion else { return }
@@ -74,20 +79,11 @@ struct PatientStage: View {
         }
     }
 
-    private func nextShot(after hits: Int) -> Int {
-        switch hits {
-        case 1: return 1
-        case 2: return 2
-        default: return [0, 1, 2].filter { $0 != shot }.randomElement() ?? 0
-        }
-    }
-
     private func advance(to hits: Int) {
         guard hits > 0 else { return }
-        let target = hits % Self.views.count
-        let newShot = nextShot(after: hits)
+        let target = (to + direction + Self.views.count) % Self.views.count
         if reduceMotion {
-            from = target; to = target; progress = 1; shot = newShot
+            from = target; to = target; cameraView = target; progress = 1
             return
         }
         var start = Transaction()
@@ -95,13 +91,13 @@ struct PatientStage: View {
         withTransaction(start) { from = to; to = target; progress = 0 }
         withAnimation(.easeInOut(duration: Self.turnDuration)) {
             progress = 1
-            shot = newShot
+            cameraView = target
         }
     }
 }
 
-/// One turn between two views. The body keeps depth side-on (narrowest at 55% width),
-/// lifts slightly, and the two views cross-fade through the middle of the turn.
+/// One turn between two views: a gentle 16% squeeze, a slight lift,
+/// and a cross-fade through the middle of the turn (as in the turn clips).
 struct TurningSprite: View, Animatable {
     let from: Image
     let to: Image
@@ -115,8 +111,8 @@ struct TurningSprite: View, Animatable {
     }
 
     var body: some View {
-        let width = 1 - 0.45 * sin(.pi * progress)
-        let blend = min(1, max(0, (progress - 0.4) / 0.2))
+        let width = 1 - 0.16 * sin(.pi * progress)
+        let blend = min(1, max(0, (progress - 0.39) / 0.22))
         ZStack(alignment: .bottom) {
             ShakingHead(image: from, neck: neck, trigger: shakeTrigger).opacity(1 - blend)
             ShakingHead(image: to, neck: neck, trigger: shakeTrigger).opacity(blend)

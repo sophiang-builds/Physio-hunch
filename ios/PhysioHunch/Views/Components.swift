@@ -5,7 +5,7 @@ import SwiftUI
 /// to the case's focus point. Reduce Motion swaps views with a crossfade.
 struct PatientStage: View {
     static let views = ["front", "right", "back", "left"]
-    static let height: CGFloat = 340
+    static let height: CGFloat = 300
     static let zoomPerFinding: CGFloat = 0.16
 
     let patient: PatientCase
@@ -35,7 +35,7 @@ struct PatientStage: View {
                                              startPoint: .topLeading, endPoint: .bottomTrailing))
                         .opacity(reveal)
                 }
-                .frame(width: 250, height: 250)
+                .frame(width: 230, height: 230)
 
             Image("\(patient.turnaround)-\(Self.views[shown])")
                 .resizable()

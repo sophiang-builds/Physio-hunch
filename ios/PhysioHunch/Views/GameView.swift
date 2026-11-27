@@ -12,36 +12,41 @@ struct GameView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    VStack(spacing: 18) {
-                        PatientStage(patient: state.patient, hits: state.hits, reveal: game.reveal)
+            VStack(spacing: 12) {
+                // The patient, situation and slots stay pinned in the middle.
+                PatientStage(patient: state.patient, hits: state.hits, reveal: game.reveal)
 
-                        Text(state.patient.situation)
-                            .font(Brand.text(18, bold: true))
-                            .foregroundStyle(Brand.ink)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
+                Text(state.patient.situation)
+                    .font(Brand.text(17, bold: true))
+                    .foregroundStyle(Brand.ink)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                        SlotsBar(state: state) { reading = $0 }
+                SlotsBar(state: state) { reading = $0 }
 
-                        ForEach(state.turns) { turn in
-                            Button { reading = turn } label: { FindingCard(turn: turn) }
-                                .buttonStyle(.plain)
-                                .id(turn.id)
+                // Only the findings scroll.
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach(state.turns) { turn in
+                                Button { reading = turn } label: { FindingCard(turn: turn) }
+                                    .buttonStyle(.plain)
+                                    .id(turn.id)
+                            }
                         }
+                        .padding(.vertical, 4)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 24)
-                    .frame(maxWidth: 560)
-                    .frame(maxWidth: .infinity)
-                }
-                .scrollDismissesKeyboard(.interactively)
-                .onChange(of: state.turns.count) { _, _ in
-                    guard let last = state.turns.last else { return }
-                    withAnimation(.smooth) { proxy.scrollTo(last.id, anchor: .bottom) }
+                    .scrollIndicators(.hidden)
+                    .scrollDismissesKeyboard(.interactively)
+                    .onChange(of: state.turns.count) { _, _ in
+                        guard let last = state.turns.last else { return }
+                        withAnimation(.smooth) { proxy.scrollTo(last.id, anchor: .bottom) }
+                    }
                 }
             }
+            .padding(.horizontal, 20)
+            .frame(maxWidth: 560)
+            .frame(maxWidth: .infinity)
             .background { Backdrop(palette: state.patient.palette, reveal: game.reveal) }
             .safeAreaInset(edge: .bottom) { composer }
             .navigationBarTitleDisplayMode(.inline)

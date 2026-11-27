@@ -22,7 +22,9 @@ For the code-drawn implementation, use the sheet to author four per-patient view
 
 ## Individual turn clips
 
-The [turn clips](../assets/characters/turn-clips) use the current pixel sprites. Each patient has eight one-shot GIFs. Both 90° directions are available from each of four poses. The side views come in to **1.12×**, the back opens up to **0.94×**, and the front resets to **1.00×**. Each clip runs for one second, including the final hold. The turn uses the four drawn poses with a brief 2D blend between them.
+The [turn clips](../assets/characters/turn-clips) use the [16-pose atlases](../assets/characters/pose-atlases). Each patient has eight one-shot GIFs. Each 90° clip uses five discrete drawings, including three in-between poses. The camera eases independently of those pose changes. The side views come in to **1.31×**, the back opens up to **0.84×**, and the front resets to **1.00×**. Each clip runs for **920 ms**, including the 280 ms end hold.
+
+The transparent atlases are 1024 × 1024, with sixteen 256 × 256 cells in row-major order. Index 0 faces front, 4 faces screen-right, 8 faces back, and 12 faces screen-left. The in-between cells are spaced at approximately 22.5° intervals. For continuous playback, start and hold on the corresponding atlas cell or decoded GIF frame and reuse its camera framing. For sprite-based playback, advance through the same cells and ease the camera between endpoints.
 
 | Patient | Asset folder | First turn preview |
 | --- | --- | --- |
@@ -32,7 +34,7 @@ The [turn clips](../assets/characters/turn-clips) use the current pixel sprites.
 | Robert Nguyen | [postop](../assets/characters/turn-clips/postop) | [Front → right](../assets/characters/turn-clips/postop/front-to-right.gif) |
 | Gary Whitfield | [cardiac](../assets/characters/turn-clips/cardiac) | [Front → right](../assets/characters/turn-clips/cardiac/front-to-right.gif) |
 
-Start in `front`. On each new finding, choose a destination from `patients[caseId][currentView]` in [manifest.json](../assets/characters/turn-clips/manifest.json). Resolve the returned file path relative to the manifest. Play that clip once, then hold its final frame and record the destination as the current view. Queue any new turn until playback finishes. With reduced motion, show the destination sprite directly using its camera setting from the manifest.
+Start in `front`. On each new finding, choose a destination from `patients[caseId][currentView]` in [manifest.json](../assets/characters/turn-clips/manifest.json). Resolve the returned file path relative to the manifest. Play that clip once, then hold its final frame and record the destination as the current view. Queue any new turn until playback finishes. With reduced motion, show the destination atlas cell directly using its camera setting from the manifest.
 
 A five-finding sequence that reveals all four views is **front → right → back → left → front → right**. Randomise the initial direction and keep it for the first four turns if you want to guarantee that the player sees every angle. For freer variation, choose either valid destination each turn. The GIFs are optional playback assets alongside the app’s existing sprite renderer.
 

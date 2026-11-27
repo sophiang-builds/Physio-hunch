@@ -1,85 +1,99 @@
-"""Export reusable quarter-turn GIFs. Run python3 tools/make_turn_clips.py."""
+"""Export one-shot quarter-turn GIFs from the registered 16-pose atlases."""
 import json
-import math
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
-from make_turn_gifs import IDS, VIEWS, ease, frame
-
-ROOT = Path(__file__).resolve().parents[1]
-CHARACTERS = ROOT / "assets" / "characters"
-OUTPUT = CHARACTERS / "turn-clips"
-CAMERA = {
-    "front": (1.00, 0.55),
-    "right": (1.12, 0.40),
-    "back": (0.94, 0.55),
-    "left": (1.12, 0.40),
-}
-CLIP_SIZE = (320, 320)
-STEPS = 18
+ROOT = Path(__file__).resolve().parents[1] / "assets" / "characters"
+OUTPUT = ROOT / "turn-clips"
+VIEWS = ("front", "right", "back", "left")
+CAMERA = {"front": 1.00, "right": 1.31, "back": 0.84, "left": 1.31}
+ROOM, LILAC = "#f7f3ea", "#d7c8f1"
+CELL = 256
+SIZE = 320
+BASELINE = 311
+POSES_PER_QUARTER = 4
+STEPS = 16
 FRAME_MS = 40
 END_HOLD_MS = 280
 
 
-def make_frames(source, target, start, end, palette):
-    zoom_start, anchor_start = CAMERA[start]
-    zoom_end, anchor_end = CAMERA[end]
+def read_poses(path):
+    with Image.open(path) as image:
+        atlas = image.convert("RGBA")
+    if atlas.size != (CELL * 4, CELL * 4):
+        raise ValueError(f"Expected a 4 × 4 atlas of {CELL} px cells: {path}")
+    return [
+        atlas.crop((x, y, x + CELL, y + CELL))
+        for y in range(0, atlas.height, CELL)
+        for x in range(0, atlas.width, CELL)
+    ]
+
+
+def render(pose, zoom):
+    scene = Image.new("RGB", (SIZE, SIZE), ROOM)
+    ImageDraw.Draw(scene).ellipse((45, 35, 275, 265), fill=LILAC)
+    side = round(CELL * zoom)
+    sprite = pose.resize((side, side), Image.Resampling.NEAREST)
+    bottom_padding = round(8 * zoom)
+    scene.paste(sprite, ((SIZE - side) // 2, BASELINE + bottom_padding - side), sprite)
+    return scene
+
+
+def make_frames(poses, view_index, direction, palette):
+    start = VIEWS[view_index]
+    end = VIEWS[(view_index + direction) % len(VIEWS)]
+    start_zoom, end_zoom = CAMERA[start], CAMERA[end]
     frames = []
     for step in range(STEPS + 1):
         t = step / STEPS
-        progress = ease(t)
-        zoom = zoom_start + (zoom_end - zoom_start) * progress
-        anchor = anchor_start + (anchor_end - anchor_start) * progress
-        width = 1 - 0.16 * math.sin(math.pi * t)
-        mix = ease(min(1, max(0, (t - 0.39) / 0.22)))
-        if mix == 0:
-            result = frame(source, zoom, anchor, width)
-        elif mix == 1:
-            result = frame(target, zoom, anchor, width)
-        else:
-            before = frame(source, zoom, anchor, width)
-            after = frame(target, zoom, anchor, width)
-            result = Image.blend(before, after, mix)
-        reduced = result.resize(CLIP_SIZE, Image.Resampling.NEAREST)
-        frames.append(reduced.quantize(palette=palette, dither=Image.Dither.NONE))
+        eased = t * t * (3 - 2 * t)
+        offset = round(POSES_PER_QUARTER * t)
+        pose_index = (view_index * POSES_PER_QUARTER + direction * offset) % len(poses)
+        zoom = start_zoom + (end_zoom - start_zoom) * eased
+        frames.append(render(poses[pose_index], zoom).quantize(palette=palette, dither=Image.Dither.NONE))
     return frames
+
+
+def export_patient(path):
+    poses = read_poses(path)
+    patient = path.stem
+    samples = Image.new("RGB", (CELL * 4, CELL * 4 + 24), ROOM)
+    ImageDraw.Draw(samples).rectangle((0, CELL * 4, CELL * 4 - 1, samples.height - 1), fill=LILAC)
+    for index, pose in enumerate(poses):
+        samples.paste(pose, (index % 4 * CELL, index // 4 * CELL), pose)
+    palette = samples.quantize(colors=192)
+    folder = OUTPUT / patient
+    folder.mkdir(parents=True, exist_ok=True)
+    routes = {}
+    for index, start in enumerate(VIEWS):
+        routes[start] = {}
+        for direction in (-1, 1):
+            end = VIEWS[(index + direction) % len(VIEWS)]
+            filename = folder / f"{start}-to-{end}.gif"
+            frames = make_frames(poses, index, direction, palette)
+            # The absence of a loop extension lets players hold the end pose.
+            frames[0].save(
+                filename, save_all=True, append_images=frames[1:],
+                duration=[FRAME_MS] * STEPS + [END_HOLD_MS],
+                optimize=True, disposal=1,
+            )
+            routes[start][end] = filename.relative_to(OUTPUT).as_posix()
+    return routes
 
 
 def main():
     manifest = {
         "patients": {},
-        "camera": {view: {"zoom": zoom, "anchorY": anchor} for view, (zoom, anchor) in CAMERA.items()},
+        "camera": {view: {"zoom": zoom, "anchorY": BASELINE / SIZE} for view, zoom in CAMERA.items()},
         "durationMs": STEPS * FRAME_MS + END_HOLD_MS,
+        "poseCount": 16,
+        "atlases": {},
     }
-    for patient in IDS:
-        sprites = {}
-        for view in VIEWS:
-            with Image.open(CHARACTERS / "sprites" / f"{patient}-{view}.png") as sprite:
-                sprites[view] = sprite.convert("RGBA")
-        colour_samples = Image.new("RGB", (CLIP_SIZE[0], CLIP_SIZE[1] * len(VIEWS)))
-        for index, view in enumerate(VIEWS):
-            sample = frame(sprites[view], *CAMERA[view]).resize(CLIP_SIZE, Image.Resampling.NEAREST)
-            colour_samples.paste(sample, (0, index * CLIP_SIZE[1]))
-        palette = colour_samples.quantize(colors=128)
-        folder = OUTPUT / patient
-        folder.mkdir(parents=True, exist_ok=True)
-        routes = {}
-        for index, start in enumerate(VIEWS):
-            routes[start] = {}
-            for direction in (-1, 1):
-                end = VIEWS[(index + direction) % len(VIEWS)]
-                path = folder / f"{start}-to-{end}.gif"
-                frames = make_frames(sprites[start], sprites[end], start, end, palette)
-                # Omitting the GIF loop extension makes each clip a one-shot.
-                frames[0].save(
-                    path, save_all=True, append_images=frames[1:],
-                    duration=[FRAME_MS] * STEPS + [END_HOLD_MS],
-                    optimize=True, disposal=1,
-                )
-                routes[start][end] = path.relative_to(OUTPUT).as_posix()
-        manifest["patients"][patient] = routes
-        print(f"{patient}: {sum(map(len, routes.values()))} GIFs")
+    for path in sorted((ROOT / "pose-atlases").glob("*.png")):
+        manifest["patients"][path.stem] = export_patient(path)
+        manifest["atlases"][path.stem] = f"../pose-atlases/{path.name}"
+        print(f"{path.stem}: 8 GIFs from 16 poses")
     (OUTPUT / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
 

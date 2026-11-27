@@ -35,7 +35,7 @@ Everything is deterministic code.
 
 The patients come from the [turnaround sheet](assets/characters/patient-turnarounds.png). See [docs/characters.md](docs/characters.md) for the style and the turn-and-zoom rules.
 
-The [individual turn GIFs](assets/characters/turn-clips) include eight one-shot clips per patient. Use the [manifest](assets/characters/turn-clips/manifest.json) to find clips from the current view, or see [the playback guide](docs/characters.md#individual-turn-clips) for a five-turn example.
+The [individual turn GIFs](assets/characters/turn-clips) include eight one-shot clips per patient, animated from [16 pixel poses each](assets/characters/pose-atlases). Use the [manifest](assets/characters/turn-clips/manifest.json) to find clips from the current view, or see [the playback guide](docs/characters.md#individual-turn-clips) for a five-turn example.
 
 | Patient | Age | Case |
 | --- | ---: | --- |

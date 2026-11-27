@@ -18,6 +18,42 @@
         "front": "ankle/left-to-front.gif"
       }
     },
+    "cardiac": {
+      "front": {
+        "left": "cardiac/front-to-left.gif",
+        "right": "cardiac/front-to-right.gif"
+      },
+      "right": {
+        "front": "cardiac/right-to-front.gif",
+        "back": "cardiac/right-to-back.gif"
+      },
+      "back": {
+        "right": "cardiac/back-to-right.gif",
+        "left": "cardiac/back-to-left.gif"
+      },
+      "left": {
+        "back": "cardiac/left-to-back.gif",
+        "front": "cardiac/left-to-front.gif"
+      }
+    },
+    "postop": {
+      "front": {
+        "left": "postop/front-to-left.gif",
+        "right": "postop/front-to-right.gif"
+      },
+      "right": {
+        "front": "postop/right-to-front.gif",
+        "back": "postop/right-to-back.gif"
+      },
+      "back": {
+        "right": "postop/back-to-right.gif",
+        "left": "postop/back-to-left.gif"
+      },
+      "left": {
+        "back": "postop/left-to-back.gif",
+        "front": "postop/left-to-front.gif"
+      }
+    },
     "sciatica": {
       "front": {
         "left": "sciatica/front-to-left.gif",
@@ -53,61 +89,33 @@
         "back": "stroke/left-to-back.gif",
         "front": "stroke/left-to-front.gif"
       }
-    },
-    "postop": {
-      "front": {
-        "left": "postop/front-to-left.gif",
-        "right": "postop/front-to-right.gif"
-      },
-      "right": {
-        "front": "postop/right-to-front.gif",
-        "back": "postop/right-to-back.gif"
-      },
-      "back": {
-        "right": "postop/back-to-right.gif",
-        "left": "postop/back-to-left.gif"
-      },
-      "left": {
-        "back": "postop/left-to-back.gif",
-        "front": "postop/left-to-front.gif"
-      }
-    },
-    "cardiac": {
-      "front": {
-        "left": "cardiac/front-to-left.gif",
-        "right": "cardiac/front-to-right.gif"
-      },
-      "right": {
-        "front": "cardiac/right-to-front.gif",
-        "back": "cardiac/right-to-back.gif"
-      },
-      "back": {
-        "right": "cardiac/back-to-right.gif",
-        "left": "cardiac/back-to-left.gif"
-      },
-      "left": {
-        "back": "cardiac/left-to-back.gif",
-        "front": "cardiac/left-to-front.gif"
-      }
     }
   },
   "camera": {
     "front": {
       "zoom": 1.0,
-      "anchorY": 0.55
+      "anchorY": 0.971875
     },
     "right": {
-      "zoom": 1.12,
-      "anchorY": 0.4
+      "zoom": 1.31,
+      "anchorY": 0.971875
     },
     "back": {
-      "zoom": 0.94,
-      "anchorY": 0.55
+      "zoom": 0.84,
+      "anchorY": 0.971875
     },
     "left": {
-      "zoom": 1.12,
-      "anchorY": 0.4
+      "zoom": 1.31,
+      "anchorY": 0.971875
     }
   },
-  "durationMs": 1000
+  "durationMs": 920,
+  "poseCount": 16,
+  "atlases": {
+    "ankle": "../pose-atlases/ankle.png",
+    "cardiac": "../pose-atlases/cardiac.png",
+    "postop": "../pose-atlases/postop.png",
+    "sciatica": "../pose-atlases/sciatica.png",
+    "stroke": "../pose-atlases/stroke.png"
+  }
 }

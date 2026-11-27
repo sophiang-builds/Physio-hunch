@@ -1,0 +1,26 @@
+name: iOS app
+
+on:
+  push:
+    paths: ["ios/**", ".github/workflows/ios.yml"]
+  pull_request:
+    paths: ["ios/**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Xcode version
+        run: xcodebuild -version
+      - name: Engine tests
+        run: |
+          swiftc ios/PhysioHunch/Engine/*.swift ios/EngineTests/main.swift -o engine-tests
+          ./engine-tests ios/PhysioHunch/Resources/Data
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild -project ios/PhysioHunch.xcodeproj -target PhysioHunch \
+            -sdk iphonesimulator -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO build | tail -50
+          exit ${PIPESTATUS[0]}

@@ -1,0 +1,1456 @@
+[
+ {
+  "id": "hpc",
+  "name": "History of presenting complaint",
+  "category": "Subjective",
+  "aliases": [
+   "history of presenting",
+   "presenting complaint",
+   "hpc",
+   "what happened",
+   "how did it happen",
+   "mechanism",
+   "how it started",
+   "onset",
+   "tell me about",
+   "what brings",
+   "story"
+  ]
+ },
+ {
+  "id": "body_chart",
+  "name": "Body chart",
+  "category": "Subjective",
+  "aliases": [
+   "body chart",
+   "where is the pain",
+   "where does it hurt",
+   "pain location",
+   "location of pain",
+   "area of pain",
+   "point to",
+   "spread",
+   "radiate",
+   "referral pattern",
+   "where"
+  ]
+ },
+ {
+  "id": "pain_score",
+  "name": "Pain intensity",
+  "category": "Subjective",
+  "aliases": [
+   "pain score",
+   "out of 10",
+   "out of ten",
+   "nprs",
+   "vas",
+   "pain scale",
+   "how bad",
+   "severity",
+   "pain intensity",
+   "rate the pain",
+   "rate your pain"
+  ]
+ },
+ {
+  "id": "pain_behaviour",
+  "name": "Aggravating and easing factors",
+  "category": "Subjective",
+  "aliases": [
+   "aggravating",
+   "easing",
+   "aggs",
+   "eases",
+   "what makes it worse",
+   "what makes it better",
+   "worse",
+   "better",
+   "behaviour of symptoms",
+   "irritability"
+  ]
+ },
+ {
+  "id": "pain_24h",
+  "name": "24-hour pattern",
+  "category": "Subjective",
+  "aliases": [
+   "24 hour",
+   "24hr",
+   "night pain",
+   "sleep",
+   "morning stiffness",
+   "morning",
+   "diurnal",
+   "through the day"
+  ]
+ },
+ {
+  "id": "red_flags",
+  "name": "Red flag screen",
+  "category": "Subjective",
+  "aliases": [
+   "red flag",
+   "weight loss",
+   "cancer",
+   "fever",
+   "malignan",
+   "unexplained",
+   "general health",
+   "systemic"
+  ]
+ },
+ {
+  "id": "cauda_equina",
+  "name": "Cauda equina screen",
+  "category": "Subjective",
+  "aliases": [
+   "cauda equina",
+   "saddle",
+   "bladder",
+   "bowel",
+   "incontinen",
+   "urinary retention",
+   "perineal"
+  ]
+ },
+ {
+  "id": "neuro_symptoms",
+  "name": "Pins and needles and numbness",
+  "category": "Subjective",
+  "aliases": [
+   "pins and needles",
+   "numbness",
+   "numb",
+   "tingling",
+   "tingle",
+   "paraesthes",
+   "paresthes",
+   "altered sensation"
+  ]
+ },
+ {
+  "id": "previous_episodes",
+  "name": "Previous episodes",
+  "category": "Subjective",
+  "aliases": [
+   "previous episode",
+   "previous injury",
+   "happened before",
+   "ever had",
+   "history of injury",
+   "recurrent",
+   "prior injury",
+   "past injury",
+   "before"
+  ]
+ },
+ {
+  "id": "associated",
+  "name": "Associated symptoms",
+  "category": "Subjective",
+  "aliases": [
+   "associated symptom",
+   "other symptoms",
+   "anything else",
+   "sweat",
+   "clammy",
+   "nausea",
+   "nauseous",
+   "palpitation"
+  ]
+ },
+ {
+  "id": "dizziness",
+  "name": "Dizziness and cervical arterial screen",
+  "category": "Subjective",
+  "aliases": [
+   "dizz",
+   "vertigo",
+   "diplopia",
+   "dysarthria",
+   "dysphagia",
+   "drop attack",
+   "5 ds",
+   "5ds",
+   "light headed",
+   "lightheaded"
+  ]
+ },
+ {
+  "id": "pmhx",
+  "name": "Past medical history",
+  "category": "Subjective",
+  "aliases": [
+   "past medical",
+   "medical history",
+   "pmhx",
+   "pmh",
+   "comorbid",
+   "health conditions",
+   "conditions"
+  ]
+ },
+ {
+  "id": "meds",
+  "name": "Medications",
+  "category": "Subjective",
+  "aliases": [
+   "medication",
+   "meds",
+   "drugs",
+   "tablets",
+   "pills",
+   "analgesia",
+   "painkillers",
+   "dhx",
+   "drug history"
+  ]
+ },
+ {
+  "id": "cardiac_risk",
+  "name": "Cardiovascular risk factors",
+  "category": "Subjective",
+  "aliases": [
+   "cardiovascular risk",
+   "cardiac risk",
+   "risk factors",
+   "cholesterol",
+   "family history",
+   "hypertension",
+   "diabetes"
+  ]
+ },
+ {
+  "id": "smoking",
+  "name": "Smoking history",
+  "category": "Subjective",
+  "aliases": [
+   "smok",
+   "cigarette",
+   "pack year",
+   "vape"
+  ]
+ },
+ {
+  "id": "social",
+  "name": "Social history",
+  "category": "Subjective",
+  "aliases": [
+   "social history",
+   "shx",
+   "social",
+   "home set up",
+   "home setup",
+   "live with",
+   "lives with",
+   "who do you live",
+   "occupation",
+   "job",
+   "work",
+   "family",
+   "house"
+  ]
+ },
+ {
+  "id": "prior_function",
+  "name": "Previous level of function",
+  "category": "Subjective",
+  "aliases": [
+   "previous level",
+   "prior level",
+   "plof",
+   "prior function",
+   "premorbid",
+   "pre morbid",
+   "independent before",
+   "function before",
+   "walking aid"
+  ]
+ },
+ {
+  "id": "goals",
+  "name": "Patient goals",
+  "category": "Subjective",
+  "aliases": [
+   "goal",
+   "what do you want",
+   "hopes",
+   "expectation"
+  ]
+ },
+ {
+  "id": "beliefs",
+  "name": "Beliefs and concerns (yellow flags)",
+  "category": "Subjective",
+  "aliases": [
+   "yellow flag",
+   "belief",
+   "concern",
+   "worried",
+   "worry",
+   "fear",
+   "kinesiophobia",
+   "orebro",
+   "psychosocial",
+   "mood",
+   "stress"
+  ]
+ },
+ {
+  "id": "falls_history",
+  "name": "Falls history",
+  "category": "Subjective",
+  "aliases": [
+   "fall",
+   "falls",
+   "fallen",
+   "fell"
+  ]
+ },
+ {
+  "id": "cough_sputum",
+  "name": "Cough and sputum history",
+  "category": "Subjective",
+  "aliases": [
+   "sputum",
+   "phlegm",
+   "secretion",
+   "productive",
+   "chesty",
+   "mucus"
+  ]
+ },
+ {
+  "id": "breathlessness",
+  "name": "Breathlessness",
+  "category": "Subjective",
+  "aliases": [
+   "breathless",
+   "short of breath",
+   "shortness of breath",
+   "sob",
+   "dyspnoea",
+   "dyspnea",
+   "mmrc",
+   "mrc scale",
+   "puffed"
+  ]
+ },
+ {
+  "id": "medical_notes",
+  "name": "Medical notes review",
+  "category": "Investigations",
+  "aliases": [
+   "medical notes",
+   "notes",
+   "chart",
+   "medical record",
+   "op note",
+   "operation note",
+   "clearance",
+   "precautions",
+   "admission"
+  ]
+ },
+ {
+  "id": "obs",
+  "name": "Vital signs",
+  "category": "Investigations",
+  "aliases": [
+   "vital",
+   "obs",
+   "observations",
+   "blood pressure",
+   "bp",
+   "heart rate",
+   "pulse",
+   "hr",
+   "spo2",
+   "sats",
+   "saturation",
+   "oxygen",
+   "respiratory rate",
+   "resp rate",
+   "rr",
+   "temperature",
+   "temp"
+  ]
+ },
+ {
+  "id": "imaging",
+  "name": "Imaging",
+  "category": "Investigations",
+  "aliases": [
+   "imaging",
+   "x ray",
+   "xray",
+   "x-ray",
+   "mri",
+   "ct",
+   "scan",
+   "cxr",
+   "chest x",
+   "radiograph",
+   "ultrasound"
+  ]
+ },
+ {
+  "id": "bloods",
+  "name": "Blood tests",
+  "category": "Investigations",
+  "aliases": [
+   "blood test",
+   "bloods",
+   "haemoglobin",
+   "hemoglobin",
+   "hb",
+   "crp",
+   "wcc",
+   "white cell",
+   "troponin",
+   "inr",
+   "pathology"
+  ]
+ },
+ {
+  "id": "abg",
+  "name": "Arterial blood gas",
+  "category": "Investigations",
+  "aliases": [
+   "abg",
+   "blood gas",
+   "arterial gas",
+   "pao2",
+   "paco2"
+  ]
+ },
+ {
+  "id": "ecg",
+  "name": "ECG",
+  "category": "Investigations",
+  "aliases": [
+   "ecg",
+   "ekg",
+   "electrocardiogram"
+  ]
+ },
+ {
+  "id": "observation",
+  "name": "General observation and posture",
+  "category": "Observation",
+  "aliases": [
+   "observation",
+   "observe",
+   "inspect",
+   "posture",
+   "general appearance",
+   "look at"
+  ]
+ },
+ {
+  "id": "swelling",
+  "name": "Swelling and bruising",
+  "category": "Observation",
+  "aliases": [
+   "swelling",
+   "swollen",
+   "bruis",
+   "oedema",
+   "edema",
+   "figure of 8",
+   "figure of eight",
+   "girth",
+   "circumference"
+  ]
+ },
+ {
+  "id": "gait",
+  "name": "Gait analysis",
+  "category": "Observation",
+  "aliases": [
+   "gait",
+   "walking pattern",
+   "watch them walk",
+   "watch you walk",
+   "walk for me",
+   "ambulat"
+  ]
+ },
+ {
+  "id": "breathing_pattern",
+  "name": "Breathing pattern",
+  "category": "Observation",
+  "aliases": [
+   "breathing pattern",
+   "accessory muscle",
+   "respiratory pattern",
+   "work of breathing",
+   "chest wall movement"
+  ]
+ },
+ {
+  "id": "skin_wound",
+  "name": "Skin and wound check",
+  "category": "Observation",
+  "aliases": [
+   "wound",
+   "incision",
+   "skin",
+   "scar",
+   "dressing"
+  ]
+ },
+ {
+  "id": "palpation",
+  "name": "Palpation",
+  "category": "Palpation",
+  "aliases": [
+   "palpat",
+   "press on",
+   "tenderness",
+   "tender",
+   "feel the",
+   "soft tissue"
+  ]
+ },
+ {
+  "id": "ottawa_ankle",
+  "name": "Ottawa ankle and foot rules",
+  "category": "Palpation",
+  "aliases": [
+   "ottawa ankle",
+   "ottawa",
+   "malleol",
+   "navicular",
+   "5th metatarsal",
+   "fifth metatarsal",
+   "bony tenderness"
+  ]
+ },
+ {
+  "id": "paivm",
+  "name": "Passive accessory movements",
+  "category": "Palpation",
+  "aliases": [
+   "paivm",
+   "accessory movement",
+   "pa glide",
+   "central pa",
+   "unilateral pa",
+   "springing",
+   "joint glide",
+   "accessory glide"
+  ]
+ },
+ {
+  "id": "rom_cervical",
+  "name": "Cervical range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "cervical rom",
+   "cervical range",
+   "neck rom",
+   "neck range",
+   "neck movement",
+   "cervical movement"
+  ]
+ },
+ {
+  "id": "rom_thoracic",
+  "name": "Thoracic range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "thoracic rom",
+   "thoracic range",
+   "thoracic rotation",
+   "thoracic movement"
+  ]
+ },
+ {
+  "id": "rom_lumbar",
+  "name": "Lumbar range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "lumbar rom",
+   "lumbar range",
+   "lumbar movement",
+   "back movement",
+   "lumbar flexion",
+   "lumbar extension",
+   "bend forward",
+   "touch your toes",
+   "spinal movement"
+  ]
+ },
+ {
+  "id": "rom_shoulder",
+  "name": "Shoulder active range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "shoulder rom",
+   "shoulder range",
+   "shoulder arom",
+   "shoulder movement",
+   "arm elevation",
+   "lift your arm",
+   "raise your arm",
+   "shoulder flexion",
+   "shoulder abduction",
+   "hand behind back"
+  ]
+ },
+ {
+  "id": "prom_shoulder",
+  "name": "Shoulder passive range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "passive shoulder",
+   "shoulder prom",
+   "shoulder passive",
+   "capsular pattern",
+   "passive external rotation"
+  ]
+ },
+ {
+  "id": "rom_elbow",
+  "name": "Elbow range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "elbow rom",
+   "elbow range",
+   "elbow flexion",
+   "elbow extension",
+   "elbow movement"
+  ]
+ },
+ {
+  "id": "rom_wrist",
+  "name": "Wrist and hand range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "wrist rom",
+   "wrist range",
+   "wrist movement",
+   "hand range",
+   "finger range"
+  ]
+ },
+ {
+  "id": "rom_hip",
+  "name": "Hip range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "hip rom",
+   "hip range",
+   "hip movement",
+   "hip flexion",
+   "hip rotation"
+  ]
+ },
+ {
+  "id": "rom_knee",
+  "name": "Knee range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "knee rom",
+   "knee range",
+   "knee movement",
+   "knee flexion",
+   "knee extension",
+   "knee bend"
+  ]
+ },
+ {
+  "id": "rom_ankle",
+  "name": "Ankle range of motion",
+  "category": "Range of motion",
+  "aliases": [
+   "ankle rom",
+   "ankle range",
+   "ankle movement",
+   "dorsiflex",
+   "plantarflex",
+   "inversion",
+   "eversion",
+   "knee to wall",
+   "weight bearing lunge"
+  ]
+ },
+ {
+  "id": "mmt",
+  "name": "Manual muscle testing",
+  "category": "Strength",
+  "aliases": [
+   "manual muscle",
+   "mmt",
+   "muscle strength",
+   "strength",
+   "power",
+   "oxford scale",
+   "muscle test",
+   "resisted"
+  ]
+ },
+ {
+  "id": "myotomes",
+  "name": "Myotomes",
+  "category": "Strength",
+  "aliases": [
+   "myotome"
+  ]
+ },
+ {
+  "id": "grip",
+  "name": "Grip strength",
+  "category": "Strength",
+  "aliases": [
+   "grip",
+   "dynamometer"
+  ]
+ },
+ {
+  "id": "calf_raise",
+  "name": "Single leg calf raise",
+  "category": "Strength",
+  "aliases": [
+   "calf raise",
+   "heel raise",
+   "tiptoe",
+   "tip toe"
+  ]
+ },
+ {
+  "id": "cuff_tests",
+  "name": "Rotator cuff resisted tests",
+  "category": "Strength",
+  "aliases": [
+   "rotator cuff",
+   "empty can",
+   "jobe",
+   "full can",
+   "lift off",
+   "belly press",
+   "resisted external rotation",
+   "er lag",
+   "external rotation lag"
+  ]
+ },
+ {
+  "id": "reflexes",
+  "name": "Reflexes",
+  "category": "Neurological",
+  "aliases": [
+   "reflex",
+   "ankle jerk",
+   "knee jerk",
+   "biceps jerk",
+   "triceps jerk",
+   "tendon jerk",
+   "deep tendon"
+  ]
+ },
+ {
+  "id": "dermatomes",
+  "name": "Dermatomes and sensation",
+  "category": "Neurological",
+  "aliases": [
+   "dermatome",
+   "sensation",
+   "light touch",
+   "pin prick",
+   "pinprick",
+   "sharp blunt",
+   "sharp and blunt",
+   "sensory"
+  ]
+ },
+ {
+  "id": "umn",
+  "name": "Upper motor neurone signs",
+  "category": "Neurological",
+  "aliases": [
+   "babinski",
+   "plantar response",
+   "clonus",
+   "hoffmann",
+   "hoffman",
+   "upper motor",
+   "umn"
+  ]
+ },
+ {
+  "id": "slr",
+  "name": "Straight leg raise",
+  "category": "Neurological",
+  "aliases": [
+   "straight leg",
+   "slr",
+   "lasegue"
+  ]
+ },
+ {
+  "id": "slump",
+  "name": "Slump test",
+  "category": "Neurological",
+  "aliases": [
+   "slump"
+  ]
+ },
+ {
+  "id": "ulnt",
+  "name": "Upper limb neurodynamic test",
+  "category": "Neurological",
+  "aliases": [
+   "ulnt",
+   "ultt",
+   "upper limb tension",
+   "upper limb neurodynamic",
+   "neurodynamic upper"
+  ]
+ },
+ {
+  "id": "pkb",
+  "name": "Prone knee bend",
+  "category": "Neurological",
+  "aliases": [
+   "prone knee bend",
+   "pkb",
+   "femoral nerve"
+  ]
+ },
+ {
+  "id": "tone",
+  "name": "Tone",
+  "category": "Neurological",
+  "aliases": [
+   "tone",
+   "spastic",
+   "ashworth",
+   "tardieu",
+   "hypertonia",
+   "hypotonia"
+  ]
+ },
+ {
+  "id": "coordination",
+  "name": "Coordination",
+  "category": "Neurological",
+  "aliases": [
+   "coordination",
+   "finger nose",
+   "finger to nose",
+   "heel shin",
+   "heel to shin",
+   "dysdiadoch",
+   "ataxia"
+  ]
+ },
+ {
+  "id": "proprioception",
+  "name": "Proprioception",
+  "category": "Neurological",
+  "aliases": [
+   "proprioception",
+   "joint position",
+   "jps"
+  ]
+ },
+ {
+  "id": "neglect",
+  "name": "Neglect and visual field screen",
+  "category": "Neurological",
+  "aliases": [
+   "neglect",
+   "inattention",
+   "visual field",
+   "line bisection",
+   "cancellation",
+   "hemianopia"
+  ]
+ },
+ {
+  "id": "cranial_nerves",
+  "name": "Cranial nerves",
+  "category": "Neurological",
+  "aliases": [
+   "cranial nerve",
+   "facial",
+   "eye movement",
+   "smile"
+  ]
+ },
+ {
+  "id": "cognition",
+  "name": "Cognition and communication",
+  "category": "Neurological",
+  "aliases": [
+   "cognition",
+   "cognitive",
+   "orientation",
+   "orientated",
+   "mmse",
+   "moca",
+   "confus",
+   "communication",
+   "speech",
+   "aphasia"
+  ]
+ },
+ {
+  "id": "subluxation",
+  "name": "Shoulder subluxation check",
+  "category": "Neurological",
+  "aliases": [
+   "sublux",
+   "finger breadth",
+   "inferior subluxation"
+  ]
+ },
+ {
+  "id": "ankle_drawer",
+  "name": "Anterior drawer (ankle)",
+  "category": "Special tests: ankle",
+  "aliases": [
+   "ankle drawer",
+   "anterior drawer ankle",
+   "anterior drawer",
+   "drawer"
+  ]
+ },
+ {
+  "id": "talar_tilt",
+  "name": "Talar tilt",
+  "category": "Special tests: ankle",
+  "aliases": [
+   "talar tilt",
+   "inversion stress"
+  ]
+ },
+ {
+  "id": "syndesmosis",
+  "name": "Syndesmosis tests",
+  "category": "Special tests: ankle",
+  "aliases": [
+   "squeeze test",
+   "syndesmosis",
+   "high ankle",
+   "kleiger",
+   "external rotation stress"
+  ]
+ },
+ {
+  "id": "thompson",
+  "name": "Thompson test",
+  "category": "Special tests: ankle",
+  "aliases": [
+   "thompson",
+   "simmonds",
+   "calf squeeze",
+   "achilles rupture"
+  ]
+ },
+ {
+  "id": "windlass",
+  "name": "Windlass test",
+  "category": "Special tests: ankle",
+  "aliases": [
+   "windlass",
+   "plantar fascia"
+  ]
+ },
+ {
+  "id": "lachman",
+  "name": "Lachman test",
+  "category": "Special tests: knee",
+  "aliases": [
+   "lachman"
+  ]
+ },
+ {
+  "id": "knee_drawer",
+  "name": "Anterior and posterior drawer (knee)",
+  "category": "Special tests: knee",
+  "aliases": [
+   "knee drawer",
+   "anterior drawer knee",
+   "posterior drawer",
+   "anterior drawer",
+   "drawer"
+  ]
+ },
+ {
+  "id": "pivot_shift",
+  "name": "Pivot shift",
+  "category": "Special tests: knee",
+  "aliases": [
+   "pivot shift"
+  ]
+ },
+ {
+  "id": "meniscal",
+  "name": "Meniscal tests",
+  "category": "Special tests: knee",
+  "aliases": [
+   "mcmurray",
+   "thessaly",
+   "apley",
+   "meniscus",
+   "meniscal",
+   "joint line"
+  ]
+ },
+ {
+  "id": "collateral",
+  "name": "Valgus and varus stress",
+  "category": "Special tests: knee",
+  "aliases": [
+   "valgus",
+   "varus",
+   "collateral",
+   "mcl",
+   "lcl"
+  ]
+ },
+ {
+  "id": "patellofemoral",
+  "name": "Patellofemoral tests",
+  "category": "Special tests: knee",
+  "aliases": [
+   "patellar apprehension",
+   "clarke",
+   "patellofemoral",
+   "patella"
+  ]
+ },
+ {
+  "id": "effusion",
+  "name": "Knee effusion tests",
+  "category": "Special tests: knee",
+  "aliases": [
+   "sweep test",
+   "patellar tap",
+   "effusion",
+   "ballot"
+  ]
+ },
+ {
+  "id": "faber",
+  "name": "FABER test",
+  "category": "Special tests: hip",
+  "aliases": [
+   "faber",
+   "patrick"
+  ]
+ },
+ {
+  "id": "fadir",
+  "name": "FADIR test",
+  "category": "Special tests: hip",
+  "aliases": [
+   "fadir",
+   "fadduri",
+   "hip impingement"
+  ]
+ },
+ {
+  "id": "thomas",
+  "name": "Thomas test",
+  "category": "Special tests: hip",
+  "aliases": [
+   "thomas test",
+   "thomas"
+  ]
+ },
+ {
+  "id": "trendelenburg",
+  "name": "Trendelenburg test",
+  "category": "Special tests: hip",
+  "aliases": [
+   "trendelenburg"
+  ]
+ },
+ {
+  "id": "sij",
+  "name": "Sacroiliac provocation tests",
+  "category": "Special tests: hip",
+  "aliases": [
+   "sij",
+   "sacroiliac",
+   "thigh thrust",
+   "laslett"
+  ]
+ },
+ {
+  "id": "impingement",
+  "name": "Impingement tests (Hawkins-Kennedy, Neer)",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "hawkins",
+   "kennedy",
+   "neer",
+   "impingement"
+  ]
+ },
+ {
+  "id": "painful_arc",
+  "name": "Painful arc",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "painful arc"
+  ]
+ },
+ {
+  "id": "drop_arm",
+  "name": "Drop arm test",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "drop arm"
+  ]
+ },
+ {
+  "id": "instability",
+  "name": "Apprehension and relocation",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "apprehension",
+   "relocation",
+   "instability",
+   "sulcus",
+   "load and shift"
+  ]
+ },
+ {
+  "id": "biceps",
+  "name": "Speed's and Yergason's tests",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "speed",
+   "yergason",
+   "biceps test"
+  ]
+ },
+ {
+  "id": "labral",
+  "name": "O'Brien's test",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "o'brien",
+   "obrien",
+   "o brien",
+   "labral",
+   "labrum",
+   "active compression"
+  ]
+ },
+ {
+  "id": "acj",
+  "name": "AC joint tests",
+  "category": "Special tests: shoulder",
+  "aliases": [
+   "scarf",
+   "cross body",
+   "ac joint",
+   "acj",
+   "acromioclavicular"
+  ]
+ },
+ {
+  "id": "elbow_tendon",
+  "name": "Cozen's and Mill's tests",
+  "category": "Special tests: elbow",
+  "aliases": [
+   "cozen",
+   "mill",
+   "tennis elbow",
+   "golfer"
+  ]
+ },
+ {
+  "id": "carpal_tunnel",
+  "name": "Carpal tunnel tests (Phalen's, Tinel's)",
+  "category": "Special tests: wrist",
+  "aliases": [
+   "phalen",
+   "tinel",
+   "durkan",
+   "carpal tunnel"
+  ]
+ },
+ {
+  "id": "finkelstein",
+  "name": "Finkelstein test",
+  "category": "Special tests: wrist",
+  "aliases": [
+   "finkelstein",
+   "de quervain",
+   "eichhoff"
+  ]
+ },
+ {
+  "id": "spurling",
+  "name": "Spurling's test",
+  "category": "Special tests: spine",
+  "aliases": [
+   "spurling",
+   "foraminal compression",
+   "neck distraction"
+  ]
+ },
+ {
+  "id": "cervical_arterial",
+  "name": "Cervical arterial dysfunction testing",
+  "category": "Special tests: spine",
+  "aliases": [
+   "vertebral artery",
+   "vbi",
+   "cervical arterial",
+   "vbai"
+  ]
+ },
+ {
+  "id": "dnf",
+  "name": "Deep neck flexor endurance",
+  "category": "Special tests: spine",
+  "aliases": [
+   "deep neck flexor",
+   "craniocervical flexion",
+   "ccft"
+  ]
+ },
+ {
+  "id": "prone_instability",
+  "name": "Prone instability test",
+  "category": "Special tests: spine",
+  "aliases": [
+   "prone instability",
+   "instability test"
+  ]
+ },
+ {
+  "id": "bed_mobility",
+  "name": "Bed mobility and transfers",
+  "category": "Function",
+  "aliases": [
+   "bed mobility",
+   "roll",
+   "transfer",
+   "lying to sitting",
+   "lie to sit"
+  ]
+ },
+ {
+  "id": "sitting_balance",
+  "name": "Sitting balance",
+  "category": "Function",
+  "aliases": [
+   "sitting balance",
+   "sit unsupported",
+   "edge of bed",
+   "edge of the bed"
+  ]
+ },
+ {
+  "id": "sit_to_stand",
+  "name": "Sit to stand",
+  "category": "Function",
+  "aliases": [
+   "sit to stand",
+   "sts",
+   "stand up",
+   "standing up",
+   "stand from",
+   "5 times sit",
+   "five times sit",
+   "30 second sit"
+  ]
+ },
+ {
+  "id": "standing_balance",
+  "name": "Standing balance",
+  "category": "Function",
+  "aliases": [
+   "standing balance",
+   "single leg stance",
+   "single leg balance",
+   "one leg",
+   "romberg",
+   "stork",
+   "balance test",
+   "balance"
+  ]
+ },
+ {
+  "id": "y_balance",
+  "name": "Star excursion or Y balance",
+  "category": "Function",
+  "aliases": [
+   "star excursion",
+   "y balance",
+   "ybt"
+  ]
+ },
+ {
+  "id": "hop_squat",
+  "name": "Hop and squat tests",
+  "category": "Function",
+  "aliases": [
+   "hop",
+   "squat",
+   "single leg squat",
+   "functional test",
+   "jump"
+  ]
+ },
+ {
+  "id": "berg",
+  "name": "Berg Balance Scale",
+  "category": "Outcome measures",
+  "aliases": [
+   "berg"
+  ]
+ },
+ {
+  "id": "tug",
+  "name": "Timed Up and Go",
+  "category": "Outcome measures",
+  "aliases": [
+   "tug",
+   "timed up and go",
+   "timed up"
+  ]
+ },
+ {
+  "id": "mas",
+  "name": "Motor Assessment Scale",
+  "category": "Outcome measures",
+  "aliases": [
+   "motor assessment scale"
+  ]
+ },
+ {
+  "id": "six_mwt",
+  "name": "Six minute walk test",
+  "category": "Outcome measures",
+  "aliases": [
+   "6mwt",
+   "six minute walk",
+   "6 minute walk",
+   "6 min walk",
+   "shuttle walk"
+  ]
+ },
+ {
+  "id": "questionnaire",
+  "name": "Patient reported outcome measure",
+  "category": "Outcome measures",
+  "aliases": [
+   "oswestry",
+   "odi",
+   "ndi",
+   "spadi",
+   "lefs",
+   "quickdash",
+   "dash",
+   "koos",
+   "womac",
+   "psfs",
+   "questionnaire",
+   "outcome measure",
+   "prom"
+  ]
+ },
+ {
+  "id": "auscultation",
+  "name": "Auscultation",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "auscultat",
+   "listen to the chest",
+   "listen to your chest",
+   "listen to chest",
+   "stethoscope",
+   "breath sounds",
+   "chest sounds"
+  ]
+ },
+ {
+  "id": "percussion",
+  "name": "Percussion",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "percuss"
+  ]
+ },
+ {
+  "id": "chest_expansion",
+  "name": "Chest expansion",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "chest expansion",
+   "expansion",
+   "palpate chest",
+   "palpate the chest",
+   "chest palpation"
+  ]
+ },
+ {
+  "id": "cough_test",
+  "name": "Cough effectiveness",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "cough",
+   "huff",
+   "peak cough flow"
+  ]
+ },
+ {
+  "id": "spirometry",
+  "name": "Spirometry and peak flow",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "spirometry",
+   "fev1",
+   "fvc",
+   "peak flow",
+   "lung function"
+  ]
+ },
+ {
+  "id": "exercise_tolerance",
+  "name": "Exercise tolerance",
+  "category": "Cardiorespiratory",
+  "aliases": [
+   "exercise tolerance",
+   "stairs test",
+   "walk test",
+   "exertion",
+   "exercise test"
+  ]
+ },
+ {
+  "id": "dvt",
+  "name": "DVT screen (Wells)",
+  "category": "Vascular",
+  "aliases": [
+   "dvt",
+   "wells",
+   "calf tender",
+   "homan",
+   "calf swelling"
+  ]
+ },
+ {
+  "id": "pulses",
+  "name": "Peripheral pulses and perfusion",
+  "category": "Vascular",
+  "aliases": [
+   "pedal pulse",
+   "dorsalis pedis",
+   "peripheral pulse",
+   "capillary refill",
+   "perfusion",
+   "pulses"
+  ]
+ }
+]

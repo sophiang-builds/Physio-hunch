@@ -1,35 +1,54 @@
 <p align="center"><img src="assets/logo.svg" width="320" alt="Physio Hunch"></p>
 
-A practice game for physiotherapy practical vivas. Question a simulated patient, run your tests, and work out what's going on. As you uncover the case, the patient fills in from greyscale to full colour.
+Five assessments, one diagnosis. You meet one patient and you're given only the situation. Every assessment you type uses one of five slots. A relevant one reveals a finding, turns the patient 90° and moves the camera closer. An irrelevant one gets silence. Then you make your call.
 
 ![Physio Hunch](assets/social-preview.png)
 
-## Brand resources for the new app
+## The iOS app
 
-Start with the [brand guide](docs/brand.md) for the patient and character direction, five-assessment interaction, typography and colour roles.
+The app is native SwiftUI for iOS 26 and uses Liquid Glass (`glassEffect`, `GlassEffectContainer` and the `.glassProminent` button style) for the controls. The patient and findings sit on the brand's cream and paper surfaces.
 
-- Use the [light logo](assets/logo.svg) or [dark logo](assets/logo-dark.svg), and the [standalone mark](assets/mark.svg) for compact spaces.
-- Tag the [SVG favicon](assets/favicon.svg) with [16 px](assets/favicon-16.png) and [32 px](assets/favicon-32.png) PNG fallbacks. The [Apple touch icon](assets/apple-touch-icon.png), [512 px app icon](assets/icon-512.png) and [social preview](assets/social-preview.png) are ready to export or reference.
-- Import [brand.css](assets/brand.css) and copy the adjacent [fonts folder](assets/fonts) with its licence files to reuse the type and palette without a font service.
+Open `ios/PhysioHunch.xcodeproj` in Xcode 26, choose an iPhone simulator and run. The project uses folder-synced groups, so any file you add under `ios/PhysioHunch/` is included automatically. CI (`.github/workflows/ios.yml`) runs the engine tests and a simulator build on every push that touches `ios/`.
 
-## Modes in the static prototype
+## How it plays without AI
 
-Exam mode runs the full station. You introduce yourself, confirm identity, gain consent and handle privacy before you assess. To pass you need 50% or more and a clear safety hurdle. Touching before consent or doing something unsafe fails the hurdle, the same way the viva safety requirement does.
+Everything is deterministic code.
 
-Practical mode drops you straight into the case. Type `hint` if you're stuck.
+1. The **resolver** (`Engine/Resolver.swift`) turns what you typed into one assessment from `assessments.json`. It tries an exact alias match first, then an alias found inside your sentence, then a typo-tolerant match (edit distance 1, or 2 for long words). If two assessments tie, such as "anterior drawer" for knee and ankle, it picks the one relevant to this patient. Unrecognised text doesn't use a slot.
+2. The **case data** (`cases.json`) maps assessment ids to findings. Anything not listed gets silence.
+3. **Mechanics** (`Engine/Mechanics.swift`) are small rules that plug into the turn pipeline: `prepare`, `veto`, `shape`, `after` and `judge`. The standard set:
+   - The five-assessment limit
+   - No repeats (free to reread)
+   - Safety flags from each case's rules, such as standing Nell up before checking her obs
+   - The diagnosis verdict (correct, close or wrong)
+   - Scoring
+4. Typing `I think...` or tapping **Make your call** lets you diagnose early.
 
-In either mode, type `end` or press End to see the debrief.
+### Adding things
 
-## Run it
+- To add an assessment, put an entry in `ios/PhysioHunch/Resources/Data/assessments.json` with an id, a name, a category and aliases. Aliases of three letters or fewer match whole words. Longer ones match word stems.
+- To add a case, put an entry in `cases.json` with its findings keyed by assessment id, plus answers, close answers, key assessments, safety rules, a focus point and a turnaround name.
+- To add a mechanic, write a struct conforming to `Mechanic`, implement only the hooks you need, and add it to `Mechanics.standard`.
+- To add a character, add a spec to `characters/characters.json` and re-export the turnaround images and sheet.
 
-It's a static site with no build step. Open `index.html`, or publish with GitHub Pages: go to Settings → Pages, choose Deploy from a branch, then select the branch and `/ (root)`.
+## Characters
 
-## Files
+| | Patient | Case |
+| --- | --- | --- |
+| ![](characters/sheets/ankle-mia.png) | Mia Tran, 19, Vietnamese-Australian netballer | Lateral ankle sprain |
+| ![](characters/sheets/sciatica-daniel.png) | Daniel Okafor, 42, Nigerian-Australian storeman | S1 radiculopathy |
+| ![](characters/sheets/postop-priya.png) | Priya Raman, 47, Tamil Indian-Australian accountant | Post-operative atelectasis |
+| ![](characters/sheets/cardiac-luis.png) | Luis Romero, 58, Chilean-Australian plumber | Cardiac pain referred to the shoulder |
+| ![](characters/sheets/stroke-nell.png) | Nell Fitzgerald, 81, Irish-born retired midwife | Right MCA stroke |
 
-- `js/cases.js` holds the case bank. Each finding has the patterns that trigger it, a reply, a category and a weight. The pattern syntax is explained at the top of the file.
-- `js/character.js` generates the vector patient portraits.
-- `js/app.js` is the game engine.
-- `research/viva-research.md` has the evidence base, the marking model and the case catalogue.
-- `assets/` holds the production brand files, fonts and share graphics.
+`characters/turnaround.js` is one parametric vector rig drawn front, right, back and left. The app expects image sets named `Patient-<id>-front`, `-right`, `-back` and `-left`, so hand-drawn turnaround art can replace any of them without code changes.
 
-The cases are for study practice and aren't official University of Newcastle material.
+## Brand
+
+See the [brand guide](docs/brand.md). The app ships static instances of Bricolage Grotesque 650 and Atkinson Hyperlegible Next 400/700, renamed and bundled with their SIL OFL licences in `ios/PhysioHunch/Resources/Fonts`.
+
+## Web prototype
+
+The original browser version (exam and practical modes) is still at the repository root in `index.html`. It uses the earlier case set.
+
+The cases are for study practice and aren't official University of Newcastle material. See `research/viva-research.md` for sources.

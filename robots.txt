@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sophiang-builds.github.io/Physio-hunch/sitemap.xml

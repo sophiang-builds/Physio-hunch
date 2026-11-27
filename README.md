@@ -55,8 +55,14 @@ The app draws patients from the 16-pose atlases in `assets/characters/pose-atlas
 
 See the [brand guide](docs/brand.md). The app ships static instances of Bricolage Grotesque 650 and Atkinson Hyperlegible Next 400/700, renamed and bundled with their SIL OFL licences in `ios/PhysioHunch/Resources/Fonts`.
 
+## Website (GitHub Pages)
+
+`index.html` is the public site: the logo top-left, Buy Me a Coffee top-right, the game in the middle, and searchable content underneath (how it works, the cases, what vivas test, FAQ). On desktop the patient sits beside the consultation. On phones it becomes a one-screen app layout. It reads the same case data as the iOS app (`ios/PhysioHunch/Resources/Data`) and draws patients from the pose atlases. `site/game.js` holds the web engine and `site/site.css` the styles. SEO lives in the page title, description, Open Graph tags, JSON-LD (WebApplication and FAQPage), `robots.txt` and `sitemap.xml`.
+
+To publish: go to Settings, then Pages, choose Deploy from a branch, and pick this branch with `/ (root)`. The site goes live at `https://sophiang-builds.github.io/Physio-hunch/`. Set your Buy Me a Coffee link in `index.html` (search for `YOUR-HANDLE`).
+
 ## Web prototype
 
-The original browser version (exam and practical modes) is still at the repository root in `index.html`. It uses the earlier case set.
+The original browser version (exam and practical modes) now lives in `classic/`. It uses the earlier case set.
 
 The cases are for study practice and aren't official University of Newcastle material. See `research/viva-research.md` for sources.

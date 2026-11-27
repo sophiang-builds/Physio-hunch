@@ -2,62 +2,161 @@
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Physio Hunch</title>
-  <meta name="description" content="Practise physiotherapy practical vivas by questioning simulated patients.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Physio Viva Practice Cases | Physio Hunch for UoN Physiotherapy Students</title>
+  <meta name="description" content="Free physiotherapy practical viva and OSCE practice. Pick five assessments, read the findings and diagnose the patient. Cases built for University of Newcastle physio students: MSK, neuro, cardiorespiratory and red flags.">
+  <meta name="keywords" content="physio viva practice, physiotherapy practical viva, UoN physiotherapy, University of Newcastle physiotherapy, PHTY1040 viva, PHTY2020 practical viva, PHTY2030 neuro viva, PHTY3020 cardiorespiratory, physio OSCE practice, physiotherapy case studies, subjective assessment, red flags, special tests, clinical reasoning">
+  <link rel="canonical" href="https://sophiang-builds.github.io/Physio-hunch/">
+  <meta name="theme-color" content="#F7F3EA">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Physio Hunch: physio viva practice cases">
+  <meta property="og:description" content="Five assessments, one diagnosis. Free practical viva and OSCE practice for physiotherapy students.">
+  <meta property="og:url" content="https://sophiang-builds.github.io/Physio-hunch/">
+  <meta property="og:image" content="https://sophiang-builds.github.io/Physio-hunch/assets/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta property="og:image" content="assets/social-preview.png">
   <link rel="stylesheet" href="assets/brand.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Physio Hunch",
+        "url": "https://sophiang-builds.github.io/Physio-hunch/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+        "description": "A physiotherapy practical viva and OSCE practice game. Choose five assessments, read the findings and make your diagnosis.",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is Physio Hunch an official University of Newcastle resource?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. It is an independent study tool and is not affiliated with or endorsed by the University of Newcastle. Always check your course outline and Canvas site for what your viva actually assesses." } },
+          { "@type": "Question", "name": "Which physiotherapy courses does it help with?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The cases cover the areas examined in practical vivas across the UoN Bachelor of Physiotherapy (Honours): musculoskeletal (PHTY1040, PHTY2020), neurological (PHTY2030, PHTY3070) and cardiorespiratory (PHTY3020), plus red flag screening." } },
+          { "@type": "Question", "name": "How do I play?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Read why the patient is here, then type or tap up to five assessments. Useful tests reveal a finding and turn the patient. When you are ready, choose Make your call now and type your diagnosis. The debrief shows what was going on and which tests mattered most." } },
+          { "@type": "Question", "name": "Is it free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. It runs in your browser on desktop and mobile with no sign-up." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <main id="menu" class="screen">
-    <img class="logo" src="assets/logo.svg" alt="Physio Hunch">
-    <div class="modes" role="group" aria-label="Mode">
-      <button data-mode="exam" aria-pressed="true">Exam</button>
-      <button data-mode="practical" aria-pressed="false">Practical</button>
-    </div>
-    <p id="mode-note" class="mode-note">Full station. Introduce yourself, confirm identity and gain consent before you touch.</p>
-    <div id="cases" class="cases"></div>
-  </main>
+  <header class="top">
+    <a class="brand" href="./" aria-label="Physio Hunch home">
+      <img src="assets/mark.svg" alt="" width="32" height="32">
+      <span>Physio Hunch</span>
+    </a>
+    <!-- Replace YOUR-HANDLE with your Buy Me a Coffee username -->
+    <a class="coffee glass" id="coffee" href="https://buymeacoffee.com/YOUR-HANDLE" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V8Z" fill="#FFDD00" stroke="#24203C" stroke-width="1.6"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17" fill="none" stroke="#24203C" stroke-width="1.6"/><path d="M8 3.5c0 1 1 1 1 2M11 3.5c0 1 1 1 1 2M14 3.5c0 1 1 1 1 2" fill="none" stroke="#24203C" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span>Buy me a coffee</span>
+    </a>
+  </header>
 
-  <main id="game" class="screen" hidden>
-    <div id="bar" class="bar" role="progressbar" aria-label="Case uncovered" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="track"><div id="bar-fill" class="fill"></div></div>
-      <span id="bar-num">0%</span>
-    </div>
-    <div class="corner">
-      <button id="back" aria-label="Back to cases">&#x2190;</button>
-      <button id="end">End</button>
-    </div>
-    <section id="stage" class="stage">
-      <form id="form" class="ask">
-        <input id="ask" autocomplete="off" placeholder="Ask or do something..." aria-label="Your question or action">
-        <button type="submit" aria-label="Send">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 11.5 20.5 4l-7.5 17.5-2.2-7.8L3 11.5Z" fill="currentColor"/></svg>
-        </button>
-      </form>
-      <p id="you" class="you"></p>
-      <p id="reply" class="reply" aria-live="polite"></p>
-      <div id="portrait" class="portrait"></div>
+  <main>
+    <section class="play" aria-labelledby="title">
+      <h1 id="title">Physio viva practice: five tests, one diagnosis</h1>
+
+      <div class="game" id="game">
+        <div class="patient">
+          <div class="stage" id="stage">
+            <div class="cam" id="cam">
+              <div class="disc"><i id="bloom"></i></div>
+              <div class="pose" id="pose" role="img" aria-label="Patient"></div>
+            </div>
+          </div>
+          <p class="situation" id="situation">Loading patient…</p>
+        </div>
+
+        <div class="consult">
+          <ol class="findings" id="findings" aria-live="polite"></ol>
+          <form class="dock" id="dock" autocomplete="off">
+            <p class="toast glass" id="toast" role="status" hidden></p>
+            <div class="chips" id="chips" aria-label="Suggested assessments"></div>
+            <label class="field glass">
+              <input id="ask" aria-label="Assessment" autocapitalize="off" spellcheck="false" enterkeyhint="send">
+              <span class="dots" id="dots"></span>
+            </label>
+            <div class="row">
+              <button class="go" id="go" type="submit" disabled>Assess</button>
+              <button class="more" id="more" type="button" aria-label="More options" aria-expanded="false" aria-controls="menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="menu glass" id="menu" hidden>
+                <button type="button" id="callNow">Make your call now</button>
+                <button type="button" id="howTo">How to play</button>
+                <button type="button" id="nextCase">Skip to next patient</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="sheet" id="sheet" hidden><div class="sheet-card" id="sheetBody" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div></div>
+    </section>
+
+    <section class="info">
+      <div class="lead">
+        <h2>Practise for your UoN physiotherapy practical viva</h2>
+        <p>Practical vivas and OSCE-style stations in the University of Newcastle Bachelor of Physiotherapy (Honours) ask you to take a history, choose the right tests, stay safe and reason your way to a diagnosis under time pressure. Physio Hunch turns that into a quick case: you meet one patient, you get five assessments, and you make your call.</p>
+        <p>It's built for revision between tutorials. Each case rewards the tests an examiner would want to see, gives nothing back for the ones that don't help, and flags unsafe choices the way a viva safety hurdle would.</p>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li><b>1</b><span>Read why the patient has come in.</span></li>
+            <li><b>2</b><span>Type or tap up to five assessments: history questions, special tests, neuro screening, outcome measures.</span></li>
+            <li><b>3</b><span>A useful test reveals a finding and the patient turns. A useless one gets no response.</span></li>
+            <li><b>4</b><span>Choose <em>Make your call now</em> and type your diagnosis. The debrief explains the case and the tests that mattered most.</span></li>
+          </ol>
+        </div>
+        <div>
+          <h2>What practical vivas look for</h2>
+          <ul class="ticks">
+            <li><b>Subjective assessment.</b> Mechanism, body chart, aggravating and easing factors, 24-hour pattern, goals.</li>
+            <li><b>Red flags and safety.</b> Cauda equina screening, cardiac symptoms, checking obs and medical clearance before you mobilise.</li>
+            <li><b>Objective assessment.</b> Range of motion, strength, reflexes, dermatomes, neurodynamic and special tests.</li>
+            <li><b>Clinical reasoning.</b> Linking findings to a diagnosis, then to management.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Cases you can practise</h2>
+      <div class="cases">
+        <article><span class="tag">Musculoskeletal</span><h3>Rolled ankle at netball</h3><p>Lateral ankle sprain: Ottawa ankle rules, anterior drawer, talar tilt, balance. Useful for PHTY1040 and PHTY2020 MSK vivas.</p></article>
+        <article><span class="tag">Musculoskeletal</span><h3>Back and leg pain after lifting</h3><p>Lumbar radiculopathy: SLR, slump, reflexes, myotomes, dermatomes and a cauda equina screen.</p></article>
+        <article><span class="tag">Neurological</span><h3>Leg giving way after a stroke</h3><p>Hemiparesis assessment: tone, power, neglect, sit to stand and safe mobilisation. Useful for PHTY2030 and PHTY3070 neuro vivas.</p></article>
+        <article><span class="tag">Cardiorespiratory</span><h3>Day one after bowel surgery</h3><p>Post-operative atelectasis: obs, auscultation, chest expansion, cough and chest x-ray. Useful for PHTY3020 cardiopulmonary practice.</p></article>
+        <article><span class="tag">Red flags</span><h3>Shoulder ache on exertion</h3><p>Referred cardiac pain: when the shoulder exam is normal and the history says stop and call 000.</p></article>
+      </div>
+
+      <h2>Questions</h2>
+      <div class="faq">
+        <details><summary>Is this an official University of Newcastle resource?</summary><p>No. Physio Hunch is an independent study tool and isn't affiliated with or endorsed by the University of Newcastle. Always check your course outline and Canvas site for what your viva actually assesses.</p></details>
+        <details><summary>Which physiotherapy courses does it help with?</summary><p>The cases cover the areas examined in practical vivas across the degree: musculoskeletal (PHTY1040, PHTY2020), neurological (PHTY2030, PHTY3070) and cardiorespiratory (PHTY3020), plus red flag screening that applies everywhere.</p></details>
+        <details><summary>Do I need to know physio to play?</summary><p>No. Tap a suggested test if you're stuck. The debrief explains every case in plain language.</p></details>
+        <details><summary>Is it free and does it work on my phone?</summary><p>Yes, it's free, needs no sign-up and runs in any modern browser on desktop or mobile.</p></details>
+      </div>
     </section>
   </main>
 
-  <div id="debrief" class="debrief" hidden>
-    <div class="card">
-      <div id="debrief-body"></div>
-      <div class="actions">
-        <button id="retry">Try again</button>
-        <button id="menu-btn" class="ghost">All cases</button>
-      </div>
-    </div>
-  </div>
+  <footer>
+    <p>Physio Hunch is a free study tool for physiotherapy students. Not affiliated with the University of Newcastle. Cases are simplified for practice and are not clinical advice.</p>
+    <p><a href="research/viva-research.md">Research and sources</a> · <a href="classic/">Classic exam and practical modes</a></p>
+  </footer>
 
-  <script src="js/cases.js"></script>
-  <script src="js/character.js"></script>
-  <script src="js/app.js"></script>
+  <script src="site/game.js"></script>
 </body>
 </html>

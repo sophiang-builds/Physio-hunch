@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physio Hunch</title>
+  <meta name="description" content="Practise physiotherapy practical vivas by questioning simulated patients.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta property="og:image" content="../assets/social-preview.png">
+  <link rel="stylesheet" href="../assets/brand.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="menu" class="screen">
+    <img class="logo" src="../assets/logo.svg" alt="Physio Hunch">
+    <div class="modes" role="group" aria-label="Mode">
+      <button data-mode="exam" aria-pressed="true">Exam</button>
+      <button data-mode="practical" aria-pressed="false">Practical</button>
+    </div>
+    <p id="mode-note" class="mode-note">Full station. Introduce yourself, confirm identity and gain consent before you touch.</p>
+    <div id="cases" class="cases"></div>
+  </main>
+
+  <main id="game" class="screen" hidden>
+    <div id="bar" class="bar" role="progressbar" aria-label="Case uncovered" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="track"><div id="bar-fill" class="fill"></div></div>
+      <span id="bar-num">0%</span>
+    </div>
+    <div class="corner">
+      <button id="back" aria-label="Back to cases">&#x2190;</button>
+      <button id="end">End</button>
+    </div>
+    <section id="stage" class="stage">
+      <form id="form" class="ask">
+        <input id="ask" autocomplete="off" placeholder="Ask or do something..." aria-label="Your question or action">
+        <button type="submit" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 11.5 20.5 4l-7.5 17.5-2.2-7.8L3 11.5Z" fill="currentColor"/></svg>
+        </button>
+      </form>
+      <p id="you" class="you"></p>
+      <p id="reply" class="reply" aria-live="polite"></p>
+      <div id="portrait" class="portrait"></div>
+    </section>
+  </main>
+
+  <div id="debrief" class="debrief" hidden>
+    <div class="card">
+      <div id="debrief-body"></div>
+      <div class="actions">
+        <button id="retry">Try again</button>
+        <button id="menu-btn" class="ghost">All cases</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cases.js"></script>
+  <script src="js/character.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

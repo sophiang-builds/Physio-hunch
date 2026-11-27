@@ -60,11 +60,6 @@
    "mmt": "Eversion strength 4/5 and painful. Everything else 5/5."
   },
   "safety": [],
-  "focus": [
-   0.5,
-   0.9
-  ],
-  "background": "Vietnamese-Australian",
   "turnaround": "Patient-ankle"
  },
  {
@@ -135,190 +130,13 @@
    "questionnaire": "Oswestry 46%."
   },
   "safety": [],
-  "focus": [
-   0.5,
-   0.52
-  ],
-  "background": "Nigerian-Australian",
   "turnaround": "Patient-sciatica"
  },
  {
-  "id": "postop",
-  "name": "Priya",
-  "age": 47,
-  "situation": "Priya, 47, is on the surgical ward, day one after abdominal surgery. Her oxygen needs are creeping up.",
-  "palette": [
-   "#9fe0c6",
-   "#a9d6ff",
-   "#ffe08a"
-  ],
-  "diagnosis": "Post-operative bibasal atelectasis (reduced lung volumes)",
-  "answers": [
-   "atelectasis",
-   "atelectatic",
-   "lung collapse",
-   "basal collapse",
-   "bibasal",
-   "reduced lung volume",
-   "loss of lung volume",
-   "collapse"
-  ],
-  "close": [
-   "post operative pulmonary",
-   "postoperative pulmonary",
-   "ppc",
-   "sputum retention",
-   "pneumonia",
-   "hypoxaemia",
-   "hypoxemia",
-   "secretion"
-  ],
-  "story": "Priya, an accountant, had an open right hemicolectomy through a midline laparotomy yesterday for bowel cancer picked up on screening. She has obstructive sleep apnoea (on CPAP at home) and a BMI of 34, both risk factors for post-operative lung complications. The wound hurts so much she barely presses her PCA, breathes shallow and fast, and won't cough properly. She hasn't been out of bed. Her lung bases have collapsed (bibasal atelectasis): reduced breath sounds and dullness at the bases, reduced basal expansion, a rising oxygen requirement and a low-grade temperature, with secretions she can't clear. Before surgery she walked for 30 minutes most evenings with her husband.",
-  "key": [
-   "auscultation",
-   "imaging",
-   "obs",
-   "chest_expansion",
-   "cough_test"
-  ],
-  "findings": {
-   "medical_notes": "Open right hemicolectomy via midline laparotomy yesterday for a bowel tumour found on screening. No complications in theatre. CPAP brought from home.",
-   "obs": "RR 24, SpO2 91% on 2 L nasal prongs (it was 96% on room air yesterday), HR 98, BP 118/70, temp 37.6.",
-   "imaging": "Chest x-ray: plate-like atelectasis at both bases, worse on the right. No consolidation or effusion.",
-   "abg": "On 2 L: PaO2 62, PaCO2 38, pH 7.42. Mild hypoxaemia.",
-   "bloods": "Hb 112, WCC 11.2, CRP 84, as expected the day after surgery.",
-   "pain_score": "7/10 on moving and coughing. Rarely presses the PCA because it makes her feel sick.",
-   "pain_behaviour": "Any deep breath or cough catches at the wound.",
-   "breathlessness": "Can't take a full breath. Not distressed at rest.",
-   "cough_sputum": "Feels something rattling but can't get it up.",
-   "smoking": "Never smoked.",
-   "pmhx": "Obstructive sleep apnoea on CPAP at night, BMI 34, mild childhood asthma.",
-   "prior_function": "Independent. Walks for 30 minutes most evenings with her husband.",
-   "social": "Lives with her husband and two teenage sons in a single-level home. Works full-time as an accountant.",
-   "observation": "Lying slumped low in the bed with IV, PCA, catheter, abdominal drain and nasal prongs.",
-   "breathing_pattern": "Shallow, rapid, apical breathing. No accessory muscle use.",
-   "skin_wound": "Midline dressing dry and intact.",
-   "auscultation": "Reduced breath sounds at both bases, right worse than left, with fine late inspiratory crackles. Coarse sounds centrally.",
-   "percussion": "Dull at both bases.",
-   "chest_expansion": "Reduced basal expansion on both sides.",
-   "cough_test": "Weak, moist cough. He holds his abdomen and can't clear the secretions.",
-   "bed_mobility": "Needs help of 1 to roll, splinting the wound.",
-   "dvt": "Calves soft and non-tender. On enoxaparin."
-  },
-  "safety": [
-   {
-    "assessments": [
-     "sit_to_stand",
-     "gait",
-     "six_mwt",
-     "exercise_tolerance"
-    ],
-    "requires": [
-     "obs"
-    ],
-    "message": "Mobilised Priya before checking her vital signs."
-   }
-  ],
-  "focus": [
-   0.5,
-   0.38
-  ],
-  "background": "Tamil Indian-Australian",
-  "turnaround": "Patient-postop"
- },
- {
-  "id": "cardiac",
-  "name": "Luis",
-  "age": 58,
-  "situation": "Luis, 58, is a plumber. His left shoulder has been aching for two weeks.",
-  "palette": [
-   "#7fb0ff",
-   "#ff9a8a",
-   "#ffd36e"
-  ],
-  "diagnosis": "Cardiac ischaemia (angina or acute coronary syndrome) referring to the shoulder. Call 000.",
-  "answers": [
-   "angina",
-   "cardiac",
-   "heart",
-   "ischaemi",
-   "ischemi",
-   "acs",
-   "acute coronary",
-   "coronary",
-   "myocardial",
-   "heart attack",
-   "mi",
-   "000",
-   "ambulance",
-   "emergency",
-   "escalate",
-   "urgent referral"
-  ],
-  "close": [
-   "referred pain",
-   "visceral",
-   "not musculoskeletal",
-   "non musculoskeletal",
-   "not mechanical"
-  ],
-  "story": "For two weeks Luis has had a heavy ache in his left shoulder that spreads down the inside of his arm and once into his jaw. It comes on climbing stairs or carrying tools up a ladder, goes away after five minutes of rest, and doesn't come on with overhead work. It brings sweating, breathlessness and once nausea. He smokes 20 a day, stopped his blood pressure and cholesterol tablets, and his older brother had a heart attack at 55. The shoulder exam is completely normal. It came on again walking in from the car park today. This is cardiac ischaemia, and he needs 000, not treatment.",
-  "key": [
-   "pain_behaviour",
-   "associated",
-   "cardiac_risk",
-   "rom_shoulder",
-   "body_chart"
-  ],
-  "findings": {
-   "hpc": "No injury. A heavy ache started in the left shoulder two weeks ago.",
-   "body_chart": "Deep ache in the left shoulder, sometimes down the inner arm. Once into the jaw.",
-   "pain_behaviour": "Comes on climbing stairs or carrying tools up a ladder and goes after five minutes of rest. Overhead reaching doesn't bring it on.",
-   "pain_score": "4/10 when it comes on. A bit there right now, after walking in from the car park.",
-   "pain_24h": "Never wakes him. Only comes with exertion.",
-   "associated": "Gets sweaty and puffed when it comes on. Felt sick once.",
-   "breathlessness": "Gets puffed on stairs, more than he used to.",
-   "cardiac_risk": "Smokes 20 a day. High BP and cholesterol, stopped his tablets. His older brother had a heart attack at 55.",
-   "smoking": "20 a day since he was 18.",
-   "pmhx": "Told he had high blood pressure and cholesterol. Stopped the tablets last year.",
-   "meds": "None. Stopped his antihypertensive and statin.",
-   "red_flags": "No weight loss or fever. Symptoms are exertional and come with sweating.",
-   "social": "Self-employed plumber, under houses and on roofs.",
-   "obs": "BP 168/98, HR 96, SpO2 96%. Looks a little clammy.",
-   "observation": "Slightly pale and clammy. Rubbing his chest.",
-   "rom_shoulder": "Full active range in all directions, pain-free, no painful arc.",
-   "prom_shoulder": "Full and pain-free with normal end feels.",
-   "cuff_tests": "Strong and pain-free.",
-   "impingement": "Negative.",
-   "painful_arc": "None.",
-   "palpation": "Shoulder not tender anywhere.",
-   "rom_cervical": "Full and pain-free. Doesn't reproduce the arm symptoms.",
-   "spurling": "Negative.",
-   "ecg": "No ECG available in the clinic.",
-   "exercise_tolerance": "Don't. Exertional testing with these symptoms is unsafe."
-  },
-  "safety": [
-   {
-    "assessments": [
-     "exercise_tolerance",
-     "six_mwt"
-    ],
-    "requires": [],
-    "message": "Ran an exertional test on Luis while he had active cardiac symptoms."
-   }
-  ],
-  "focus": [
-   0.5,
-   0.3
-  ],
-  "background": "Chilean-Australian",
-  "turnaround": "Patient-cardiac"
- },
- {
   "id": "stroke",
-  "name": "Nell",
-  "age": 81,
-  "situation": "Nell, 81, came into hospital on Monday. The nurses say her left leg gives way when she tries to stand.",
+  "name": "Margaret",
+  "age": 68,
+  "situation": "Margaret, 68, came into hospital on Monday. The nurses say her left leg gives way when she tries to stand.",
   "palette": [
    "#9cc9f2",
    "#c7b8ff",
@@ -342,7 +160,7 @@
    "upper motor",
    "umn"
   ],
-  "story": "On Monday Nell was making a cup of tea when her left arm suddenly went heavy and useless. She rang her daughter, who called an ambulance. A CT showed a right middle cerebral artery infarct, most likely embolic from her atrial fibrillation, and she was thrombolysed. Five days on she has a left hemiparesis: weak quadriceps that let the knee buckle in standing, low tone in the arm, an inferiorly subluxed left shoulder, reduced sensation and proprioception, an up-going left plantar response and left-sided inattention. She's a retired midwife, widowed, and lives alone in a unit with eight steps to the front door. She was fully independent and wants to get back to the bowls club.",
+  "story": "On Monday Margaret was making a cup of tea when her left arm suddenly went heavy and useless. Her husband Bill called an ambulance. A CT showed a right middle cerebral artery infarct, and she was thrombolysed. Five days on she has a left hemiparesis: weak quadriceps that let the knee buckle in standing, low tone in the arm, an inferiorly subluxed left shoulder, reduced sensation and proprioception, an up-going left plantar response and left-sided inattention. She has high blood pressure and type 2 diabetes. She lives with Bill in a two-storey house and was fully independent before. She wants to go home and get back to her garden.",
   "key": [
    "hpc",
    "mmt",
@@ -351,15 +169,15 @@
    "imaging"
   ],
   "findings": {
-   "hpc": "Making a cup of tea on Monday when her left arm suddenly went heavy. She rang her daughter, who called the ambulance.",
-   "medical_notes": "Thrombolysed on admission. Likely cardioembolic from atrial fibrillation. Medically cleared to mobilise. Systolic BP target under 180.",
-   "obs": "BP 148/86, HR 82 irregularly irregular, SpO2 95% on room air.",
+   "hpc": "Making a cup of tea on Monday when her left arm suddenly went heavy. Her husband called an ambulance.",
+   "medical_notes": "Thrombolysed on admission. Medically cleared to mobilise. Systolic BP target under 180.",
+   "obs": "BP 146/84, HR 78 regular, SpO2 96% on room air.",
    "imaging": "CT and CT perfusion: right middle cerebral artery territory infarct.",
-   "pmhx": "Atrial fibrillation (not previously anticoagulated) and high blood pressure.",
-   "meds": "Atorvastatin and amlodipine. Apixaban to start next week.",
-   "social": "Widowed, lives alone in a unit with eight steps to the front door and one rail. Her daughter visits twice a week.",
-   "prior_function": "Fully independent. Walked to the shops every day and played lawn bowls twice a week.",
-   "goals": "Go home and get back to the bowls club.",
+   "pmhx": "Hypertension and type 2 diabetes.",
+   "meds": "Aspirin and atorvastatin started this week. Metformin.",
+   "social": "Lives with her husband in a two-storey house, five steps to the front door with one rail.",
+   "prior_function": "Fully independent. Walked daily, gardened and drove.",
+   "goals": "Go home and get back into the garden.",
    "falls_history": "No falls. Not allowed up on her own.",
    "observation": "Sitting slumped to the right in bed, left arm resting in her lap, head turned to the right.",
    "mmt": "Left hip flexion 3/5, knee extension 2/5, dorsiflexion 2/5, shoulder flexion 1/5. Right side 5/5.",
@@ -394,14 +212,171 @@
      "medical_notes",
      "obs"
     ],
-    "message": "Stood Nell up before checking medical clearance and vital signs."
+    "message": "Stood Margaret up before checking medical clearance and vital signs."
    }
   ],
-  "focus": [
-   0.5,
-   0.5
-  ],
-  "background": "Irish-born",
   "turnaround": "Patient-stroke"
+ },
+ {
+  "id": "postop",
+  "name": "Robert",
+  "age": 71,
+  "situation": "Robert, 71, is on the surgical ward, day one after abdominal surgery. His oxygen needs are creeping up.",
+  "palette": [
+   "#9fe0c6",
+   "#a9d6ff",
+   "#ffe08a"
+  ],
+  "diagnosis": "Post-operative bibasal atelectasis (reduced lung volumes)",
+  "answers": [
+   "atelectasis",
+   "atelectatic",
+   "lung collapse",
+   "basal collapse",
+   "bibasal",
+   "reduced lung volume",
+   "loss of lung volume",
+   "collapse"
+  ],
+  "close": [
+   "post operative pulmonary",
+   "postoperative pulmonary",
+   "ppc",
+   "sputum retention",
+   "pneumonia",
+   "hypoxaemia",
+   "hypoxemia",
+   "secretion"
+  ],
+  "story": "Robert had an open right hemicolectomy through a midline laparotomy yesterday for bowel cancer. He smoked for 40 years and quit five years ago. The wound hurts so much that he barely presses his PCA, breathes shallow and fast, and won't cough properly. He hasn't been out of bed. His lung bases have collapsed (bibasal atelectasis): reduced breath sounds and dullness at the bases, reduced basal expansion, a rising oxygen requirement and a low-grade temperature, with some secretions he can't clear. Before surgery he walked the dog for 30 minutes every morning.",
+  "key": [
+   "auscultation",
+   "imaging",
+   "obs",
+   "chest_expansion",
+   "cough_test"
+  ],
+  "findings": {
+   "medical_notes": "Open right hemicolectomy via midline laparotomy yesterday for a bowel tumour. No complications in theatre.",
+   "obs": "RR 24, SpO2 91% on 2 L nasal prongs (it was 96% on room air yesterday), HR 98, BP 118/70, temp 37.6.",
+   "imaging": "Chest x-ray: plate-like atelectasis at both bases, worse on the right. No consolidation or effusion.",
+   "abg": "On 2 L: PaO2 62, PaCO2 38, pH 7.42. Mild hypoxaemia.",
+   "bloods": "Hb 112, WCC 11.2, CRP 84, as expected the day after surgery.",
+   "pain_score": "7/10 on moving and coughing. Rarely presses the PCA because he dislikes the feeling.",
+   "pain_behaviour": "Any deep breath or cough catches at the wound.",
+   "breathlessness": "Can't take a full breath. Not distressed at rest.",
+   "cough_sputum": "Feels something rattling but can't get it up.",
+   "smoking": "40 pack-years. Quit five years ago.",
+   "pmhx": "Hypertension. No known lung disease.",
+   "prior_function": "Independent. Walks the dog for 30 minutes every morning.",
+   "social": "Lives with his wife in a single-level home.",
+   "observation": "Lying slumped low in the bed with IV, PCA, catheter, abdominal drain and nasal prongs.",
+   "breathing_pattern": "Shallow, rapid, apical breathing. No accessory muscle use.",
+   "skin_wound": "Midline dressing dry and intact.",
+   "auscultation": "Reduced breath sounds at both bases, right worse than left, with fine late inspiratory crackles. Coarse sounds centrally.",
+   "percussion": "Dull at both bases.",
+   "chest_expansion": "Reduced basal expansion on both sides.",
+   "cough_test": "Weak, moist cough. He holds his abdomen and can't clear the secretions.",
+   "bed_mobility": "Needs help of 1 to roll, splinting the wound.",
+   "dvt": "Calves soft and non-tender. On enoxaparin."
+  },
+  "safety": [
+   {
+    "assessments": [
+     "sit_to_stand",
+     "gait",
+     "six_mwt",
+     "exercise_tolerance"
+    ],
+    "requires": [
+     "obs"
+    ],
+    "message": "Mobilised Robert before checking his vital signs."
+   }
+  ],
+  "turnaround": "Patient-postop"
+ },
+ {
+  "id": "cardiac",
+  "name": "Gary",
+  "age": 58,
+  "situation": "Gary, 58, is a plumber. His left shoulder has been aching for two weeks.",
+  "palette": [
+   "#7fb0ff",
+   "#ff9a8a",
+   "#ffd36e"
+  ],
+  "diagnosis": "Cardiac ischaemia (angina or acute coronary syndrome) referring to the shoulder. Call 000.",
+  "answers": [
+   "angina",
+   "cardiac",
+   "heart",
+   "ischaemi",
+   "ischemi",
+   "acs",
+   "acute coronary",
+   "coronary",
+   "myocardial",
+   "heart attack",
+   "mi",
+   "000",
+   "ambulance",
+   "emergency",
+   "escalate",
+   "urgent referral"
+  ],
+  "close": [
+   "referred pain",
+   "visceral",
+   "not musculoskeletal",
+   "non musculoskeletal",
+   "not mechanical"
+  ],
+  "story": "For two weeks Gary has had a heavy ache in his left shoulder that spreads down the inside of his arm and once into his jaw. It comes on climbing stairs or carrying tools up a ladder, goes away after five minutes of rest, and doesn't come on with overhead work. It brings sweating, breathlessness and once nausea. He smokes a pack a day, stopped his blood pressure and cholesterol tablets, and his father died of a heart attack at 60. The shoulder exam is completely normal. It came on again walking in from the car park today. This is cardiac ischaemia, and he needs 000, not treatment.",
+  "key": [
+   "pain_behaviour",
+   "associated",
+   "cardiac_risk",
+   "rom_shoulder",
+   "body_chart"
+  ],
+  "findings": {
+   "hpc": "No injury. A heavy ache started in the left shoulder two weeks ago.",
+   "body_chart": "Deep ache in the left shoulder, sometimes down the inner arm. Once into the jaw.",
+   "pain_behaviour": "Comes on climbing stairs or carrying tools up a ladder and goes after five minutes of rest. Overhead reaching doesn't bring it on.",
+   "pain_score": "4/10 when it comes on. A bit there right now, after walking in from the car park.",
+   "pain_24h": "Never wakes him. Only comes with exertion.",
+   "associated": "Gets sweaty and puffed when it comes on. Felt sick once.",
+   "breathlessness": "Gets puffed on stairs, more than he used to.",
+   "cardiac_risk": "Smokes a pack a day. High BP and cholesterol, stopped his tablets. Father died of a heart attack at 60.",
+   "smoking": "A pack a day for 35 years.",
+   "pmhx": "Told he had high blood pressure and cholesterol. Stopped the tablets last year.",
+   "meds": "None. Stopped his antihypertensive and statin.",
+   "red_flags": "No weight loss or fever. Symptoms are exertional and come with sweating.",
+   "social": "Self-employed plumber, under houses and on roofs.",
+   "obs": "BP 168/98, HR 96, SpO2 96%. Looks a little clammy.",
+   "observation": "Slightly pale and clammy. Rubbing his chest.",
+   "rom_shoulder": "Full active range in all directions, pain-free, no painful arc.",
+   "prom_shoulder": "Full and pain-free with normal end feels.",
+   "cuff_tests": "Strong and pain-free.",
+   "impingement": "Negative.",
+   "painful_arc": "None.",
+   "palpation": "Shoulder not tender anywhere.",
+   "rom_cervical": "Full and pain-free. Doesn't reproduce the arm symptoms.",
+   "spurling": "Negative.",
+   "ecg": "No ECG available in the clinic.",
+   "exercise_tolerance": "Don't. Exertional testing with these symptoms is unsafe."
+  },
+  "safety": [
+   {
+    "assessments": [
+     "exercise_tolerance",
+     "six_mwt"
+    ],
+    "requires": [],
+    "message": "Ran an exertional test on Gary while he had active cardiac symptoms."
+   }
+  ],
+  "turnaround": "Patient-cardiac"
  }
 ]

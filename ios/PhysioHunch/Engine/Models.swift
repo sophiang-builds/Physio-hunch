@@ -25,11 +25,9 @@ struct PatientCase: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let age: Int
-    let background: String
-    /// Image set prefix. The app expects "<turnaround>-front", "-right", "-back" and "-left".
+    /// Image set prefix. The app expects "<turnaround>-front", "-right", "-back" and "-left",
+    /// cut from assets/characters/patient-turnarounds.png by tools/cut_turnarounds.py.
     let turnaround: String
-    /// Where the camera zooms as findings come in, as a unit point [x, y] on the full-body image.
-    let focus: [Double]
     let situation: String
     let palette: [String]
     let diagnosis: String

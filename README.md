@@ -27,23 +27,27 @@ Everything is deterministic code.
 ### Adding things
 
 - To add an assessment, put an entry in `ios/PhysioHunch/Resources/Data/assessments.json` with an id, a name, a category and aliases. Aliases of three letters or fewer match whole words. Longer ones match word stems.
-- To add a case, put an entry in `cases.json` with its findings keyed by assessment id, plus answers, close answers, key assessments, safety rules, a focus point and a turnaround name.
+- To add a case, put an entry in `cases.json` with its findings keyed by assessment id, plus answers, close answers, key assessments, safety rules and a turnaround name.
 - To add a mechanic, write a struct conforming to `Mechanic`, implement only the hooks you need, and add it to `Mechanics.standard`.
-- To add a character, add a spec to `characters/characters.json` and re-export the turnaround images and sheet.
+- To add a character, add a row to the turnaround sheet, extend the row and column lists in `tools/cut_turnarounds.py`, and re-run it.
 
 ## Characters
 
-See the [pixel-art concept sheet and turn-and-zoom notes](docs/characters.md) for the original web case roster. The table below shows the native app’s roster and its current turnaround assets.
+The patients come from the [turnaround sheet](assets/characters/patient-turnarounds.png). See [docs/characters.md](docs/characters.md) for the style and the turn-and-zoom rules.
 
-| | Patient | Case |
-| --- | --- | --- |
-| ![](characters/sheets/ankle-mia.png) | Mia Tran, 19, Vietnamese-Australian netballer | Lateral ankle sprain |
-| ![](characters/sheets/sciatica-daniel.png) | Daniel Okafor, 42, Nigerian-Australian storeman | S1 radiculopathy |
-| ![](characters/sheets/postop-priya.png) | Priya Raman, 47, Tamil Indian-Australian accountant | Post-operative atelectasis |
-| ![](characters/sheets/cardiac-luis.png) | Luis Romero, 58, Chilean-Australian plumber | Cardiac pain referred to the shoulder |
-| ![](characters/sheets/stroke-nell.png) | Nell Fitzgerald, 81, Irish-born retired midwife | Right MCA stroke |
+| Patient | Age | Case |
+| --- | ---: | --- |
+| Mia Tran | 19 | Lateral ankle sprain |
+| Daniel Okafor | 42 | S1 radiculopathy |
+| Margaret Collins | 68 | Right MCA stroke |
+| Robert Nguyen | 71 | Post-operative atelectasis |
+| Gary Whitfield | 58 | Cardiac pain referred to the shoulder |
 
-`characters/turnaround.js` is one parametric vector rig drawn front, right, back and left. The app expects image sets named `Patient-<id>-front`, `-right`, `-back` and `-left`, so hand-drawn turnaround art can replace any of them without code changes.
+`tools/cut_turnarounds.py` cuts the sheet into 20 sprites (`assets/characters/sprites/<case>-<view>.png`). It removes the background, labels and neighbouring slivers, and puts each patient's four views on one shared anchor. The app loads them as `Patient-<case>-front`, `-right`, `-back` and `-left`, drawn with nearest-neighbour scaling so the pixels stay crisp. Each new finding advances one view (front, right, back, left), and the zoom steps independently through 1.0×, 1.05× and 1.10× to a cap of 1.15×.
+
+## Previews
+
+`demo/physio-hunch-iphone15.html` is a playable browser preview of the app inside an iPhone 15 frame. CI also records the real app on an iPhone 15 simulator and uploads the screenshots and video as the `iphone15-demo` artifact on each run.
 
 ## Brand
 

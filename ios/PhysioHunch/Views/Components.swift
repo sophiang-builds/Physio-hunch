@@ -1,12 +1,13 @@
 import SwiftUI
 
-/// The patient on a turntable. Every finding turns them 90 degrees
-/// (front, right, back, left, front again) and moves the camera closer
-/// to the case's focus point. Reduce Motion swaps views with a crossfade.
+/// The patient from the turnaround sheet (docs/characters.md).
+/// Each newly discovered finding advances one view: front, right, back, left, front.
+/// Zoom is independent of the turn: 1.0x, 1.05x, 1.10x, capped at 1.15x, centred on the portrait.
+/// Reduce Motion swaps frames directly.
 struct PatientStage: View {
     static let views = ["front", "right", "back", "left"]
     static let height: CGFloat = 300
-    static let zoomPerFinding: CGFloat = 0.16
+    static let zoomSteps: [CGFloat] = [1.0, 1.05, 1.10, 1.15]
 
     let patient: PatientCase
     let hits: Int
@@ -17,16 +18,10 @@ struct PatientStage: View {
     @State private var spin: Double = 0
     @State private var breathing = false
 
-    private var zoom: CGFloat { 1 + Self.zoomPerFinding * CGFloat(hits) }
-    private var focus: UnitPoint { UnitPoint(x: patient.focus.first ?? 0.5, y: patient.focus.last ?? 0.5) }
-    /// Slides the focus point toward the middle of the stage as the zoom grows.
-    private var drift: CGFloat {
-        let progress = min(1, (zoom - 1) / (Self.zoomPerFinding * 4))
-        return (0.5 - focus.y) * Self.height * progress
-    }
+    private var zoom: CGFloat { Self.zoomSteps[min(hits, Self.zoomSteps.count - 1)] }
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Circle()
                 .fill(Brand.lilac)
                 .overlay {
@@ -35,18 +30,19 @@ struct PatientStage: View {
                                              startPoint: .topLeading, endPoint: .bottomTrailing))
                         .opacity(reveal)
                 }
-                .frame(width: 230, height: 230)
+                .frame(width: 250, height: 250)
+                .frame(maxHeight: .infinity, alignment: .center)
 
             Image("\(patient.turnaround)-\(Self.views[shown])")
                 .resizable()
+                .interpolation(.none)          // keep the pixel art crisp
                 .scaledToFit()
-                .frame(height: Self.height)
-                .scaleEffect(breathing ? 1.008 : 1, anchor: .bottom)
+                .frame(height: 260)
+                .scaleEffect(breathing ? 1.006 : 1, anchor: .bottom)
                 .rotation3DEffect(.degrees(spin), axis: (x: 0, y: 1, z: 0), perspective: 0.45)
-                .scaleEffect(zoom, anchor: focus)
-                .offset(y: drift)
-                .animation(.spring(duration: 0.9, bounce: 0.15), value: zoom)
         }
+        .scaleEffect(zoom, anchor: .center)
+        .animation(.spring(duration: 0.8, bounce: 0.12), value: zoom)
         .frame(height: Self.height)
         .frame(maxWidth: .infinity)
         .clipShape(.rect(cornerRadius: 28))
@@ -68,11 +64,11 @@ struct PatientStage: View {
     private func turn(to target: Int) {
         guard target != shown else { return }
         if reduceMotion {
-            withAnimation(.easeInOut(duration: 0.3)) { shown = target }
+            shown = target
             return
         }
-        // Rotate away to edge-on, swap the drawing, rotate back in from the other edge.
-        withAnimation(.easeIn(duration: 0.22)) {
+        // Rotate away to edge-on, swap the frame, rotate back in from the other edge.
+        withAnimation(.easeIn(duration: 0.2)) {
             spin = 90
         } completion: {
             var swap = Transaction()
@@ -81,7 +77,7 @@ struct PatientStage: View {
                 shown = target
                 spin = -90
             }
-            withAnimation(.easeOut(duration: 0.3)) { spin = 0 }
+            withAnimation(.easeOut(duration: 0.28)) { spin = 0 }
         }
     }
 }

@@ -3,8 +3,13 @@ const assets = "../assets/characters/expansion";
 const status = element("status");
 
 try {
-  const response = await fetch("../cases/expansion/cases.psv");
+  const [response, artStatus] = await Promise.all([
+    fetch("../cases/expansion/cases.psv"),
+    fetch(`${assets}/illustrated.json`)
+  ]);
   if (!response.ok) throw new Error(`Case roster returned ${response.status}`);
+  if (!artStatus.ok) throw new Error(`Artwork status returned ${artStatus.status}`);
+  const illustratedIds = new Set(await artStatus.json());
   const [header, ...rows] = (await response.text()).trim().split(/\r?\n/);
   const columns = header.split("|");
   const cases = rows.map(row => Object.fromEntries(row.split("|").map((value, index) => [columns[index], value])));
@@ -32,6 +37,7 @@ try {
     element("atlas").href = atlas;
     element("patient-name").textContent = patient.name;
     element("patient-meta").textContent = `${patient.age} years · ${patient.pronouns} · ${patient.area}`;
+    element("art-status").textContent = illustratedIds.has(patient.id) ? "Individually illustrated" : "Draft portrait";
     for (const key of ["setting", "subjective", "assessment", "finding", "answer"]) {
       element(key).textContent = patient[key];
     }

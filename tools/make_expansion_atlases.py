@@ -1,6 +1,7 @@
 """Generate the expansion's pixel portraits and 16-view atlases from the case roster."""
 import argparse
 import csv
+import json
 import math
 from pathlib import Path
 import random
@@ -184,9 +185,12 @@ def main():
     selection = [case for case in cases if not args.ids or case["id"] in args.ids]
     if args.ids and set(args.ids) != {case["id"] for case in selection}:
         parser.error("Unknown case ID")
-    for case in selection:
+    illustrated = OUTPUT / "illustrated.json"
+    protected_ids = set(json.loads(illustrated.read_text())) if illustrated.exists() else set()
+    pending = [case for case in selection if case["id"] not in protected_ids]
+    for case in pending:
         export(case)
-    print(f"Rendered {len(selection)} characters with 16 poses each")
+    print(f"Rendered {len(pending)} draft characters; kept {len(selection)-len(pending)} illustrated characters.")
 
 
 if __name__ == "__main__":

@@ -27,8 +27,12 @@ The entries are case briefs for expansion authoring. They need clinical educator
 
 [See all 100 patients together](../assets/characters/expansion/contact-sheet.png). The rows follow the practice area order above.
 
-Use [portraits](../assets/characters/expansion/portraits) for case folders and [atlases](../assets/characters/expansion/atlases) for turning. In both folders, use `<id>.png`. The 100 transparent atlases follow the original production layout: 1024 × 1024 with a 4 × 4 grid of 256 × 256 cells, row-major from front (0), right (4), back (8), and left (12), with a 22.5° step between cells. Use nearest-neighbour scaling. The portrait is the front view rendered at its 96 × 96 native pixel grid.
+Use [portraits](../assets/characters/expansion/portraits) for case folders and [atlases](../assets/characters/expansion/atlases) for turning. In both folders, use `<id>.png`. The 100 transparent atlases follow the original production layout: 1024 × 1024 with a 4 × 4 grid of 256 × 256 cells, row-major from front (0), right (4), back (8), and left (12), with a 22.5° step between cells. Use nearest-neighbour scaling. The portrait is the front cell of the character’s atlas. Earlier draft portraits are 96 × 96 and use the same framing when enlarged.
 
-The expansion uses procedural pixel art with consistent geometry through the turn, plum outlines and stepped lighting. The treatment is simpler than the original illustrated five. Each character has an explicit combination of skin tone, hairstyle, outfit colour, build and facial detail in the `character` field. The renderer takes age and character settings directly from the row and never infers appearance from a person's name.
+## Individual artwork
 
-Regenerate the files with `python3 tools/make_expansion_atlases.py` (Pillow and NumPy). Pass one or more case IDs to regenerate only those characters.
+Use the [artwork status list](../assets/characters/expansion/illustrated.json) to select the patients with individual illustrations. The preview labels all other portraits as drafts.
+
+Use the [original five turnarounds](../assets/characters/pose-atlases) as the art reference for each new patient. Match their waist-up crop and believable proportions, crisp plum contours, separately drawn views and stepped shadow clusters. Carry the character’s hair and facial details through the turn, including when an ear or glasses arm becomes occluded. Give the garment its own folds and seams, and preserve those design details across the 16 angles. Review the first, right, back and left views and inspect the intervening angles for jumps in silhouette or changes in costume.
+
+After reviewing one patient, register the square green-screen 4 × 4 source sheet with `python3 tools/import_expansion_atlas.py <case-id> <source.png>`. This updates the portrait, atlas, contact sheet and artwork status. `python3 tools/make_expansion_atlases.py` rebuilds draft assets (Pillow and NumPy) and skips the individually illustrated patients.

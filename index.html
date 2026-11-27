@@ -17,9 +17,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/brand.css?v=20261127i">
-  <link rel="stylesheet" href="assets/case-file/case-file.css?v=20261127i">
-  <link rel="stylesheet" href="site/site.css?v=20261127i">
+  <link rel="stylesheet" href="assets/brand.css?v=20261127j">
+  <link rel="stylesheet" href="assets/case-file/case-file.css?v=20261127j">
+  <link rel="stylesheet" href="site/site.css?v=20261127j">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,7 +42,7 @@
           { "@type": "Question", "name": "Which physio subjects can I practise?",
             "acceptedAnswer": { "@type": "Answer", "text": "Musculoskeletal (handy for PHTY1040 and PHTY2020), neurological (PHTY2030 and PHTY3070), cardiorespiratory (PHTY3020) and red flag cases that matter in every viva." } },
           { "@type": "Question", "name": "How do I play?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Read why the patient came in. You get up to five chances to check them, like asking about their pain or doing a test. If a check is useful, they'll tell you something and turn around. When you think you know, make your call and type what you think is wrong. The fewer checks you need, the more points you get." } },
+            "acceptedAnswer": { "@type": "Answer", "text": "Read why the patient came in. You get up to five chances to check them, like asking about their pain or doing a test. If a check is useful, they'll tell you something and turn around. When you think you know, make your call and type what you think is wrong. You'll see the answer straight after. You start with 2 minutes, each useful check adds 45 seconds and each right answer adds 2 minutes." } },
           { "@type": "Question", "name": "Does it cost anything?",
             "acceptedAnswer": { "@type": "Answer", "text": "No. It's free, there's nothing to sign up for, and it works on your phone or laptop." } }
         ]
@@ -83,7 +83,7 @@
             <div class="case-file__face case-file__face--back"></div>
           </div>
 <div class="hud hud-folder" aria-live="polite">
-            <div class="hud-time"><span>Time</span><b class="hud-time-n">0:45</b><i class="hud-delta"></i></div>
+            <div class="hud-time"><span>Time</span><b class="hud-time-n">2:00</b><i class="hud-delta"></i></div>
             <div class="hud-score"><span>Score</span><b class="hud-score-n">0</b><i class="hud-gain"></i></div>
             <p class="hud-tries"></p>
           </div>
@@ -95,25 +95,23 @@
               <p id="cfBackground"></p>
               <p class="cf-label">History of presenting complaint</p>
               <p id="cfHistory"></p>
-              <section class="case-file__answer" id="cfAnswer" aria-live="polite" hidden>
-                <p class="cf-label">Answer</p>
-                <p id="cfDiagnosis"></p>
-              </section>
             </div>
           </article>
+          <!-- After each patient: the answer, on its own sheet laid over the case page -->
+          <article class="answer-paper answer-sheet" aria-live="polite" aria-label="Answer" hidden><span class="ap-clip" aria-hidden="true"></span><div class="ap-body"></div></article>
         </div>
       </div>
 
       <div class="game" id="game">
         <div class="donebox" id="donebox" hidden>
-          <h2>That's your five for today</h2>
+          <h2 id="doneHead">That's your five for today</h2>
           <p>You scored <b id="doneTotal">0</b> points.</p>
           <p>Five new tries tomorrow. Come back and beat it.</p>
         </div>
         <div class="playbox">
           <p class="play-title" aria-hidden="true">Can you work out what's wrong?</p>
           <button class="case-file__play" id="play" type="button" aria-controls="casePage" aria-expanded="false"><span class="lbl-d">Play</span><span class="lbl-m">Start</span></button>
-          <p class="play-sub">45 seconds and five chances to check your patient, then make your best guess. Five patients a day.</p>
+          <p class="play-sub">You start with 2 minutes. Good checks add 45 seconds and right answers add 2 minutes. Five patients a day.</p>
         </div>
         <div class="intro">
           <h1 id="title">Can you work out what's wrong?</h1>
@@ -122,7 +120,7 @@
 
         <div class="patient">
           <div class="hud hud-card" aria-hidden="true">
-            <div class="hud-time"><span>Time</span><b class="hud-time-n">0:45</b><i class="hud-delta"></i></div>
+            <div class="hud-time"><span>Time</span><b class="hud-time-n">2:00</b><i class="hud-delta"></i></div>
             <div class="hud-score"><span>Score</span><b class="hud-score-n">0</b><i class="hud-gain"></i></div>
             <p class="hud-tries"></p>
           </div>
@@ -139,6 +137,7 @@
         </div>
 
         <div class="consult">
+          <article class="answer-paper answer-card" aria-live="polite" aria-label="Answer" hidden><div class="ap-body"></div></article>
           <div class="notes">
             <p class="notes-head"><span>Case notes</span><span id="who"></span></p>
             <ol class="findings" id="findings" aria-live="polite"></ol>
@@ -181,8 +180,8 @@
         </figure>
         <ol class="steps three">
           <li><b>1</b><div><h3>Meet the patient</h3><p>You'll see who they are and why they've come in. That's all you get to start with.</p></div></li>
-          <li><b>2</b><div><h3>Check them five times</h3><p>Type what you want to check, like "where does it hurt", "reflexes" or "listen to the chest". Good checks get you a clue and they turn around. Unhelpful ones get you nothing, and that chance is gone.</p></div></li>
-          <li><b>3</b><div><h3>Make your guess</h3><p>When you think you know, open the arrow next to Assess and make your call. The fewer checks you needed, the more points you get. Get it right and the next patient's file flips straight open. You get five patients a day.</p></div></li>
+          <li><b>2</b><div><h3>Check them five times</h3><p>Type what you want to check, like "where does it hurt", "reflexes" or "listen to the chest". Good checks get you a clue, 45 more seconds on the clock, and they turn around. Unhelpful ones get you nothing, and that chance is gone.</p></div></li>
+          <li><b>3</b><div><h3>Make your guess</h3><p>When you think you know, open the arrow next to Assess and make your call. The answer goes straight onto the folder so you can see what was going on, and the clock waits while you read it. A right answer adds 2 minutes. You get five patients a day, as long as the clock lasts.</p></div></li>
         </ol>
       </div>
     </section>
@@ -210,12 +209,12 @@
           <div class="good">
             <p class="ask">You ask Mia: <b>"What happened?"</b></p>
             <p class="said">"I went up for a rebound, landed on someone's foot and rolled my ankle inwards. Felt a pop on the outside."</p>
-            <p class="verdict-line">That's a clue. Mia turns, you gain 5 seconds, and you've still got four chances left.</p>
+            <p class="verdict-line">That's a clue. Mia turns, you gain 45 seconds, and you've still got four chances left.</p>
           </div>
           <div class="bad">
             <p class="ask">You try a <b>Lachman test</b>.</p>
             <p class="said">No response.</p>
-            <p class="verdict-line">That's a knee test, and her problem is her ankle. The chance is gone, nothing turns, and it costs you 5 seconds.</p>
+            <p class="verdict-line">That's a knee test, and her problem is her ankle. The chance is gone, nothing turns, and the clock keeps ticking.</p>
           </div>
         </div>
       </div>
@@ -261,6 +260,6 @@
     <p><a href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">Buy me a coffee</a> · <a href="research/viva-research.md">Research and sources</a> · <a href="classic/">Classic exam and practical modes</a></p>
   </footer>
 
-  <script src="site/game.js?v=20261127i"></script>
+  <script src="site/game.js?v=20261127j"></script>
 </body>
 </html>

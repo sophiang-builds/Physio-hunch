@@ -96,10 +96,12 @@
   // ---------- state ----------
   let st, view = 0, dir = 1, timer = null, clock = null;
   // Daily: 5 tries a day, running total. Stored in this browser only.
-  const TRIES = 5, START_TIME = 45, BONUS = 5;
+  // One clock for the day's run: 2:00 to start, +0:45 for each useful check, +2:00 for each right call.
+  const TRIES = 5, START_TIME = 120, CHECK_BONUS = 45, CORRECT_BONUS = 120;
   const today = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
-  let daily = { date: today(), tries: 0, total: 0 };
+  let daily = { date: today(), tries: 0, total: 0, time: START_TIME };
   try { const saved = JSON.parse(localStorage.getItem("ph-daily") || "null"); if (saved && saved.date === today()) daily = saved; } catch (e) {}
+  if (typeof daily.time !== "number" || daily.time > 3600) daily.time = START_TIME;   // older saves had a per-patient clock
   const saveDaily = () => { try { localStorage.setItem("ph-daily", JSON.stringify(daily)); } catch (e) {} };
   // Five random patients a day, drawn from every case. The same five survive a refresh; tomorrow is a new draw.
   const byId = new Map(C.map((c) => [String(c.id), c]));
@@ -111,7 +113,7 @@
   const hits = () => st.turns.filter((t) => t.finding).length;
 
   function load(patient) {
-    st = { p: patient, limit: 5, turns: [], phase: "assessing", flags: [], time: START_TIME, started: false };
+    st = { p: patient, limit: 5, turns: [], phase: "assessing", flags: [], time: Math.max(0, daily.time), started: false };
     clearInterval(clock); showTime();
     view = 0; dir = Math.random() < .5 ? 1 : -1; clearInterval(timer);
     document.querySelectorAll(".pose").forEach((el) => (el.style.backgroundImage = `url(${ATLAS(st.p)})`));
@@ -119,15 +121,15 @@
     $("cfName").textContent = `${st.p.name}, ${st.p.age}`;
     $("cfBackground").textContent = st.p.situation;
     $("cfHistory").textContent = (st.p.given || []).map((id) => st.p.findings[id]).filter(Boolean).join(" ");
-    $("cfDiagnosis").textContent = st.p.diagnosis;
-    $("cfAnswer").hidden = true;
+    showAnswer(false);
     setOpen(false);
     $("pose").setAttribute("aria-label", `${st.p.name}, ${st.p.age}`);
     setPose(0); camera(); $("ask").value = ""; $("sheet").hidden = true; render();
   }
 
   function submit(raw) {
-    const text = (raw || "").trim(); if (!text || st.phase === "done" || daily.tries >= TRIES) return; closeMenu();
+    if (st.phase === "done") return next();
+    const text = (raw || "").trim(); if (!text || daily.tries >= TRIES) return; closeMenu();
     if (!st.started) startClock();
     if (st.phase === "calling" || ["i think", "i reckon", "my diagnosis", "diagnosis", "my call"].some((x) => norm(text).startsWith(x))) return call(text);
     let a = resolve(text, st.p);
@@ -145,7 +147,7 @@
     st.turns.push(t); if (t.flag && !st.flags.includes(t.flag)) st.flags.push(t.flag);
     if (st.turns.length >= st.limit) st.phase = "calling";
     $("ask").value = ""; render();
-    if (t.finding) { turn(); addTime(BONUS); } else addTime(-BONUS);
+    if (t.finding) { turn(); addTime(CHECK_BONUS); }
     if (st.time <= 0) return finish("timeout", "");
     if (st.phase === "calling") $("ask").focus();
     const f = $("findings"); f.scrollTo({ top: f.scrollHeight, behavior: RM ? "auto" : "smooth" });
@@ -188,18 +190,19 @@
     let last = performance.now();
     clock = setInterval(() => {
       const now = performance.now(); st.time -= (now - last) / 1000; last = now; showTime();
+      if (Math.floor(st.time) !== Math.floor(daily.time)) { daily.time = st.time; saveDaily(); }
       if (st.time <= 0) finish("timeout", "");
     }, 100);
   }
   function addTime(sec) {
-    st.time = Math.max(0, st.time + sec); showTime();
+    st.time = Math.max(0, st.time + sec); daily.time = st.time; saveDaily(); showTime();
     document.querySelectorAll(".hud-delta").forEach((el) => {
-      el.textContent = (sec > 0 ? "+" : "\u2212") + Math.abs(sec) + "s"; el.className = "hud-delta " + (sec > 0 ? "up" : "down");
+      el.textContent = (sec > 0 ? "+" : "\u2212") + (Math.abs(sec) >= 60 ? fmt(Math.abs(sec)) : Math.abs(sec) + "s"); el.className = "hud-delta " + (sec > 0 ? "up" : "down");
       void el.offsetWidth; el.classList.add("show");
     });
   }
 
-  // ---------- end of a case: add the score, then flip to the next patient ----------
+  // ---------- end of a case: score it, pause the clock and lay the answer paper on the folder ----------
   function finish(verdict, text) {
     if (st.phase === "done") return;
     clearInterval(clock); st.phase = "done"; st.verdict = verdict; st.call = text;
@@ -208,15 +211,39 @@
     let pts = { correct: full, close: Math.floor(full / 2) }[verdict] || 0; pts -= 20 * st.flags.length;
     st.score = Math.max(0, Math.min(100, pts));
     const before = daily.total;
-    daily.tries += 1; daily.total += st.score; saveDaily();
-    $("cfAnswer").hidden = verdict !== "correct";
-    $("ask").value = ""; $("ask").blur(); render();
+    daily.tries += 1; daily.total += st.score;
+    if (verdict === "timeout") { daily.time = 0; daily.out = true; }
+    if (verdict === "correct") addTime(CORRECT_BONUS);
+    daily.time = st.time; saveDaily();
+    $("ask").value = ""; $("ask").blur();
+    showAnswer(true); render();
     countUp(before, daily.total, st.score);
-    toast({ correct: `Spot on! +${st.score}`, close: `Close. +${st.score}`, wrong: "Not quite.", timeout: "Time's up." }[verdict] + (daily.tries < TRIES ? " Next patient\u2026" : ""));
-    setTimeout(() => {
-      if (daily.tries >= TRIES) return showDone();
-      nextCase();
-    }, verdict === "correct" ? 1900 : 1500);
+    if (matchMedia("(min-width: 821px)").matches) $("go").focus({ preventScroll: true });
+  }
+  const over = () => daily.tries >= TRIES || daily.out || daily.time <= 0;
+  // The answer paper: what was going on, how you went, and the checks that would have found it.
+  function showAnswer(on) {
+    $("game").classList.toggle("reviewing", on);
+    $("casefile").toggleAttribute("data-answer", on);
+    document.querySelectorAll(".answer-paper").forEach((el) => (el.hidden = !on));
+    if (!on) return;
+    const p = st.p, v = st.verdict;
+    const head = { correct: "Spot on", close: "Close", wrong: "Not quite", timeout: "Out of time" }[v];
+    const pts = v === "timeout" || v === "wrong" ? "" : ` · +${st.score} points${v === "correct" ? " · +2:00 on the clock" : ""}`;
+    const said = st.call ? `<p class="ap-said">You said “${esc(st.call)}”.</p>` : "";
+    const keys = (p.key || []).map((id) => (A.find((a) => a.id === id) || {}).name || (id === "brief_key" ? p.briefTest : "")).filter(Boolean);
+    const story = p.story || (p.findings.brief_key ? `${p.briefTest}: ${p.findings.brief_key}` : "");
+    const html = `<p class="ap-verdict ${v}">${head}${pts}</p>${said}
+      <p class="cf-label">What was going on</p><p class="ap-dx">${esc(p.diagnosis)}</p>
+      ${story ? `<p>${esc(story)}</p>` : ""}
+      ${keys.length ? `<p class="cf-label">Checks that would have found it</p><p>${keys.map(esc).join(", ")}</p>` : ""}
+      ${st.flags.length ? `<p class="cf-label">Safety</p>${st.flags.map((f) => `<p class="ap-flag">⚠ ${esc(f)}</p>`).join("")}` : ""}`;
+    document.querySelectorAll(".answer-paper .ap-body").forEach((el) => { el.innerHTML = html; el.scrollTop = 0; });
+  }
+  function next() {
+    if (over()) return showDone();
+    showAnswer(false);
+    nextCase();
   }
   function nextCase() {
     const n = queued(daily.tries), desktop = matchMedia("(min-width: 821px)").matches;
@@ -243,8 +270,9 @@
     document.querySelectorAll(".hud-score-n").forEach((el) => { if (!el.dataset.init) { el.textContent = daily.total; el.dataset.init = 1; } });
   }
   function showDone() {
-    clearInterval(clock); setOpen(false);
+    clearInterval(clock); showAnswer(false); setOpen(false);
     $("doneTotal").textContent = daily.total;
+    $("doneHead").textContent = daily.tries >= TRIES ? "That's your five for today" : "You ran out of time";
     $("donebox").hidden = false; $("game").classList.add("done");
     showTries();
   }
@@ -270,9 +298,11 @@
     $("dots").innerHTML = Array.from({ length: st.limit }, (_, i) => { const t = st.turns[i]; return `<i class="${t ? (t.finding ? "hit" : "miss") : ""}"></i>`; }).join("");
     $("dots").setAttribute("aria-label", `${st.limit - st.turns.length} of ${st.limit} assessments left`);
     $("findings").innerHTML = st.turns.map((t) => `<li class="card ${t.finding ? "hit" : "miss"}"><h4>${t.n}. ${esc(t.a.name)}</h4><p>${esc(t.finding || "No response.")}</p>${t.flag ? `<p class="flag">⚠ ${esc(t.flag)}</p>` : ""}</li>`).join("");
+    const done = st.phase === "done";
     $("ask").placeholder = assessing ? `What would you check on ${p.name}?` : `What do you think is wrong with ${p.name}?`;
     $("ask").setAttribute("aria-label", assessing ? "Assessment" : "Diagnosis");
-    $("go").textContent = assessing ? "Assess" : "Make your call"; $("go").disabled = !$("ask").value.trim();
+    $("go").textContent = done ? (over() ? "See today's score" : "Next patient") : assessing ? "Assess" : "Make your call";
+    $("go").disabled = !done && !$("ask").value.trim();
     $("callNow").disabled = !assessing;
     showTries();
   }
@@ -286,7 +316,7 @@
       <li><b>1</b><span>Read why the patient has come in.</span></li>
       <li><b>2</b><span>You get five chances to check them. Type what you want to check, like \u201cwhere does it hurt\u201d or \u201creflexes\u201d. Good checks give you a clue and the patient turns around. Unhelpful ones give you nothing.</span></li>
       <li><b>3</b><span>When you think you know, open the arrow next to Assess, choose \u201cMake your call now\u201d and type what you think is wrong.</span></li>
-      <li><b>4</b><span>You've got 45 seconds. A useful check adds 5 seconds, an unhelpful one takes 5 away. The fewer checks you need, the more points you get, and you get five patients a day.</span></li></ol></div>
+      <li><b>4</b><span>You start with 2 minutes for the whole day. Every useful check adds 45 seconds and every right answer adds 2 minutes, so a good run keeps going. After each patient the answer goes on the folder, and the clock waits while you read it.</span></li></ol></div>
       <button class="go" id="gotit">Got it</button>`);
     $("gotit").onclick = () => ($("sheet").hidden = true);
   }
@@ -300,18 +330,18 @@
   $("callNow").onclick = () => { closeMenu(); if (st.phase === "assessing") { st.phase = "calling"; render(); $("ask").focus(); } };
   $("howTo").onclick = howTo;
   $("play").onclick = () => {
-    if (daily.tries >= TRIES) return showDone();
+    if (over()) return showDone();
     const desktop = matchMedia("(min-width: 821px)").matches;
     setOpen(true);   // desktop: the folder flips open; phone: the start screen lifts
     setTimeout(() => { startClock(); if (desktop) $("ask").focus({ preventScroll: true }); }, desktop && !RM ? 720 : 0);
   };
   $("sheet").addEventListener("click", (e) => { if (e.target === $("sheet") && st.phase !== "done") $("sheet").hidden = true; });
   $("dock").addEventListener("submit", (e) => { e.preventDefault(); submit($("ask").value); });
-  $("ask").addEventListener("input", () => ($("go").disabled = !$("ask").value.trim()));
+  $("ask").addEventListener("input", () => ($("go").disabled = st.phase !== "done" && !$("ask").value.trim()));
   $("ask").addEventListener("focus", () => $("game").classList.add("typing"));
   $("ask").addEventListener("blur", () => setTimeout(() => $("game").classList.remove("typing"), 80));
 
   load(queued(daily.tries));
   showTries();
-  if (daily.tries >= TRIES) showDone();
+  if (over()) showDone();
 })();

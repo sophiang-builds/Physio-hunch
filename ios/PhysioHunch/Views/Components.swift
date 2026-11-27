@@ -140,7 +140,7 @@ struct HowToSheet: View {
             step("1", "Read why the patient is here.")
             step("2", "Type what you want to check, like \u{201C}where does it hurt\u{201D} or \u{201C}reflexes\u{201D}. You get five. A useful test reveals a finding and the patient turns. A useless one gets no response.")
             step("3", "Tap the arrow next to Assess and choose \u{201C}Make your call now\u{201D} whenever you're ready, or after your fifth test. Type what you think is wrong.")
-            step("4", "The debrief shows what was really going on and which tests mattered most.")
+            step("4", "The fewer checks you need, the more points you get. The debrief shows what was going on and checks worth trying next time.")
             Spacer(minLength: 0)
         }
         .foregroundStyle(Brand.ink)
@@ -228,6 +228,9 @@ struct ResultSheet: View {
                 Text("\(state.score) pts")
                     .font(Brand.text(17, relativeTo: .headline, bold: true))
             }
+            Text(scoreLine)
+                .font(Brand.text(14, relativeTo: .footnote))
+                .foregroundStyle(Brand.muted)
             Text("Your call: \u{201C}\(state.call ?? "")\u{201D}")
                 .font(Brand.text(15, relativeTo: .subheadline))
                 .foregroundStyle(Brand.muted)
@@ -250,7 +253,7 @@ struct ResultSheet: View {
                     .font(Brand.text(15, relativeTo: .subheadline))
                     .minimumScaleFactor(0.8)
             }
-            section("Most telling tests") {
+            section("Checks worth trying next time") {
                 LazyVGrid(columns: [GridItem(.flexible(), alignment: .leading), GridItem(.flexible(), alignment: .leading)], spacing: 6) {
                     ForEach(state.patient.key, id: \.self) { id in
                         let done = state.has(id)
@@ -281,6 +284,19 @@ struct ResultSheet: View {
         .presentationDetents([.large])
         .presentationBackground(Brand.room)
         .interactiveDismissDisabled()
+    }
+
+    /// Explains the score: base, unused checks, safety.
+    private var scoreLine: String {
+        let unused = state.remaining
+        var parts: [String] = []
+        switch state.verdict {
+        case .correct: parts.append(unused == 0 ? "\(Scoring.base) for the right call, using all five checks" : "\(Scoring.base) for the right call, plus \(Scoring.perUnusedCheck * unused) for \(unused) unused check\(unused == 1 ? "" : "s")")
+        case .close: parts.append("Half marks for a close call, with \(unused) unused check\(unused == 1 ? "" : "s")")
+        default: parts.append("No points for this call")
+        }
+        if !state.flags.isEmpty { parts.append("minus \(Scoring.safetyPenalty * state.flags.count) for safety") }
+        return parts.joined(separator: ", ") + "."
     }
 
     private var verdictTitle: String {

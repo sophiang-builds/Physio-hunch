@@ -86,17 +86,23 @@ struct Diagnosis: Mechanic {
     }
 }
 
-/// 60 for a correct call (30 if close), 8 per key assessment used, minus 20 per safety flag.
+/// Fewer checks, more marks. A right call is worth 50 plus 10 for every unused check,
+/// a close call half that, a wrong call nothing. Each safety flag costs 20.
+/// The case's key assessments are suggestions for next time, not scored.
 struct Scoring: Mechanic {
+    static let base = 50
+    static let perUnusedCheck = 10
+    static let safetyPenalty = 20
+
     func judge(_ call: String, state: inout GameState) {
+        let full = Self.base + Self.perUnusedCheck * state.remaining
         var points: Int
         switch state.verdict {
-        case .correct: points = 60
-        case .close: points = 30
+        case .correct: points = full
+        case .close: points = full / 2
         default: points = 0
         }
-        points += 8 * state.patient.key.filter { state.has($0) }.count
-        points -= 20 * state.flags.count
+        points -= Self.safetyPenalty * state.flags.count
         state.score = min(100, Swift.max(0, points))
     }
 }

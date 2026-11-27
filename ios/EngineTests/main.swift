@@ -48,10 +48,13 @@ func play(_ id: String, _ moves: [String]) -> GameState {
 }
 var s = play("ankle", ["what happened", "banana", "ottawa", "ottawa", "anterior drawer", "lachman", "single leg balance", "lateral ankle sprain"])
 expect(s.verdict == .correct && s.turns.count == 5 && s.hits == 4, "ankle game")
+expect(s.score == 50, "five checks and a right call scores 50, got \(s.score)")
 s = play("stroke", ["sit to stand", "obs", "tone", "babinski", "neglect", "right MCA stroke"])
 expect(s.flags.count == 1 && s.verdict == .correct, "stroke safety flag")
 s = play("cardiac", ["what makes it worse", "associated symptoms", "I think it's rotator cuff"])
-expect(s.verdict == .wrong && s.turns.count == 2, "early call")
+expect(s.verdict == .wrong && s.turns.count == 2 && s.score == 0, "early wrong call")
+s = play("ankle", ["what happened", "anterior drawer", "lateral ankle sprain"])
+expect(s.verdict == .correct && s.score == 80, "two checks and a right call scores 80, got \(s.score)")
 s = play("postop", ["obs", "auscultation", "cxr", "percussion", "cough", "sputum retention"])
 expect(s.verdict == .close, "postop close call")
 

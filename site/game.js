@@ -65,7 +65,10 @@
 
   function call(text) {
     st.call = text; st.verdict = any(st.p.answers, text) ? "correct" : any(st.p.close, text) ? "close" : "wrong"; st.phase = "done";
-    let pts = { correct: 60, close: 30 }[st.verdict] || 0; pts += 8 * st.p.key.filter(has).length; pts -= 20 * st.flags.length;
+    // Fewer checks, more marks: 50 for a right call + 10 per unused check; close is half; -20 per safety flag.
+    const unused = st.limit - st.turns.length, full = 50 + 10 * unused;
+    let pts = { correct: full, close: Math.floor(full / 2) }[st.verdict] || 0; pts -= 20 * st.flags.length;
+    st.unused = unused;
     st.score = Math.max(0, Math.min(100, pts)); $("ask").value = ""; $("ask").blur(); render(); setTimeout(result, 500);
   }
 
@@ -103,13 +106,21 @@
     const p = st.p, v = { correct: ["Spot on", "#543C86"], close: ["Close", "#24203C"], wrong: ["Not quite", "#9A3D38"] }[st.verdict];
     openSheet(`<div class="body">
       <div class="head"><h2 id="sheetTitle" style="color:${v[1]}">${v[0]}</h2><b>${st.score} pts</b></div>
+      <p style="color:var(--muted);font-size:14px">${scoreLine()}</p>
       <p style="color:var(--muted)">Your call: “${esc(st.call)}”</p>
       <h5>It was</h5><p style="font-weight:700;font-size:17px">${esc(p.diagnosis)}</p>
       ${st.flags.length ? `<h5>Safety</h5>${st.flags.map((f) => `<p style="color:var(--safety);font-weight:700;font-size:14px">⚠ ${esc(f)}</p>`).join("")}` : ""}
       <h5>What was going on</h5><p>${esc(p.story)}</p>
-      <h5>The checks that mattered most</h5><div class="keys">${p.key.map((id) => `<span style="color:${has(id) ? "#543C86" : "#5D586C"}">${has(id) ? "✓" : "○"} ${esc(A.find((a) => a.id === id).name)}</span>`).join("")}</div>
+      <h5>Checks worth trying next time</h5><div class="keys">${p.key.map((id) => `<span style="color:${has(id) ? "#543C86" : "#5D586C"}">${has(id) ? "✓" : "○"} ${esc(A.find((a) => a.id === id).name)}</span>`).join("")}</div>
     </div><button class="go" id="next">Next patient</button>`);
     $("next").onclick = () => load((ci + 1) % C.length);
+  }
+
+  function scoreLine() {
+    const u = st.unused, n = (k) => `${k} unused check${k === 1 ? "" : "s"}`;
+    let line = st.verdict === "correct" ? (u ? `50 for the right call, plus ${10 * u} for ${n(u)}` : "50 for the right call, using all five checks") : st.verdict === "close" ? `Half marks for a close call, with ${n(u)}` : "No points for this call";
+    if (st.flags.length) line += `, minus ${20 * st.flags.length} for safety`;
+    return line + ".";
   }
 
   function howTo() {
@@ -118,7 +129,7 @@
       <li><b>1</b><span>Read why the patient has come in.</span></li>
       <li><b>2</b><span>You get five chances to check them. Type what you want to check, like \u201cwhere does it hurt\u201d or \u201creflexes\u201d. Good checks give you a clue and the patient turns around. Unhelpful ones give you nothing.</span></li>
       <li><b>3</b><span>When you think you know, open the arrow next to Assess, choose \u201cMake your call now\u201d and type what you think is wrong.</span></li>
-      <li><b>4</b><span>You'll see what was really going on and which checks mattered most.</span></li></ol></div>
+      <li><b>4</b><span>The fewer checks you need, the more points you get. Then you'll see what was really going on and checks worth trying next time.</span></li></ol></div>
       <button class="go" id="gotit">Got it</button>`);
     $("gotit").onclick = () => ($("sheet").hidden = true);
   }

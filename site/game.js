@@ -92,6 +92,7 @@
     const p = st.p, reveal = st.phase === "done" ? 1 : hits() / st.limit, assessing = st.phase === "assessing";
     $("bloom").style.background = `linear-gradient(135deg,${p.palette.join(",")})`; $("bloom").style.opacity = reveal;
     $("situation").textContent = p.situation;
+    $("situationM").textContent = p.situation;
     $("who").textContent = `${p.name}, ${p.age}`;
     $("dots").innerHTML = Array.from({ length: st.limit }, (_, i) => { const t = st.turns[i]; return `<i class="${t ? (t.finding ? "hit" : "miss") : ""}"></i>`; }).join("");
     $("dots").setAttribute("aria-label", `${st.limit - st.turns.length} of ${st.limit} assessments left`);

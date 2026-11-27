@@ -33,6 +33,8 @@ Everything is deterministic code.
 
 ## Characters
 
+See the [pixel-art concept sheet and turn-and-zoom notes](docs/characters.md) for the original web case roster. The table below shows the native app’s roster and its current turnaround assets.
+
 | | Patient | Case |
 | --- | --- | --- |
 | ![](characters/sheets/ankle-mia.png) | Mia Tran, 19, Vietnamese-Australian netballer | Lateral ankle sprain |

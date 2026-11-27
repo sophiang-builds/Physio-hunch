@@ -48,3 +48,7 @@ Until a brief gets full findings, it plays like this:
 - The `answer` is marked on its core words (the part before a comma, "with", "plus" or "while"). A right answer needs most of those words, including the answer's most distinctive word across the bank. Naming a distinctive word from a different answer, such as "urgency" for stress incontinence, caps it at close. Common names such as frozen shoulder, tennis elbow, ACL and BPPV are translated to their clinical terms.
 
 An audit with the game's own code accepts all 100 brief answers. Of the 9,900 cross-checks between briefs, 3 still mark another brief's answer as right: the two CRPS cases (160 and 197) share an answer, and patellar tendinopathy matches patellofemoral pain through the shared "patell" stem.
+
+## Written cases
+
+`ios/PhysioHunch/Resources/Data/expansion-cases.json` holds full cases for every patient with finished art, written the same way as the original five in `cases.json`. The background says who the person is and what they've noticed, in plain words. The history is in their own words. Each check has its own finding (the key ones point to the answer, the rest come back normal or unhelpful), and `answers` and `close` list the phrases that count. Nothing in `answers` or `close` appears in the background or history. The website plays the written case when there is one and falls back to the brief otherwise. When a new patient's art is finished, add a written case here as well as listing them in `illustrated.json`.

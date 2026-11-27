@@ -82,10 +82,12 @@
     };
   }
   try {
-    const [psv, ill] = await Promise.all([fetch(BRIEFS).then((r) => r.text()), fetch("assets/characters/expansion/illustrated.json").then((r) => r.json()).catch(() => [])]);
+    const [psv, ill, full] = await Promise.all([fetch(BRIEFS).then((r) => r.text()), fetch("assets/characters/expansion/illustrated.json").then((r) => r.json()).catch(() => []), fetch(DATA + "expansion-cases.json").then((r) => r.json()).catch(() => [])]);
     const [head, ...rows] = psv.trim().split(/\r?\n/);
     const cols = head.split("|"), illustrated = new Set(ill.map(String));
-    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer && illustrated.has(r.id)) C.push(briefCase(r, illustrated)); });   // finished art only; drafts join when listed in illustrated.json
+    // Written cases play like the original five: their own findings for each check, and a list of accepted answers.
+    const written = new Map(full.map((c) => [String(c.id), { ...c, palette: AREA_PALETTE[c.area] || ["#b69cff", "#ffd86b", "#ff9fc4"] }]));
+    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer && illustrated.has(r.id)) C.push(written.get(r.id) || briefCase(r, illustrated)); });   // finished art only; drafts join when listed in illustrated.json
   } catch (e) { /* the original cases still play if the briefs can't load */ }
   // How many answers each keyword appears in, to spot the distinctive ones.
   const DF = new Map();

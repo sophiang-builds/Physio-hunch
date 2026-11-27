@@ -173,7 +173,8 @@ footer p { margin: 4px 0; }
   .stage { flex: none; height: 140px; min-height: 0; transition: height .35s; }
   .game.typing .stage { height: 110px; }
   .background { padding: 8px 4px 2px; text-align: center; }
-  .situation { font-size: 15px; margin: 0 0 4px; }
+  .situation { font-size: 14px; margin: 0 0 4px; }
+  .game.open .intro { display: none; }   /* the title stays on the start screen; once a case is open the findings get the room */
   .history { font-size: 13px; line-height: 1.4; }
   .notes { background: none; box-shadow: none; padding: 0; border-radius: 0; }
   .notes-head { display: none; }

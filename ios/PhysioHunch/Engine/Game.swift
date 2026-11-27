@@ -58,8 +58,9 @@ final class Game {
         self.library = library
         self.mechanics = mechanics
         self.resolver = Resolver(assessments: library.assessments)
-        self.caseIndex = library.cases.isEmpty ? 0 : abs(caseIndex) % library.cases.count
-        self.state = GameState(patient: library.cases[self.caseIndex])
+        let index = library.cases.isEmpty ? 0 : abs(caseIndex) % library.cases.count
+        self.caseIndex = index
+        self.state = GameState(patient: library.cases[index])
         prepare()
     }
 

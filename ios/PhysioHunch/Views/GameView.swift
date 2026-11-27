@@ -77,6 +77,7 @@ struct GameView: View {
                     input = ""
                 }
             }
+            .task { await playDemoIfRequested() }
             .sensoryFeedback(.success, trigger: state.hits)
             .sensoryFeedback(.selection, trigger: state.turns.count)
             .sensoryFeedback(.warning, trigger: state.flags.count)
@@ -143,6 +144,23 @@ struct GameView: View {
         .padding(.top, 8)
         .padding(.bottom, 4)
         .frame(maxWidth: 600)
+    }
+
+    /// Screen-recording demo, used by CI on the iPhone 15 simulator.
+    /// Launch with: -demoMoves "what happened|ottawa|anterior drawer|lateral ankle sprain"
+    private func playDemoIfRequested() async {
+        guard let script = UserDefaults.standard.string(forKey: "demoMoves") else { return }
+        try? await Task.sleep(for: .seconds(2.5))
+        for move in script.split(separator: "|").map(String.init) {
+            input = ""
+            for character in move {
+                input.append(character)
+                try? await Task.sleep(for: .milliseconds(45))
+            }
+            try? await Task.sleep(for: .seconds(0.6))
+            send()
+            try? await Task.sleep(for: .seconds(2.4))
+        }
     }
 
     private func send() {

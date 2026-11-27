@@ -3689,5 +3689,450 @@
    "hpc"
   ],
   "atlas": "assets/characters/expansion/atlases/180.png"
+ },
+ {
+  "id": "181",
+  "name": "Darren",
+  "age": 40,
+  "area": "Occupational and community",
+  "situation": "Darren, 40, works in a warehouse and has been off for six weeks with his back. He's planning to go back but he's nervous about lifting stock all day.",
+  "diagnosis": "Work limited by fear and low lifting tolerance after back pain (graded return to work)",
+  "answers": [
+   "graded return",
+   "return to work",
+   "work hardening",
+   "work conditioning",
+   "fear avoidance",
+   "fear of lifting",
+   "lifting tolerance",
+   "fear of movement",
+   "kinesiophobia"
+  ],
+  "close": [
+   "low back pain",
+   "deconditioning",
+   "disc"
+  ],
+  "story": "Darren's back has settled and his neuro screen is clear. Light lifts are fine, but his worry climbs and his lifting stiffens as the repetitions build. A graded return to work with lifting practice, and a plan worked out with his employer, is the answer.",
+  "key": [
+   "beliefs",
+   "questionnaire",
+   "hop_squat",
+   "red_flags"
+  ],
+  "findings": {
+   "hpc": "Walking's fine now. I just don't trust my back with lifting boxes all shift, over and over.",
+   "beliefs": "Thinks bending will 'put his disc out' again. Worry goes up with each lift.",
+   "questionnaire": "High score on a fear-avoidance questionnaire for work.",
+   "hop_squat": "Lifts a 10 kg box from the floor five times comfortably. By 15 he's holding his breath and keeping his back rigid.",
+   "red_flags": "No red flags.",
+   "neuro_symptoms": "None.",
+   "rom_lumbar": "Full, a little guarded on bending.",
+   "slr": "Negative.",
+   "social": "Job involves lifting up to 15 kg repeatedly for eight hours.",
+   "goals": "Wants to get back to full shifts."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/181.png"
+ },
+ {
+  "id": "182",
+  "name": "Gabriela",
+  "age": 34,
+  "area": "Occupational and community",
+  "situation": "Gabriela, 34, is a hairdresser. Her right hand tingles at night, and shaking it helps.",
+  "diagnosis": "Carpal tunnel syndrome",
+  "answers": [
+   "carpal tunnel",
+   "cts",
+   "median nerve compression",
+   "median neuropathy"
+  ],
+  "close": [
+   "radiculopathy",
+   "c6",
+   "nerve entrapment",
+   "de quervain"
+  ],
+  "story": "Gabriela's tingling is in her thumb and first two fingers, worst at night and eased by shaking her hand. Phalen's and Tinel's at the wrist reproduce it and the neck is clear. That's carpal tunnel syndrome, often managed first with a night splint and changes to how she works.",
+  "key": [
+   "carpal_tunnel",
+   "dermatomes",
+   "rom_cervical",
+   "grip"
+  ],
+  "findings": {
+   "hpc": "My hand goes numb and tingly at night and wakes me up. I shake it and it gets better. Holding scissors all day makes it worse too.",
+   "body_chart": "Tingling in the right thumb, index and middle fingers. The little finger is fine.",
+   "carpal_tunnel": "Phalen's brings on her tingling in 30 seconds. Tinel's over the carpal tunnel is positive.",
+   "dermatomes": "Light touch is slightly reduced on the thumb side of the palm and the first three fingers.",
+   "grip": "Pinch strength slightly weaker on the right.",
+   "observation": "No wasting at the base of the thumb.",
+   "rom_cervical": "Full and doesn't change the hand symptoms.",
+   "spurling": "Negative.",
+   "reflexes": "Normal.",
+   "goals": "Wants to sleep through and cut hair all day."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/182.png"
+ },
+ {
+  "id": "183",
+  "name": "Kofi",
+  "age": 47,
+  "area": "Occupational and community",
+  "situation": "Kofi, 47, uses a wheelchair and drives for work. His shoulders have started aching after he gets in and out of the car many times a day.",
+  "diagnosis": "Shoulder overload from repeated transfers",
+  "answers": [
+   "transfer related",
+   "repetitive load",
+   "rotator cuff",
+   "cuff tendin",
+   "shoulder overuse",
+   "shoulder overload",
+   "transfer overload",
+   "transfer overuse"
+  ],
+  "close": [
+   "frozen shoulder",
+   "arthritis",
+   "impingement",
+   "overload",
+   "overuse"
+  ],
+  "story": "Kofi does around 20 car transfers a day, pushing his whole body weight through his arms each time. His shoulders ache with the repeated load, and push-up transfers reproduce it. Changing his car and transfer setup and strengthening his shoulders are the plan.",
+  "key": [
+   "cuff_tests",
+   "painful_arc",
+   "social",
+   "rom_shoulder"
+  ],
+  "findings": {
+   "hpc": "I'm in and out of the car about 20 times a day. By the afternoon both shoulders ache, the right more.",
+   "social": "Paraplegic for 15 years. Lifts his wheelchair into the car himself.",
+   "cuff_tests": "Resisted external rotation and empty can reproduce the ache, slightly weak on the right.",
+   "painful_arc": "Painful between 80 and 120 degrees on the right.",
+   "rom_shoulder": "Full range.",
+   "prom_shoulder": "Full passive range.",
+   "observation": "Push-up transfer to the car seat brings on his shoulder pain.",
+   "rom_cervical": "Full.",
+   "goals": "Wants to keep driving for work without pain."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/183.png"
+ },
+ {
+  "id": "184",
+  "name": "Elif",
+  "age": 28,
+  "area": "Occupational and community",
+  "situation": "Elif, 28, is a violinist who's practising longer for an audition. Her left forearm aches while she plays, but it's better on days off.",
+  "diagnosis": "Playing-related forearm overload",
+  "answers": [
+   "playing related",
+   "repetitive strain",
+   "rsi",
+   "musician",
+   "forearm overload",
+   "forearm overuse",
+   "playing overload"
+  ],
+  "close": [
+   "tendinopathy",
+   "carpal tunnel",
+   "tennis elbow",
+   "golfer's elbow",
+   "overload",
+   "overuse"
+  ],
+  "story": "Elif doubled her daily practice, with long static holds and repetitive fingering. Her forearm muscles are overloaded, which brings on the ache, and it settles with rest. There are no nerve signs. Graded practice time, breaks and strengthening are the plan.",
+  "key": [
+   "palpation",
+   "mmt",
+   "neuro_symptoms",
+   "social"
+  ],
+  "findings": {
+   "hpc": "I'm practising five hours a day for an audition. My forearm aches while I play and it's better on days off.",
+   "social": "Went from two to five hours of practice a day in three weeks. No breaks.",
+   "palpation": "Diffuse tenderness through the forearm flexor muscles. No single tender spot.",
+   "mmt": "Sustained resisted finger flexion brings on the familiar ache after 40 seconds.",
+   "neuro_symptoms": "No pins and needles or numbness.",
+   "carpal_tunnel": "Negative.",
+   "elbow_tendon": "Resisted wrist movements aren't painful at the elbow tendons.",
+   "rom_wrist": "Full.",
+   "goals": "Wants to play well for the audition."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/184.png"
+ },
+ {
+  "id": "185",
+  "name": "Mackenzie",
+  "age": 23,
+  "area": "Occupational and community",
+  "situation": "Mackenzie, 23, is a hospital orderly coming back to work after a back strain. They lose confidence when they have to move patients they don't know.",
+  "diagnosis": "Needs graded manual handling practice to return to work",
+  "answers": [
+   "manual handling",
+   "patient handling",
+   "graded practice",
+   "return to work",
+   "handling training"
+  ],
+  "close": [
+   "low back pain",
+   "fear avoidance"
+  ],
+  "story": "Mackenzie's back has recovered, but unfamiliar patients shake their confidence. With a slide sheet and clear talking with the patient, their technique and confidence improve. Graded handling practice before full duties is the plan.",
+  "key": [
+   "observation",
+   "beliefs",
+   "red_flags",
+   "goals"
+  ],
+  "findings": {
+   "hpc": "With patients I know I'm fine, but when it's someone new I freeze up and worry I'll hurt my back again.",
+   "observation": "With a slide sheet and talking the patient through it, their technique is smooth. Without them they rush and twist.",
+   "beliefs": "Worried about reinjury, mostly with heavier or confused patients.",
+   "red_flags": "No red flags. Back strain has settled.",
+   "rom_lumbar": "Full and pain free.",
+   "neuro_symptoms": "None.",
+   "goals": "Wants to go back to full shifts on the wards."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/185.png"
+ },
+ {
+  "id": "186",
+  "name": "Bao",
+  "age": 61,
+  "area": "Occupational and community",
+  "situation": "Bao, 61, had his leg amputated below the knee two years ago. He's walking less because his leg has started moving around in his prosthesis.",
+  "diagnosis": "Poorly fitting prosthetic socket limiting walking",
+  "answers": [
+   "socket fit",
+   "poor fit",
+   "ill fitting",
+   "loose socket",
+   "pistoning",
+   "prosthetic fit",
+   "socket"
+  ],
+  "close": [
+   "phantom",
+   "skin breakdown",
+   "weight loss",
+   "neuroma"
+  ],
+  "story": "Bao has lost weight and his residual limb has shrunk, so it pistons up and down in the socket and rubs. That's a socket fit problem. Adding socks helps for now, but he needs his prosthetist to adjust or remake the socket.",
+  "key": [
+   "gait",
+   "skin_wound",
+   "observation",
+   "social"
+  ],
+  "findings": {
+   "hpc": "Since my leg started slipping around inside the prosthesis, I walk less because it rubs.",
+   "gait": "His limb visibly drops in the socket as he steps and he vaults over the prosthetic side.",
+   "skin_wound": "Red pressure marks below the kneecap and at the end of the limb. No open wounds.",
+   "observation": "Gap at the top of the socket. Wearing only one sock.",
+   "social": "Lost 8 kg in the past six months.",
+   "pmhx": "Diabetes, amputation two years ago.",
+   "pulses": "Good pulses in the other foot.",
+   "goals": "Wants to walk to the temple again."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/186.png"
+ },
+ {
+  "id": "187",
+  "name": "Marlene",
+  "age": 57,
+  "area": "Occupational and community",
+  "situation": "Marlene, 57, lives on a farm two hours from town. She wants to get her shoulder working again after surgery, but she can't get to weekly appointments.",
+  "diagnosis": "Can't access weekly rehab in person. Suits a hybrid plan with telehealth",
+  "answers": [
+   "telehealth",
+   "hybrid",
+   "remote",
+   "video",
+   "virtual",
+   "home program",
+   "home exercise"
+  ],
+  "close": [
+   "frozen shoulder",
+   "rotator cuff"
+  ],
+  "story": "Marlene's shoulder rehab is on track, but transport is the barrier. She has reliable video on her phone and safe space at home, so a hybrid plan with occasional in-person visits and video check-ins in between works.",
+  "key": [
+   "social",
+   "goals",
+   "rom_shoulder",
+   "medical_notes"
+  ],
+  "findings": {
+   "hpc": "I want to get my shoulder going again, but it's two hours each way to town and I can't drive yet.",
+   "social": "Lives on a farm two hours from the clinic. Reliable phone video. Space at home to exercise. Her husband can drive her once a month.",
+   "medical_notes": "Rotator cuff repair eight weeks ago. Recovery on track.",
+   "rom_shoulder": "Elevation to 120 degrees, improving.",
+   "cuff_tests": "Not tested yet, too early after the repair.",
+   "goals": "Wants to hang washing and help on the farm."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/187.png"
+ },
+ {
+  "id": "188",
+  "name": "Nasir",
+  "age": 38,
+  "area": "Occupational and community",
+  "situation": "Nasir, 38, is a mechanic who uses power tools all day. His fingers go white in the cold and numb after long jobs with the rattle gun.",
+  "diagnosis": "Possible hand-arm vibration syndrome. Refer to occupational health",
+  "answers": [
+   "vibration",
+   "havs",
+   "hand arm vibration",
+   "vibration white finger",
+   "white finger",
+   "raynaud"
+  ],
+  "close": [
+   "carpal tunnel",
+   "neuropathy"
+  ],
+  "story": "After 15 years of using vibrating tools, Nasir's fingers blanch in the cold and go numb after long tool use. That fits hand-arm vibration syndrome, which needs an occupational health referral and less exposure to vibration.",
+  "key": [
+   "observation",
+   "dermatomes",
+   "social",
+   "carpal_tunnel"
+  ],
+  "findings": {
+   "hpc": "My fingertips go white and numb when it's cold, and after a long day on the rattle gun my hands ache and tingle.",
+   "observation": "Photos he took show the ends of his fingers going white, then blue, then red.",
+   "dermatomes": "Reduced sensation at all his fingertips on both hands.",
+   "social": "Uses impact wrenches and grinders for five or six hours a day, for 15 years.",
+   "carpal_tunnel": "Phalen's is mildly positive.",
+   "grip": "Slightly reduced grip on both sides.",
+   "rom_cervical": "Full.",
+   "goals": "Wants to keep working as a mechanic."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/188.png"
+ },
+ {
+  "id": "189",
+  "name": "Sharon",
+  "age": 52,
+  "area": "Occupational and community",
+  "situation": "Sharon, 52, has long-term pain and started using a walking stick a few months ago. Since then her right wrist has been sore.",
+  "diagnosis": "Wrist overload from the walking stick",
+  "answers": [
+   "stick height",
+   "cane height",
+   "handle height",
+   "too short",
+   "wrong height",
+   "wrist extension",
+   "wrist overload",
+   "wrist overuse"
+  ],
+  "close": [
+   "carpal tunnel",
+   "de quervain",
+   "arthritis",
+   "overload",
+   "overuse"
+  ],
+  "story": "Sharon leans heavily through a straight-handled cane set too low, which forces her wrist into extension. Her wrist pain eases when the handle height is adjusted and an ergonomic handle is used.",
+  "key": [
+   "walking_aid",
+   "rom_wrist",
+   "palpation",
+   "gait"
+  ],
+  "findings": {
+   "hpc": "My right wrist has hurt ever since I started leaning on my walking stick.",
+   "walking_aid": "Her cane is 6 cm too short. With the right height and a moulded handle, her wrist pain drops from 6 to 2.",
+   "rom_wrist": "Full, but extension with weight through her hand hurts.",
+   "palpation": "Tender over the back of the wrist.",
+   "gait": "Leans heavily on the cane, wrist bent back.",
+   "carpal_tunnel": "Negative.",
+   "finkelstein": "Negative.",
+   "goals": "Wants to keep walking with the stick without wrist pain."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/189.png"
+ },
+ {
+  "id": "190",
+  "name": "Piet",
+  "age": 46,
+  "area": "Occupational and community",
+  "situation": "Piet, 46, burnt the back of his right hand at work three months ago and wants to go back. The skin feels tight and he struggles to grip and get gloves on.",
+  "diagnosis": "Scar tightness limiting hand movement after the burn",
+  "answers": [
+   "scar",
+   "contracture",
+   "scar tightness",
+   "scar restriction",
+   "burn scar",
+   "hypertrophic"
+  ],
+  "close": [
+   "stiffness",
+   "tendon adhesion",
+   "infection"
+  ],
+  "story": "Piet's healed burn scar across the back of his hand is tight and raised, which limits how far his fingers bend. Scar massage, stretching, pressure garments and grip work are the plan.",
+  "key": [
+   "skin_wound",
+   "rom_wrist",
+   "grip",
+   "observation"
+  ],
+  "findings": {
+   "hpc": "The skin on the back of my hand is so tight I can't make a full fist or get my work gloves on.",
+   "skin_wound": "Raised, red, firm scar across the back of the hand. It blanches and pulls tight when he makes a fist.",
+   "rom_wrist": "Can't fully bend his fingers. The fingertips stay 3 cm from his palm.",
+   "grip": "Grip 22 kg on the right against 45 on the left.",
+   "observation": "The skin stretches white over his knuckles when he bends his fingers.",
+   "dermatomes": "Normal sensation.",
+   "goals": "Wants to go back to his factory job."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/190.png"
  }
 ]

@@ -1,43 +1,41 @@
 import SwiftUI
 
-/// The patient from the turnaround sheet, filmed like a short scene.
+/// The patient, drawn from a 16-pose atlas (assets/characters/pose-atlases, docs/characters.md).
+/// Poses 0, 4, 8 and 12 face front, screen-right, back and screen-left; the three cells
+/// between each are in-between drawings about 22.5 degrees apart.
 ///
-/// Right test: the patient makes a quarter turn while the camera glides to that view's shot.
-/// Camera and timing follow assets/characters/turn-clips/manifest.json: sides push in to 1.12x,
-/// the back opens to 0.94x, the front resets to 1.0x. The first direction is random and kept
-/// for four turns so every angle is seen.
-/// Wrong test: the head gives a small "no" shake while the shoulders stay still.
-/// Reduce Motion: frames and shots change without movement.
-/// The same motion is exported as one-shot clips by tools/make_turn_clips.py.
+/// Each new finding plays a quarter turn through those poses while the camera eases to the
+/// destination's framing: sides push in to 1.31x, the back opens to 0.84x, the front resets.
+/// Timing and camera match assets/characters/turn-clips/manifest.json. The first direction is
+/// random and kept, so the player sees every angle. Reduce Motion jumps straight to the end pose.
 struct PatientStage: View {
     static let views = ["front", "right", "back", "left"]
-    /// Per view: zoom, and the vertical point the camera centres on (0 top, 1 bottom).
-    /// Same values as assets/characters/turn-clips/manifest.json.
+    static let posesPerQuarter = 4
+    static let poseCount = 16
+    /// Zoom per view (manifest.json). Push-ins centre on the face so heads stay in frame;
+    /// the pull-out keeps the figure standing on its baseline.
     static let camera: [String: (zoom: CGFloat, anchorY: CGFloat)] = [
-        "front": (1.00, 0.55), "right": (1.12, 0.40), "back": (0.94, 0.55), "left": (1.12, 0.40)
+        "front": (1.00, 0.97), "right": (1.31, 0.20), "back": (0.84, 0.97), "left": (1.31, 0.20)
     ]
-    static let neck: CGFloat = 0.50
-    static let turnDuration = 0.72
+    static let turnDuration = 0.64                     // plus the hold before the next turn
+    static let poseStep = Duration.milliseconds(160)
 
     let patient: PatientCase
     let hits: Int
-    let misses: Int
     let reveal: Double
     var compact = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var from = 0
-    @State private var to = 0
-    @State private var progress: CGFloat = 1
-    @State private var direction = Bool.random() ? 1 : -1
+    @State private var pose = 0
     @State private var cameraView = 0
-    @State private var breathing = false
+    @State private var direction = Bool.random() ? 1 : -1
+    @State private var turning: Task<Void, Never>?
 
     private var height: CGFloat { compact ? 190 : 300 }
 
     var body: some View {
-        let camera = Self.camera[Self.views[cameraView]] ?? (1, 0.55)
-        ZStack(alignment: .bottom) {
+        let camera = Self.camera[Self.views[cameraView]] ?? (1, 0.97)
+        ZStack {
             Circle()
                 .fill(Brand.lilac)
                 .overlay {
@@ -46,18 +44,13 @@ struct PatientStage: View {
                                              startPoint: .topLeading, endPoint: .bottomTrailing))
                         .opacity(reveal)
                 }
-                .frame(width: height * 0.84, height: height * 0.84)
-                .frame(maxHeight: .infinity, alignment: .center)
+                .frame(width: height * 0.78, height: height * 0.78)
 
-            TurningSprite(
-                from: Image("\(patient.turnaround)-\(Self.views[from])"),
-                to: Image("\(patient.turnaround)-\(Self.views[to])"),
-                progress: progress,
-                neck: Self.neck,
-                shakeTrigger: reduceMotion ? 0 : misses
-            )
-            .frame(height: height * 0.87)
-            .scaleEffect(breathing ? 1.006 : 1, anchor: .bottom)
+            Image("\(patient.turnaround)-\(String(format: "%02d", pose))")
+                .resizable()
+                .interpolation(.none)                // keep the pixel art crisp
+                .scaledToFit()
+                .frame(width: height, height: height)
         }
         .scaleEffect(camera.zoom, anchor: UnitPoint(x: 0.5, y: camera.anchorY))
         .frame(height: height)
@@ -66,95 +59,32 @@ struct PatientStage: View {
         .animation(.easeInOut(duration: 1.2), value: reveal)
         .animation(.smooth(duration: 0.35), value: compact)
         .accessibilityElement()
-        .accessibilityLabel("\(patient.name), \(patient.age). Facing \(Self.views[to]).")
-        .onChange(of: hits) { _, newValue in advance(to: newValue) }
+        .accessibilityLabel("\(patient.name), \(patient.age).")
+        .onChange(of: hits) { _, newValue in if newValue > 0 { quarterTurn() } }
         .onChange(of: patient.id) { _, _ in
+            turning?.cancel()
             var reset = Transaction()
             reset.disablesAnimations = true
-            withTransaction(reset) { from = 0; to = 0; cameraView = 0; progress = 1; direction = Bool.random() ? 1 : -1 }
-        }
-        .onAppear {
-            guard !reduceMotion else { return }
-            withAnimation(.easeInOut(duration: 2.2).repeatForever(autoreverses: true)) { breathing = true }
+            withTransaction(reset) { pose = 0; cameraView = 0; direction = Bool.random() ? 1 : -1 }
         }
     }
 
-    private func advance(to hits: Int) {
-        guard hits > 0 else { return }
-        let target = (to + direction + Self.views.count) % Self.views.count
+    private func quarterTurn() {
+        let start = cameraView
+        let end = (start + direction + Self.views.count) % Self.views.count
+        let startPose = start * Self.posesPerQuarter
         if reduceMotion {
-            from = target; to = target; cameraView = target; progress = 1
+            pose = end * Self.posesPerQuarter
+            cameraView = end
             return
         }
-        var start = Transaction()
-        start.disablesAnimations = true
-        withTransaction(start) { from = to; to = target; progress = 0 }
-        withAnimation(.easeInOut(duration: Self.turnDuration)) {
-            progress = 1
-            cameraView = target
-        }
-    }
-}
-
-/// One turn between two views: a gentle 16% squeeze, a slight lift,
-/// and a cross-fade through the middle of the turn (as in the turn clips).
-struct TurningSprite: View, Animatable {
-    let from: Image
-    let to: Image
-    var progress: CGFloat
-    let neck: CGFloat
-    let shakeTrigger: Int
-
-    var animatableData: CGFloat {
-        get { progress }
-        set { progress = newValue }
-    }
-
-    var body: some View {
-        let width = 1 - 0.16 * sin(.pi * progress)
-        let blend = min(1, max(0, (progress - 0.39) / 0.22))
-        ZStack(alignment: .bottom) {
-            ShakingHead(image: from, neck: neck, trigger: shakeTrigger).opacity(1 - blend)
-            ShakingHead(image: to, neck: neck, trigger: shakeTrigger).opacity(blend)
-        }
-        .scaleEffect(x: width, y: 1, anchor: .bottom)
-        .offset(y: -6 * sin(.pi * progress))
-    }
-}
-
-/// The sprite split at the neck: the head sways for a "no" while the shoulders stay put.
-struct ShakingHead: View {
-    let image: Image
-    let neck: CGFloat
-    let trigger: Int
-
-    private var sprite: some View {
-        image.resizable().interpolation(.none).scaledToFit()
-    }
-
-    var body: some View {
-        ZStack {
-            sprite.mask {
-                LinearGradient(stops: [.init(color: .clear, location: neck - 0.06),
-                                       .init(color: .black, location: neck - 0.04)],
-                               startPoint: .top, endPoint: .bottom)
-            }
-            sprite.mask {
-                LinearGradient(stops: [.init(color: .black, location: neck - 0.02),
-                                       .init(color: .clear, location: neck)],
-                               startPoint: .top, endPoint: .bottom)
-            }
-            .keyframeAnimator(initialValue: CGFloat(0), trigger: trigger) { head, dx in
-                head.offset(x: dx)
-            } keyframes: { _ in
-                KeyframeTrack {
-                    CubicKeyframe(5, duration: 0.09)
-                    CubicKeyframe(-5, duration: 0.14)
-                    CubicKeyframe(4, duration: 0.14)
-                    CubicKeyframe(-3, duration: 0.13)
-                    CubicKeyframe(1.5, duration: 0.12)
-                    CubicKeyframe(0, duration: 0.12)
-                }
+        withAnimation(.easeInOut(duration: Self.turnDuration)) { cameraView = end }
+        turning?.cancel()
+        turning = Task { @MainActor in
+            for step in 1...Self.posesPerQuarter {
+                try? await Task.sleep(for: step == 1 ? .milliseconds(80) : Self.poseStep)
+                if Task.isCancelled { return }
+                pose = (startPose + direction * step + Self.poseCount) % Self.poseCount
             }
         }
     }
@@ -208,8 +138,8 @@ struct HowToSheet: View {
             Text("How to play")
                 .font(Brand.display(30, relativeTo: .title))
             step("1", "Read why the patient is here.")
-            step("2", "Pick a test from the suggestions, or type one. You get five. A useful test reveals a finding and the patient turns. A useless one gets a shake of the head.")
-            step("3", "Tap the arrow next to Assess and choose \u{201C}Make your call now\u{201D} whenever you're ready, or after your fifth test. Pick the diagnosis you think fits.")
+            step("2", "Pick a test from the suggestions, or type one. You get five. A useful test reveals a finding and the patient turns. A useless one gets no response.")
+            step("3", "Tap the arrow next to Assess and choose \u{201C}Make your call now\u{201D} whenever you're ready, or after your fifth test. Type what you think is wrong.")
             step("4", "The debrief shows what was really going on and which tests mattered most.")
             Spacer(minLength: 0)
         }
@@ -283,59 +213,56 @@ struct FindingSheet: View {
     }
 }
 
-/// The debrief after the call.
+/// The debrief after the call. Fits one screen; Next patient is always visible.
 struct ResultSheet: View {
     let state: GameState
     let next: () -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline) {
                 Label(verdictTitle, systemImage: verdictIcon)
-                    .font(Brand.display(34, relativeTo: .largeTitle))
+                    .font(Brand.display(28, relativeTo: .title))
                     .foregroundStyle(verdictColour)
+                Spacer()
+                Text("\(state.score) pts")
+                    .font(Brand.text(17, relativeTo: .headline, bold: true))
+            }
+            Text("Your call: \u{201C}\(state.call ?? "")\u{201D}")
+                .font(Brand.text(15, relativeTo: .subheadline))
+                .foregroundStyle(Brand.muted)
+                .lineLimit(1)
 
-                HStack {
-                    Text("Your call: \u{201C}\(state.call ?? "")\u{201D}")
-                        .font(Brand.text())
-                        .foregroundStyle(Brand.muted)
-                    Spacer()
-                    Text("\(state.score) pts")
-                        .font(Brand.text(17, relativeTo: .headline, bold: true))
-                        .foregroundStyle(Brand.ink)
-                }
-
-                section("It was") {
-                    Text(state.patient.diagnosis).font(Brand.text(19, relativeTo: .title3, bold: true))
-                }
-
-                if !state.flags.isEmpty {
-                    section("Safety") {
-                        ForEach(state.flags, id: \.self) { flag in
-                            Label(flag, systemImage: "exclamationmark.triangle.fill")
-                                .foregroundStyle(Brand.safety)
-                        }
+            section("It was") {
+                Text(state.patient.diagnosis).font(Brand.text(17, relativeTo: .headline, bold: true))
+            }
+            if !state.flags.isEmpty {
+                section("Safety") {
+                    ForEach(state.flags, id: \.self) { flag in
+                        Label(flag, systemImage: "exclamationmark.triangle.fill")
+                            .font(Brand.text(14, relativeTo: .footnote, bold: true))
+                            .foregroundStyle(Brand.safety)
                     }
                 }
-
-                section("What was going on") {
-                    Text(state.patient.story)
-                }
-
-                section("Most telling assessments") {
+            }
+            section("What was going on") {
+                Text(state.patient.story)
+                    .font(Brand.text(15, relativeTo: .subheadline))
+                    .minimumScaleFactor(0.8)
+            }
+            section("Most telling tests") {
+                LazyVGrid(columns: [GridItem(.flexible(), alignment: .leading), GridItem(.flexible(), alignment: .leading)], spacing: 6) {
                     ForEach(state.patient.key, id: \.self) { id in
                         let done = state.has(id)
                         Label(Library.shared.assessment(id)?.name ?? id,
                               systemImage: done ? "checkmark.circle.fill" : "circle")
+                            .font(Brand.text(14, relativeTo: .footnote))
+                            .lineLimit(2)
                             .foregroundStyle(done ? Brand.violet : Brand.muted)
                     }
                 }
             }
-            .font(Brand.text())
-            .foregroundStyle(Brand.ink)
-            .padding(24)
-        }
-        .safeAreaInset(edge: .bottom) {
+            Spacer(minLength: 0)
             Button(action: next) {
                 Text("Next patient")
                     .font(Brand.text(17, relativeTo: .headline, bold: true))
@@ -345,9 +272,11 @@ struct ResultSheet: View {
             .buttonStyle(.glassProminent)
             .tint(Brand.violet)
             .controlSize(.large)
-            .padding(.horizontal, 20)
-            .padding(.bottom, 8)
         }
+        .foregroundStyle(Brand.ink)
+        .padding(.horizontal, 22)
+        .padding(.top, 22)
+        .padding(.bottom, 8)
         .presentationDetents([.large])
         .presentationBackground(Brand.room)
         .interactiveDismissDisabled()
@@ -378,9 +307,9 @@ struct ResultSheet: View {
     }
 
     private func section<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(Brand.text(14, relativeTo: .subheadline, bold: true))
+                .font(Brand.text(13, relativeTo: .footnote, bold: true))
                 .foregroundStyle(Brand.muted)
             content()
         }

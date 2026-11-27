@@ -45,7 +45,7 @@ The [individual turn GIFs](assets/characters/turn-clips) include eight one-shot 
 | Robert Nguyen | 71 | Post-operative atelectasis |
 | Gary Whitfield | 58 | Cardiac pain referred to the shoulder |
 
-`tools/cut_turnarounds.py` cuts the sheet into 20 sprites (`assets/characters/sprites/<case>-<view>.png`). It removes the background, labels and neighbouring slivers, and puts each patient's four views on one shared anchor. The app loads them as `Patient-<case>-front`, `-right`, `-back` and `-left`, drawn with nearest-neighbour scaling so the pixels stay crisp. Each new finding advances one view (front, right, back, left), and the zoom steps independently through 1.0×, 1.05× and 1.10× to a cap of 1.15×.
+The app draws patients from the 16-pose atlases in `assets/characters/pose-atlases` (sliced into `Pose-<case>-00` to `-15` in the asset catalogue). Each new finding plays a quarter turn through four poses while the camera eases to that view's framing. Sides push in to 1.31× centred on the face, the back pulls out to 0.84×, and the front resets. `tools/cut_turnarounds.py` cuts the original sheet into 20 sprites (`assets/characters/sprites/<case>-<view>.png`). It removes the background, labels and neighbouring slivers, and puts each patient's four views on one shared anchor. The app loads them as `Patient-<case>-front`, `-right`, `-back` and `-left`, drawn with nearest-neighbour scaling so the pixels stay crisp. Each new finding advances one view (front, right, back, left), and the zoom steps independently through 1.0×, 1.05× and 1.10× to a cap of 1.15×.
 
 ## Previews
 

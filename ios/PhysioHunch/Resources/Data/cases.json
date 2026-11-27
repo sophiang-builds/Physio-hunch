@@ -60,7 +60,7 @@
    "mmt": "Eversion strength 4/5 and painful. Everything else 5/5."
   },
   "safety": [],
-  "turnaround": "Patient-ankle",
+  "turnaround": "Pose-ankle",
   "call": {
    "correct": "Sprained ankle ligament (lateral ankle sprain)",
    "decoys": [
@@ -138,7 +138,7 @@
    "questionnaire": "Oswestry 46%."
   },
   "safety": [],
-  "turnaround": "Patient-sciatica",
+  "turnaround": "Pose-sciatica",
   "call": {
    "correct": "Pinched nerve from a slipped disc (sciatica)",
    "decoys": [
@@ -231,7 +231,7 @@
     "message": "Stood Margaret up before checking medical clearance and vital signs."
    }
   ],
-  "turnaround": "Patient-stroke",
+  "turnaround": "Pose-stroke",
   "call": {
    "correct": "Stroke affecting the right side of the brain",
    "decoys": [
@@ -318,7 +318,7 @@
     "message": "Mobilised Robert before checking his vital signs."
    }
   ],
-  "turnaround": "Patient-postop",
+  "turnaround": "Pose-postop",
   "call": {
    "correct": "Collapsed lung bases after surgery (atelectasis)",
    "decoys": [
@@ -409,7 +409,7 @@
     "message": "Ran an exertional test on Gary while he had active cardiac symptoms."
    }
   ],
-  "turnaround": "Patient-cardiac",
+  "turnaround": "Pose-cardiac",
   "call": {
    "correct": "Heart problem (angina): call 000",
    "decoys": [

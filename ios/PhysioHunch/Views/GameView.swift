@@ -15,11 +15,8 @@ struct GameView: View {
         NavigationStack {
             VStack(spacing: 12) {
                 // The patient and situation stay pinned in the middle.
-                PatientStage(patient: state.patient, hits: state.hits, misses: state.misses,
-                             reveal: game.reveal, compact: fieldFocused || state.phase == .calling)
-
-                // While choosing a diagnosis, the choices need the room.
-                if state.phase != .calling {
+                PatientStage(patient: state.patient, hits: state.hits,
+                             reveal: game.reveal, compact: fieldFocused)
 
                 Text(state.patient.situation)
                     .font(Brand.text(17, bold: true))
@@ -45,9 +42,6 @@ struct GameView: View {
                         guard let last = state.turns.last else { return }
                         withAnimation(.smooth) { proxy.scrollTo(last.id, anchor: .bottom) }
                     }
-                }
-                } else {
-                    Spacer(minLength: 0)
                 }
             }
             .padding(.horizontal, 20)
@@ -96,7 +90,7 @@ struct GameView: View {
     private var placeholder: String {
         state.phase == .assessing
             ? "What test would you give \(state.patient.name)?"
-            : "Or type your own diagnosis"
+            : "What\u{2019}s wrong with \(state.patient.name)?"
     }
 
     // Suggestions (or diagnosis choices), the field with its five chances,
@@ -120,8 +114,6 @@ struct GameView: View {
 
                 if state.phase == .assessing {
                     suggestionChips
-                } else if state.phase == .calling {
-                    callChoices
                 }
 
                 HStack(spacing: 10) {
@@ -154,6 +146,7 @@ struct GameView: View {
                     Menu {
                         Button("Make your call now", systemImage: "stethoscope") {
                             withAnimation(.smooth) { game.beginCall() }
+                            fieldFocused = true
                         }
                         .disabled(state.phase != .assessing)
                         Button("How to play", systemImage: "questionmark.circle") { showingHowTo = true }
@@ -192,34 +185,11 @@ struct GameView: View {
         .accessibilityLabel("Suggested assessments")
     }
 
-    /// Four possible diagnoses to choose from.
-    private var callChoices: some View {
-        VStack(spacing: 8) {
-            Text("What's wrong with \(state.patient.name)?")
-                .font(Brand.display(20, relativeTo: .headline))
-                .foregroundStyle(Brand.ink)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            ForEach(game.callOptions, id: \.self) { option in
-                Button { send(option) } label: {
-                    Text(option)
-                        .font(Brand.text(16, bold: true))
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 2)
-                }
-                .buttonStyle(.glass)
-                .tint(Brand.ink)
-                .controlSize(.large)
-            }
-        }
-    }
-
     /// Screen-recording demo, used by CI on the iPhone 15 simulator.
-    /// Launch with -demoMoves "type:what happened|tap:Ottawa ankle and foot rules|call|choose"
+    /// Launch with -demoMoves "type:what happened|tap:Ottawa ankle and foot rules|call|type:lateral ankle sprain"
     ///   type:<text>  types into the field and taps Assess
     ///   tap:<name>   taps that suggestion chip
     ///   call         opens "Make your call now"
-    ///   choose       picks the correct diagnosis
     private func playDemoIfRequested() async {
         guard let script = UserDefaults.standard.string(forKey: "demoMoves") else { return }
         try? await Task.sleep(for: .seconds(2.5))
@@ -232,11 +202,6 @@ struct GameView: View {
             if step == "call" {
                 withAnimation(.smooth) { game.beginCall() }
                 try? await Task.sleep(for: .seconds(2.2))
-                continue
-            }
-            if step == "choose" {
-                send(state.patient.call.correct)
-                try? await Task.sleep(for: .seconds(2.8))
                 continue
             }
             let move = step.hasPrefix("type:") ? String(step.dropFirst(5)) : step
@@ -260,7 +225,7 @@ struct GameView: View {
             withAnimation { toast = "Not an assessment I know. Try \u{201C}straight leg raise\u{201D}." }
         case .revealed, .silent, .called:
             input = ""
-            if state.phase != .assessing { fieldFocused = false }
+            fieldFocused = state.phase == .calling
         }
     }
 }

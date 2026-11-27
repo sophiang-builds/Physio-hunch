@@ -138,7 +138,7 @@ struct HowToSheet: View {
             Text("How to play")
                 .font(Brand.display(30, relativeTo: .title))
             step("1", "Read why the patient is here.")
-            step("2", "Pick a test from the suggestions, or type one. You get five. A useful test reveals a finding and the patient turns. A useless one gets no response.")
+            step("2", "Type what you want to check, like \u{201C}where does it hurt\u{201D} or \u{201C}reflexes\u{201D}. You get five. A useful test reveals a finding and the patient turns. A useless one gets no response.")
             step("3", "Tap the arrow next to Assess and choose \u{201C}Make your call now\u{201D} whenever you're ready, or after your fifth test. Type what you think is wrong.")
             step("4", "The debrief shows what was really going on and which tests mattered most.")
             Spacer(minLength: 0)

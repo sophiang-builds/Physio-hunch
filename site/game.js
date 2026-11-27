@@ -39,13 +39,6 @@
   const has = (id) => st.turns.some((t) => t.a.id === id);
   const hits = () => st.turns.filter((t) => t.finding).length;
 
-  function suggestions() {
-    const r = rng(seedOf(st.p.id, st.turns.length)), open = A.filter((a) => !has(a.id));
-    const rel = shuffle(open.filter((a) => st.p.findings[a.id] != null), r).slice(0, 2);
-    const oth = shuffle(open.filter((a) => st.p.findings[a.id] == null), r).slice(0, 6 - rel.length);
-    return shuffle(rel.concat(oth), r);
-  }
-
   function load(i) {
     ci = i; try { localStorage.setItem("ph-case", i); } catch (e) {}
     st = { p: C[i], limit: 5, turns: [], phase: "assessing", flags: [] };
@@ -59,7 +52,7 @@
     const text = (raw || "").trim(); if (!text || st.phase === "done") return; closeMenu();
     if (st.phase === "calling" || ["i think", "i reckon", "my diagnosis", "diagnosis", "my call"].some((x) => norm(text).startsWith(x))) return call(text);
     const a = resolve(text, st.p);
-    if (!a) return toast("Hmm, I don\u2019t know that one. Try one of the ideas above.");
+    if (!a) return toast("Hmm, I don\u2019t know that one. Try something like \u201cwhere does it hurt\u201d.");
     if (has(a.id)) return toast("You\u2019ve already checked that. It\u2019s in your list.");
     const t = { n: st.turns.length + 1, a, finding: st.p.findings[a.id] ?? null, flag: null };
     for (const r of st.p.safety) if (r.assessments.includes(a.id) && !r.requires.every(has)) t.flag = r.message;
@@ -97,8 +90,6 @@
     $("dots").innerHTML = Array.from({ length: st.limit }, (_, i) => { const t = st.turns[i]; return `<i class="${t ? (t.finding ? "hit" : "miss") : ""}"></i>`; }).join("");
     $("dots").setAttribute("aria-label", `${st.limit - st.turns.length} of ${st.limit} assessments left`);
     $("findings").innerHTML = st.turns.map((t) => `<li class="card ${t.finding ? "hit" : "miss"}"><h4>${t.n}. ${esc(t.a.name)}</h4><p>${esc(t.finding || "No response.")}</p>${t.flag ? `<p class="flag">⚠ ${esc(t.flag)}</p>` : ""}</li>`).join("");
-    $("chips").hidden = !assessing;
-    if (assessing) $("chips").innerHTML = suggestions().map((a) => `<button type="button" class="chip glass" data-t="${esc(a.name)}">${esc(a.name)}</button>`).join("");
     $("ask").placeholder = assessing ? `What would you check on ${p.name}?` : `What do you think is wrong with ${p.name}?`;
     $("ask").setAttribute("aria-label", assessing ? "Assessment" : "Diagnosis");
     $("go").textContent = assessing ? "Assess" : "Make your call"; $("go").disabled = !$("ask").value.trim();
@@ -125,7 +116,7 @@
     closeMenu();
     openSheet(`<div class="body"><h2 id="sheetTitle">How to play</h2><ol class="steps" style="margin-top:16px">
       <li><b>1</b><span>Read why the patient has come in.</span></li>
-      <li><b>2</b><span>You get five chances to check them. Tap an idea or type your own, like \u201cwhere does it hurt\u201d or \u201creflexes\u201d. Good checks give you a clue and the patient turns around. Unhelpful ones give you nothing.</span></li>
+      <li><b>2</b><span>You get five chances to check them. Type what you want to check, like \u201cwhere does it hurt\u201d or \u201creflexes\u201d. Good checks give you a clue and the patient turns around. Unhelpful ones give you nothing.</span></li>
       <li><b>3</b><span>When you think you know, open the arrow next to Assess, choose \u201cMake your call now\u201d and type what you think is wrong.</span></li>
       <li><b>4</b><span>You'll see what was really going on and which checks mattered most.</span></li></ol></div>
       <button class="go" id="gotit">Got it</button>`);
@@ -141,9 +132,7 @@
   $("callNow").onclick = () => { closeMenu(); if (st.phase === "assessing") { st.phase = "calling"; render(); $("ask").focus(); } };
   $("howTo").onclick = howTo;
   $("nextCase").onclick = () => { closeMenu(); load((ci + 1) % C.length); };
-  $("playAgain").onclick = (e) => { e.preventDefault(); if (st.turns.length) load((ci + 1) % C.length); $("title").scrollIntoView({ behavior: RM ? "auto" : "smooth" }); };
   $("sheet").addEventListener("click", (e) => { if (e.target === $("sheet") && st.phase !== "done") $("sheet").hidden = true; });
-  $("chips").addEventListener("click", (e) => { const b = e.target.closest("[data-t]"); if (b) submit(b.dataset.t); });
   $("dock").addEventListener("submit", (e) => { e.preventDefault(); submit($("ask").value); });
   $("ask").addEventListener("input", () => ($("go").disabled = !$("ask").value.trim()));
   $("ask").addEventListener("focus", () => $("game").classList.add("typing"));

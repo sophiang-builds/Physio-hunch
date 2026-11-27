@@ -112,9 +112,6 @@ struct GameView: View {
                         }
                 }
 
-                if state.phase == .assessing {
-                    suggestionChips
-                }
 
                 HStack(spacing: 10) {
                     TextField(placeholder, text: $input)
@@ -167,28 +164,10 @@ struct GameView: View {
         .frame(maxWidth: 600)
     }
 
-    /// Tap a suggestion to run that assessment. Some help, some don't.
-    private var suggestionChips: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 8) {
-                ForEach(game.suggestions) { assessment in
-                    Button(assessment.name) { send(assessment.name) }
-                        .font(Brand.text(15, relativeTo: .subheadline, bold: true))
-                        .buttonStyle(.glass)
-                        .tint(Brand.ink)
-                }
-            }
-            .padding(.horizontal, 2)
-            .padding(.vertical, 2)
-        }
-        .scrollIndicators(.hidden)
-        .accessibilityLabel("Suggested assessments")
-    }
-
     /// Screen-recording demo, used by CI on the iPhone 15 simulator.
     /// Launch with -demoMoves "type:what happened|tap:Ottawa ankle and foot rules|call|type:lateral ankle sprain"
     ///   type:<text>  types into the field and taps Assess
-    ///   tap:<name>   taps that suggestion chip
+    ///   tap:<name>   runs that assessment as if typed
     ///   call         opens "Make your call now"
     private func playDemoIfRequested() async {
         guard let script = UserDefaults.standard.string(forKey: "demoMoves") else { return }

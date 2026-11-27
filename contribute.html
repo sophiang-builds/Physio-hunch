@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contribute a physio case | Physio Hunch</title>
+  <meta name="description" content="Got a physiotherapy case that would make a good practice patient? Talk it through or type it out, and help other students practise for their practical viva.">
+  <link rel="canonical" href="https://sophiang-builds.github.io/Physio-hunch/contribute.html">
+  <meta name="theme-color" content="#F7F3EA">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/brand.css">
+  <link rel="stylesheet" href="site/site.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./" aria-label="Physio Hunch home">
+      <img src="assets/mark.svg" alt="" width="32" height="32">
+      <span>Physio Hunch</span>
+    </a>
+    <a class="coffee glass" href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V8Z" fill="#FFDD00" stroke="#24203C" stroke-width="1.6"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17" fill="none" stroke="#24203C" stroke-width="1.6"/><path d="M8 3.5c0 1 1 1 1 2M11 3.5c0 1 1 1 1 2M14 3.5c0 1 1 1 1 2" fill="none" stroke="#24203C" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span>Buy me a coffee</span>
+    </a>
+  </header>
+
+  <main class="contribute">
+    <div class="wrap">
+      <a class="back" href="./">← Back to the game</a>
+      <h1>Share a case</h1>
+      <p class="sub">Talk it through like you're telling a friend, or type it out. Good ones become new patients for everyone to practise on.</p>
+
+      <div class="contribute-grid">
+        <aside class="pointers">
+          <h2>Things to mention</h2>
+          <ol>
+            <li><b>Who they are.</b> Age, job, sport or hobbies.</li>
+            <li><b>What happened.</b> How it started and how long ago.</li>
+            <li><b>What they feel.</b> Where it hurts, what it feels like, anything like pins and needles.</li>
+            <li><b>What makes it worse or better.</b> Sitting, stairs, sleep, rest.</li>
+            <li><b>What the tests showed.</b> Which checks gave a clue and which were normal.</li>
+            <li><b>The answer.</b> What it turned out to be, and anything you had to rule out first.</li>
+          </ol>
+          <p class="privacy">Please don't use real names or anything that could identify a real patient.</p>
+        </aside>
+
+        <form class="story" id="story">
+          <label for="text">Your case</label>
+          <textarea id="text" rows="12" placeholder="For example: A 35-year-old runner came in with pain under her heel. It's worst with the first steps in the morning…"></textarea>
+          <div class="story-actions">
+            <button type="button" class="mic" id="mic" aria-pressed="false">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span id="micLabel">Talk it out</span>
+            </button>
+            <p class="mic-note" id="micNote" role="status"></p>
+          </div>
+          <label class="check"><input type="checkbox" id="ok" required> There are no real names or details that could identify a real patient.</label>
+          <div class="story-send">
+            <button type="submit" class="go" id="send" disabled>Send it</button>
+            <button type="button" class="ghost" id="copy">Copy text</button>
+          </div>
+          <p class="send-note">Send it opens a short form on GitHub with your case already filled in. If you don't have a GitHub account, copy the text instead and send it however suits you.</p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Physio Hunch is a free study game for physiotherapy students. It isn't connected to the University of Newcastle.</p>
+    <p><a href="./">Play a case</a> · <a href="https://buymeacoffee.com/sophiang.builds" target="_blank" rel="noopener">Buy me a coffee</a></p>
+  </footer>
+
+  <script src="site/contribute.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "patients": {
+    "ankle": {
+      "front": {
+        "left": "ankle/front-to-left.gif",
+        "right": "ankle/front-to-right.gif"
+      },
+      "right": {
+        "front": "ankle/right-to-front.gif",
+        "back": "ankle/right-to-back.gif"
+      },
+      "back": {
+        "right": "ankle/back-to-right.gif",
+        "left": "ankle/back-to-left.gif"
+      },
+      "left": {
+        "back": "ankle/left-to-back.gif",
+        "front": "ankle/left-to-front.gif"
+      }
+    },
+    "sciatica": {
+      "front": {
+        "left": "sciatica/front-to-left.gif",
+        "right": "sciatica/front-to-right.gif"
+      },
+      "right": {
+        "front": "sciatica/right-to-front.gif",
+        "back": "sciatica/right-to-back.gif"
+      },
+      "back": {
+        "right": "sciatica/back-to-right.gif",
+        "left": "sciatica/back-to-left.gif"
+      },
+      "left": {
+        "back": "sciatica/left-to-back.gif",
+        "front": "sciatica/left-to-front.gif"
+      }
+    },
+    "stroke": {
+      "front": {
+        "left": "stroke/front-to-left.gif",
+        "right": "stroke/front-to-right.gif"
+      },
+      "right": {
+        "front": "stroke/right-to-front.gif",
+        "back": "stroke/right-to-back.gif"
+      },
+      "back": {
+        "right": "stroke/back-to-right.gif",
+        "left": "stroke/back-to-left.gif"
+      },
+      "left": {
+        "back": "stroke/left-to-back.gif",
+        "front": "stroke/left-to-front.gif"
+      }
+    },
+    "postop": {
+      "front": {
+        "left": "postop/front-to-left.gif",
+        "right": "postop/front-to-right.gif"
+      },
+      "right": {
+        "front": "postop/right-to-front.gif",
+        "back": "postop/right-to-back.gif"
+      },
+      "back": {
+        "right": "postop/back-to-right.gif",
+        "left": "postop/back-to-left.gif"
+      },
+      "left": {
+        "back": "postop/left-to-back.gif",
+        "front": "postop/left-to-front.gif"
+      }
+    },
+    "cardiac": {
+      "front": {
+        "left": "cardiac/front-to-left.gif",
+        "right": "cardiac/front-to-right.gif"
+      },
+      "right": {
+        "front": "cardiac/right-to-front.gif",
+        "back": "cardiac/right-to-back.gif"
+      },
+      "back": {
+        "right": "cardiac/back-to-right.gif",
+        "left": "cardiac/back-to-left.gif"
+      },
+      "left": {
+        "back": "cardiac/left-to-back.gif",
+        "front": "cardiac/left-to-front.gif"
+      }
+    }
+  },
+  "camera": {
+    "front": {
+      "zoom": 1.0,
+      "anchorY": 0.55
+    },
+    "right": {
+      "zoom": 1.12,
+      "anchorY": 0.4
+    },
+    "back": {
+      "zoom": 0.94,
+      "anchorY": 0.55
+    },
+    "left": {
+      "zoom": 1.12,
+      "anchorY": 0.4
+    }
+  },
+  "durationMs": 1000
+}

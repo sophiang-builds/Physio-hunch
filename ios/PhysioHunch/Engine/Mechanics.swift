@@ -32,6 +32,7 @@ enum Mechanics {
     /// Order matters: Diagnosis must run before Scoring.
     static let standard: [Mechanic] = [
         AssessingOnly(),
+        GivenUpFront(),
         NoRepeats(),
         SafetyChecks(),
         AssessmentLimit(max: 5),
@@ -44,6 +45,13 @@ enum Mechanics {
 struct AssessingOnly: Mechanic {
     func veto(_ assessment: Assessment, state: GameState) -> String? {
         state.phase == .assessing ? nil : "Time to make your call."
+    }
+}
+
+/// Findings already shown in the background (like the history) don't cost a check.
+struct GivenUpFront: Mechanic {
+    func veto(_ assessment: Assessment, state: GameState) -> String? {
+        state.patient.given.contains(assessment.id) ? "That\u{2019}s already in the background under the patient." : nil
     }
 }
 

@@ -45,13 +45,19 @@ h1, h2, h3 { font-family: var(--display); font-weight: 650; letter-spacing: -.02
 .disc { position: absolute; left: 50%; top: 50%; height: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: var(--lilac); overflow: hidden; }
 .disc i { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s; }
 .pose { position: absolute; left: 50%; top: 0; height: 100%; aspect-ratio: 1; transform: translateX(-50%); background-size: 400% 400%; background-repeat: no-repeat; image-rendering: pixelated; }
-.situation-m { display: none; }
 .consult { grid-area: consult; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
 /* case notes: ruled paper that fills in as you assess */
 .notes { flex: 1; min-height: 0; display: flex; flex-direction: column; background: var(--paper); border-radius: 26px; padding: 16px 18px 6px; box-shadow: inset 0 0 0 1px rgba(36, 32, 60, .07); background-image: repeating-linear-gradient(transparent 0 31px, rgba(84, 60, 134, .05) 31px 32px); background-position: 0 58px; }
 .notes-head { display: flex; justify-content: space-between; margin: 0 0 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
 .notes-head #who { color: var(--violet); }
-.situation { margin: 0 0 10px; font-weight: 700; font-size: 17px; line-height: 1.4; }
+.background { padding: 14px 6px 4px; }
+.situation { margin: 0 0 6px; font-weight: 700; font-size: 17px; line-height: 1.4; }
+.history { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.history b { color: var(--ink); }
+/* Buy Me a Coffee: official button, with a plain link if the script can't load */
+.bmc-slot { display: flex; align-items: center; justify-content: flex-end; min-height: 44px; }
+.bmc-slot:has(.bmc-btn-container) .bmc-fallback, .bmc-slot:has(.bmc-btn) .bmc-fallback { display: none; }
+.bmc-slot .bmc-btn { height: 46px !important; min-width: 0 !important; padding: 0 16px !important; border-radius: 23px !important; }
 .findings { list-style: none; margin: 0; padding: 2px 0 12px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
 .card { background: var(--paper); border-radius: 22px; padding: 13px 16px; box-shadow: inset 0 0 0 1.5px rgba(36, 32, 60, .08); animation: rise .45s cubic-bezier(.2, .9, .3, 1.15); }
 .card.hit { box-shadow: inset 0 0 0 1.5px rgba(84, 60, 134, .5); }
@@ -166,9 +172,12 @@ footer p { margin: 4px 0; }
   .patient { flex: none; padding: 8px; border-radius: 24px; }
   .stage { flex: none; height: 140px; min-height: 0; transition: height .35s; }
   .game.typing .stage { height: 110px; }
-  .situation-m { display: block; font-size: 15px; margin: 8px 2px 2px; text-align: center; }
+  .background { padding: 8px 4px 2px; text-align: center; }
+  .situation { font-size: 15px; margin: 0 0 4px; }
+  .history { font-size: 13px; line-height: 1.4; }
   .notes { background: none; box-shadow: none; padding: 0; border-radius: 0; }
-  .notes-head, .notes .situation { display: none; }
+  .notes-head { display: none; }
+  .bmc-slot { transform: scale(.78); transform-origin: right center; }
   .consult { flex: 1; gap: 10px; }
   .findings { padding-bottom: 8px; }
   .dock { padding-bottom: env(safe-area-inset-bottom, 0px); }

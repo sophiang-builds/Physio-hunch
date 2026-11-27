@@ -18,11 +18,21 @@ struct GameView: View {
                 PatientStage(patient: state.patient, hits: state.hits,
                              reveal: game.reveal, compact: fieldFocused)
 
-                Text(state.patient.situation)
-                    .font(Brand.text(17, bold: true))
-                    .foregroundStyle(Brand.ink)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
+                // The background sits under the patient: why they came in, and what happened.
+                VStack(spacing: 6) {
+                    Text(state.patient.situation)
+                        .font(Brand.text(17, bold: true))
+                    ForEach(state.patient.given, id: \.self) { id in
+                        if let finding = state.patient.findings[id] {
+                            Text("\(Text((Library.shared.assessment(id)?.name ?? "Background") + ":").bold()) \(finding)")
+                                .font(Brand.text(15, relativeTo: .subheadline))
+                                .foregroundStyle(Brand.muted)
+                        }
+                    }
+                }
+                .foregroundStyle(Brand.ink)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
 
                 // Only the findings scroll.
                 ScrollViewReader { proxy in

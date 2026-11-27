@@ -53,6 +53,7 @@
     if (st.phase === "calling" || ["i think", "i reckon", "my diagnosis", "diagnosis", "my call"].some((x) => norm(text).startsWith(x))) return call(text);
     const a = resolve(text, st.p);
     if (!a) return toast("Hmm, I don\u2019t know that one. Try something like \u201cwhere does it hurt\u201d.");
+    if ((st.p.given || []).includes(a.id)) return toast("That\u2019s already in the background under the patient.");
     if (has(a.id)) return toast("You\u2019ve already checked that. It\u2019s in your list.");
     const t = { n: st.turns.length + 1, a, finding: st.p.findings[a.id] ?? null, flag: null };
     for (const r of st.p.safety) if (r.assessments.includes(a.id) && !r.requires.every(has)) t.flag = r.message;
@@ -88,7 +89,7 @@
     const p = st.p, reveal = st.phase === "done" ? 1 : hits() / st.limit, assessing = st.phase === "assessing";
     $("bloom").style.background = `linear-gradient(135deg,${p.palette.join(",")})`; $("bloom").style.opacity = reveal;
     $("situation").textContent = p.situation;
-    $("situationM").textContent = p.situation;
+    $("history").textContent = (p.given || []).map((id) => p.findings[id]).filter(Boolean).join(" ");
     $("who").textContent = `${p.name}, ${p.age}`;
     $("dots").innerHTML = Array.from({ length: st.limit }, (_, i) => { const t = st.turns[i]; return `<i class="${t ? (t.finding ? "hit" : "miss") : ""}"></i>`; }).join("");
     $("dots").setAttribute("aria-label", `${st.limit - st.turns.length} of ${st.limit} assessments left`);

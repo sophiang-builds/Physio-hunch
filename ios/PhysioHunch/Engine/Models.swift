@@ -46,6 +46,9 @@ struct PatientCase: Codable, Identifiable, Hashable {
     let findings: [String: String]
     let safety: [SafetyRule]
     let call: CallOptions
+    /// Assessments whose findings are shown up front in the patient's background
+    /// (for example the history of presenting complaint). They never cost a check.
+    let given: [String]
 }
 
 /// One committed assessment.

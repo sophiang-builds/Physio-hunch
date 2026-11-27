@@ -28,7 +28,6 @@
   ],
   "story": "Yesterday Mia went up for a rebound, landed on an opponent's foot and rolled her right ankle into inversion and plantarflexion. She felt a pop on the outside, and it swelled within the hour. She hobbled off the court and could weight bear. She sprained the same ankle two years ago and never did any rehab. Finals are in four weeks. The ATFL is torn partially (grade II), the CFL is intact, there's no fracture (Ottawa rules negative), and her balance on that side is poor, which puts her at risk of chronic instability.",
   "key": [
-   "hpc",
    "ottawa_ankle",
    "palpation",
    "ankle_drawer",
@@ -68,7 +67,10 @@
     "Torn Achilles tendon",
     "Plantar fasciitis (heel pain)"
    ]
-  }
+  },
+  "given": [
+   "hpc"
+  ]
  },
  {
   "id": "sciatica",
@@ -146,7 +148,10 @@
     "Torn hamstring muscle",
     "Hip arthritis"
    ]
-  }
+  },
+  "given": [
+   "hpc"
+  ]
  },
  {
   "id": "stroke",
@@ -178,7 +183,6 @@
   ],
   "story": "On Monday Margaret was making a cup of tea when her left arm suddenly went heavy and useless. Her husband Bill called an ambulance. A CT showed a right middle cerebral artery infarct, and she was thrombolysed. Five days on she has a left hemiparesis: weak quadriceps that let the knee buckle in standing, low tone in the arm, an inferiorly subluxed left shoulder, reduced sensation and proprioception, an up-going left plantar response and left-sided inattention. She has high blood pressure and type 2 diabetes. She lives with Bill in a two-storey house and was fully independent before. She wants to go home and get back to her garden.",
   "key": [
-   "hpc",
    "mmt",
    "umn",
    "neglect",
@@ -239,7 +243,10 @@
     "Low blood sugar",
     "Inner ear vertigo"
    ]
-  }
+  },
+  "given": [
+   "hpc"
+  ]
  },
  {
   "id": "postop",
@@ -302,7 +309,8 @@
    "chest_expansion": "Reduced basal expansion on both sides.",
    "cough_test": "Weak, moist cough. He holds his abdomen and can't clear the secretions.",
    "bed_mobility": "Needs help of 1 to roll, splinting the wound.",
-   "dvt": "Calves soft and non-tender. On enoxaparin."
+   "dvt": "Calves soft and non-tender. On enoxaparin.",
+   "hpc": "Had bowel surgery yesterday through a cut down the middle of his belly. He hasn't been out of bed since, it hurts to take a deep breath, and his oxygen has gone from none to 2 L overnight."
   },
   "safety": [
    {
@@ -326,7 +334,10 @@
     "Heart failure",
     "Asthma attack"
    ]
-  }
+  },
+  "given": [
+   "hpc"
+  ]
  },
  {
   "id": "cardiac",
@@ -417,6 +428,9 @@
     "Frozen shoulder",
     "Pulled shoulder muscle"
    ]
-  }
+  },
+  "given": [
+   "hpc"
+  ]
  }
 ]

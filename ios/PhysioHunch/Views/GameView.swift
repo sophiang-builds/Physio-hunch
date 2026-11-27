@@ -16,7 +16,10 @@ struct GameView: View {
             VStack(spacing: 12) {
                 // The patient and situation stay pinned in the middle.
                 PatientStage(patient: state.patient, hits: state.hits, misses: state.misses,
-                             reveal: game.reveal, compact: fieldFocused)
+                             reveal: game.reveal, compact: fieldFocused || state.phase == .calling)
+
+                // While choosing a diagnosis, the choices need the room.
+                if state.phase != .calling {
 
                 Text(state.patient.situation)
                     .font(Brand.text(17, bold: true))
@@ -42,6 +45,9 @@ struct GameView: View {
                         guard let last = state.turns.last else { return }
                         withAnimation(.smooth) { proxy.scrollTo(last.id, anchor: .bottom) }
                     }
+                }
+                } else {
+                    Spacer(minLength: 0)
                 }
             }
             .padding(.horizontal, 20)
@@ -89,7 +95,7 @@ struct GameView: View {
 
     private var placeholder: String {
         state.phase == .assessing
-            ? "What assessment would you give \(state.patient.name)?"
+            ? "What test would you give \(state.patient.name)?"
             : "Or type your own diagnosis"
     }
 

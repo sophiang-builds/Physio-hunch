@@ -36,3 +36,15 @@ Use the [artwork status list](../assets/characters/expansion/illustrated.json) t
 Use the [original five turnarounds](../assets/characters/pose-atlases) as the art reference for each new patient. Match their waist-up crop and believable proportions, crisp plum contours, separately drawn views and stepped shadow clusters. Carry the character’s hair and facial details through the turn, including when an ear or glasses arm becomes occluded. Give the garment its own folds and seams, and preserve those design details across the 16 angles. Review the first, right, back and left views and inspect the intervening angles for jumps in silhouette or changes in costume.
 
 After reviewing one patient, register the square green-screen 4 × 4 source sheet with `python3 tools/import_expansion_atlas.py <case-id> <source.png>`. This updates the portrait, atlas, contact sheet and artwork status. `python3 tools/make_expansion_atlases.py` rebuilds draft assets (Pillow and NumPy) and skips the individually illustrated patients.
+
+## How the website plays the briefs
+
+The website (`site/game.js`) reads `cases/expansion/cases.psv` when the page loads and adds every row to the case bank, next to the five fully authored cases. Each day draws five random patients from the whole bank, which stay the same after a refresh and change the next day.
+
+Until a brief gets full findings, it plays like this:
+
+- The `subjective` text is shown up front as "What happened".
+- The brief's key `assessment` reveals its `finding` when the player names a matching test from the assessment database, or uses a substantial word from the brief's assessment text. Every other test gets no response.
+- The `answer` is marked on its core words (the part before a comma, "with", "plus" or "while"). A right answer needs most of those words, including the answer's most distinctive word across the bank. Naming a distinctive word from a different answer, such as "urgency" for stress incontinence, caps it at close. Common names such as frozen shoulder, tennis elbow, ACL and BPPV are translated to their clinical terms.
+
+An audit with the game's own code accepts all 100 brief answers. Of the 9,900 cross-checks between briefs, 3 still mark another brief's answer as right: the two CRPS cases (160 and 197) share an answer, and patellar tendinopathy matches patellofemoral pain through the shared "patell" stem.

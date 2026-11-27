@@ -5,7 +5,9 @@
 */
 (async () => {
   const DATA = "ios/PhysioHunch/Resources/Data/";
-  const ATLAS = (id) => `assets/characters/pose-atlases/${id}.png`;
+  const ATLAS = (p) => p.atlas || `assets/characters/pose-atlases/${p.id}.png`;
+  const BRIEFS = "cases/expansion/cases.psv";            // 100 expansion briefs, read at runtime
+  const PER_DAY = 5;                                     // random patients per day
   const VIEWS = ["front", "right", "back", "left"];
   // zooms from assets/characters/turn-clips/manifest.json; push-ins centre on the face
   const CAMERA = { front: [1, .97], right: [1.31, .2], back: [.84, .97], left: [1.31, .2] };
@@ -33,24 +35,79 @@
   const shuffle = (arr, r) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const seedOf = (s, salt) => [...s].reduce((h, c) => (h * 33 + c.charCodeAt(0)) % 2147483647, 5381 + salt);
 
+  // ---------- expansion briefs: turn each row into a playable case ----------
+  // A brief has one key test and its finding. Typing anything that resolves to that test reveals it;
+  // the opening complaint is given up front. The answer is marked on its key words.
+  const AREA_PALETTE = {
+    "Musculoskeletal": ["#b69cff", "#ffd86b", "#ff9fc4"], "Sports and performance": ["#ffb057", "#e3f05c", "#ff7a59"],
+    "Neurological": ["#9cc9f2", "#c7b8ff", "#ffd1a8"], "Cardiorespiratory and acute": ["#9fe0c6", "#a9d6ff", "#ffe08a"],
+    "Older adults and falls": ["#c7b8ff", "#ffd1a8", "#9cc9f2"], "Paediatric and adolescent": ["#ffd86b", "#9fe0c6", "#ff9fc4"],
+    "Pelvic health": ["#ff9fc4", "#c7b8ff", "#ffe08a"], "Vestibular and headache": ["#a9d6ff", "#b69cff", "#ffd36e"],
+    "Occupational and community": ["#ffb057", "#9fe0c6", "#7fb0ff"], "Persistent pain and complex care": ["#c7b8ff", "#ff9a8a", "#9fe0c6"]
+  };
+  const GENERIC = new Set(["pain", "related", "syndrome", "disorder", "injury", "dysfunction", "impairment", "with", "and", "the", "for", "from", "left", "right", "acute", "chronic", "grade", "possible", "likely", "risk", "need", "needs", "assess", "assessment", "examination", "pattern", "consistent", "clinical", "early", "specialist", "presentation", "after", "before", "possible", "consider", "review", "history", "during", "then", "over", "across", "based", "check", "compare", "symptoms", "symptom", "task", "tasks", "measure", "monitor", "appropriate", "typical", "immediately", "suitable"]);
+  const keywordsOf = (answer) => [...new Set(norm(answer).split(" ").filter((w) => w.length >= 3 && !GENERIC.has(w)).map((w) => w.slice(0, 6)))];
+  // Everyday names players type, expanded to the clinical words in the answers.
+  const SYNONYMS = {
+    "frozen shoulder": "adhesive capsulitis", "tennis elbow": "lateral elbow tendinopathy", "golfers elbow": "medial elbow tendinopathy",
+    "golfer's elbow": "medial elbow tendinopathy", "runners knee": "patellofemoral", "runner's knee": "patellofemoral", "jumpers knee": "patellar tendinopathy",
+    "jumper's knee": "patellar tendinopathy", "shin splints": "medial tibial stress", "slipped disc": "disc herniation", "acl": "anterior cruciate ligament",
+    "mcl": "medial collateral ligament", "bppv": "benign paroxysmal positional vertigo", "dcd": "developmental coordination disorder",
+    "ms": "multiple sclerosis", "copd": "chronic obstructive pulmonary", "dvt": "deep vein thrombosis", "pe": "pulmonary embolism",
+    "crps": "complex regional pain", "oa": "osteoarthritis", "ra": "rheumatoid arthritis", "tka": "total knee arthroplasty", "tkr": "total knee arthroplasty",
+    "thr": "total hip arthroplasty", "tha": "total hip arthroplasty", "tmj": "temporomandibular", "mtss": "medial tibial stress", "uti": "urinary tract infection",
+    "stroke": "stroke cva", "heart attack": "cardiac myocardial", "concussion": "concussion"
+  };
+  const expand = (text) => { const t = " " + norm(text) + " "; let extra = ""; for (const [k, v] of Object.entries(SYNONYMS)) if (t.includes(" " + norm(k) + " ")) extra += " " + v; return norm(text + extra); };
+  // Mark answers on their core: the part before "with", "and", "plus", a comma or a semicolon.
+  const coreOf = (answer) => answer.split(/,|;|\bwith\b|\bplus\b|\bwhile\b/i)[0];
+  function briefCase(r, illustrated) {
+    const first = r.name.split(" ")[0];
+    const setting = r.setting ? r.setting[0].toLowerCase() + r.setting.slice(1) : "";
+    const parts = [r.assessment, ...r.assessment.split(/,|;|\/|\band\b|\bor\b|\bthen\b|\bwith\b/i)].map((x) => x.trim()).filter((x) => x.length > 2);
+    const ids = [...new Set(parts.map((x) => resolve(x, { findings: {} })).filter(Boolean).map((a) => a.id).filter((id) => id !== "hpc"))];
+    const findings = { hpc: r.subjective, brief_key: r.finding };
+    ids.forEach((id) => (findings[id] = r.finding));
+    return {
+      id: r.id, name: first, age: +r.age, area: r.area, brief: true, draft: !illustrated.has(r.id),
+      situation: `${first}, ${r.age}, ${setting}.`, palette: AREA_PALETTE[r.area] || ["#b69cff", "#ffd86b", "#ff9fc4"],
+      diagnosis: r.answer, answers: [r.answer], close: [], keywords: keywordsOf(coreOf(r.answer)).length ? keywordsOf(coreOf(r.answer)) : keywordsOf(r.answer), allKeywords: keywordsOf(expand(r.answer)),
+      briefTest: r.assessment, briefWords: keywordsOf(r.assessment),
+      findings, given: ["hpc"], safety: [], key: ids, atlas: `assets/characters/expansion/atlases/${r.id}.png`
+    };
+  }
+  try {
+    const [psv, ill] = await Promise.all([fetch(BRIEFS).then((r) => r.text()), fetch("assets/characters/expansion/illustrated.json").then((r) => r.json()).catch(() => [])]);
+    const [head, ...rows] = psv.trim().split(/\r?\n/);
+    const cols = head.split("|"), illustrated = new Set(ill.map(String));
+    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer) C.push(briefCase(r, illustrated)); });
+  } catch (e) { /* the original cases still play if the briefs can't load */ }
+  // How many answers each keyword appears in, to spot the distinctive ones.
+  const DF = new Map();
+  C.forEach((c) => (c.keywords || keywordsOf(c.diagnosis)).forEach((k) => DF.set(k, (DF.get(k) || 0) + 1)));
+
   // ---------- state ----------
-  let ci = 0, st, view = 0, dir = 1, timer = null, clock = null;
+  let st, view = 0, dir = 1, timer = null, clock = null;
   // Daily: 5 tries a day, running total. Stored in this browser only.
   const TRIES = 5, START_TIME = 45, BONUS = 5;
   const today = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
   let daily = { date: today(), tries: 0, total: 0 };
   try { const saved = JSON.parse(localStorage.getItem("ph-daily") || "null"); if (saved && saved.date === today()) daily = saved; } catch (e) {}
   const saveDaily = () => { try { localStorage.setItem("ph-daily", JSON.stringify(daily)); } catch (e) {} };
-  try { ci = (+localStorage.getItem("ph-case") || 0) % C.length; } catch (e) {}
+  // Five random patients a day, drawn from every case. The same five survive a refresh; tomorrow is a new draw.
+  const byId = new Map(C.map((c) => [String(c.id), c]));
+  if (!Array.isArray(daily.queue) || daily.queue.length !== PER_DAY || !daily.queue.every((id) => byId.has(String(id)))) {
+    daily.queue = shuffle([...byId.keys()], Math.random).slice(0, PER_DAY); saveDaily();
+  }
+  const queued = (k) => byId.get(String(daily.queue[Math.min(k, PER_DAY - 1)]));
   const has = (id) => st.turns.some((t) => t.a.id === id);
   const hits = () => st.turns.filter((t) => t.finding).length;
 
-  function load(i) {
-    ci = i; try { localStorage.setItem("ph-case", i); } catch (e) {}
-    st = { p: C[i], limit: 5, turns: [], phase: "assessing", flags: [], time: START_TIME, started: false };
+  function load(patient) {
+    st = { p: patient, limit: 5, turns: [], phase: "assessing", flags: [], time: START_TIME, started: false };
     clearInterval(clock); showTime();
     view = 0; dir = Math.random() < .5 ? 1 : -1; clearInterval(timer);
-    document.querySelectorAll(".pose").forEach((el) => (el.style.backgroundImage = `url(${ATLAS(st.p.id)})`));
+    document.querySelectorAll(".pose").forEach((el) => (el.style.backgroundImage = `url(${ATLAS(st.p)})`));
     // Desktop case file: fill the paper, close the folder, hide the answer.
     $("cfName").textContent = `${st.p.name}, ${st.p.age}`;
     $("cfBackground").textContent = st.p.situation;
@@ -66,7 +123,13 @@
     const text = (raw || "").trim(); if (!text || st.phase === "done" || daily.tries >= TRIES) return; closeMenu();
     if (!st.started) startClock();
     if (st.phase === "calling" || ["i think", "i reckon", "my diagnosis", "diagnosis", "my call"].some((x) => norm(text).startsWith(x))) return call(text);
-    const a = resolve(text, st.p);
+    let a = resolve(text, st.p);
+    // Briefs: words that match the brief's key test count as running it, even if no named test matched.
+    if (st.p.brief && (!a || st.p.findings[a.id] == null)) {
+      const t = " " + norm(text), hits = st.p.briefWords.filter((k) => t.includes(" " + k));
+      const distinctive = hits.some((k) => k.length >= 5);   // any substantial word from this patient's own key test
+      if (hits.length >= Math.min(2, st.p.briefWords.length) || distinctive) a = { id: "brief_key", name: st.p.briefTest };
+    }
     if (!a) return toast("Hmm, I don\u2019t know that one. Try something like \u201cwhere does it hurt\u201d.");
     if ((st.p.given || []).includes(a.id)) return toast("That\u2019s already in the background under the patient.");
     if (has(a.id)) return toast("You\u2019ve already checked that. It\u2019s in your list.");
@@ -88,7 +151,23 @@
   }
 
   function call(text) {
-    finish(any(st.p.answers, text) ? "correct" : any(st.p.close, text) ? "close" : "wrong", text);
+    if (any(st.p.answers, text)) return finish("correct", text);
+    if (st.p.keywords && st.p.keywords.length) return finish(keywordVerdict(st.p, text), text);
+    finish(any(st.p.close, text) ? "close" : "wrong", text);
+  }
+
+  // Right: most of the answer's core words, including its most distinctive one (the rarest across the bank).
+  // Close: some of them. Shared words like "urinary" or "fracture" alone can't make it right.
+  function keywordVerdict(p, text) {
+    const t = " " + expand(text), hits = p.keywords.filter((k) => t.includes(" " + k));
+    const need = Math.max(1, Math.ceil(p.keywords.length * 0.6));
+    // the answer's most distinctive word(s): the fewest other answers share them
+    const least = Math.min(...p.keywords.map((k) => DF.get(k) || 0));
+    const rareHit = p.keywords.filter((k) => (DF.get(k) || 0) === least).some((k) => hits.includes(k));
+    // naming a distinctive word from a different answer (e.g. "urgency" for stress incontinence) caps it at close
+    const own = new Set([...p.keywords, ...(p.allKeywords || [])]), named = keywordsOf(expand(text)).filter((k) => !own.has(k) && (DF.get(k) || 0) > 0 && DF.get(k) <= 2);
+    if (hits.length >= need && rareHit && !named.length) return "correct";
+    return hits.length ? "close" : "wrong";
   }
 
   // ---------- clock ----------
@@ -133,7 +212,7 @@
     }, verdict === "correct" ? 1900 : 1500);
   }
   function nextCase() {
-    const n = (ci + 1) % C.length, desktop = matchMedia("(min-width: 821px)").matches;
+    const n = queued(daily.tries), desktop = matchMedia("(min-width: 821px)").matches;
     if (!desktop || RM) { load(n); setOpen(true); startClock(); return; }
     setOpen(false);                                   // the cover closes…
     setTimeout(() => { load(n); setTimeout(() => { setOpen(true); startClock(); }, 120); }, 760);   // …and flips open on the next patient
@@ -225,7 +304,7 @@
   $("ask").addEventListener("focus", () => $("game").classList.add("typing"));
   $("ask").addEventListener("blur", () => setTimeout(() => $("game").classList.remove("typing"), 80));
 
-  load(ci);
+  load(queued(daily.tries));
   showTries();
   if (daily.tries >= TRIES) showDone();
 })();

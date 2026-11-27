@@ -1337,7 +1337,9 @@
    "six minute walk",
    "6 minute walk",
    "6 min walk",
-   "shuttle walk"
+   "shuttle walk",
+   "timed walk",
+   "walk test"
   ]
  },
  {
@@ -1451,6 +1453,51 @@
    "capillary refill",
    "perfusion",
    "pulses"
+  ]
+ },
+ {
+  "id": "positional_test",
+  "name": "Dix-Hallpike and roll tests",
+  "category": "Special tests: vestibular",
+  "aliases": [
+   "dix hallpike",
+   "dix–hallpike",
+   "hallpike",
+   "roll test",
+   "supine roll",
+   "positional test",
+   "bppv test"
+  ]
+ },
+ {
+  "id": "vestibular_ocular",
+  "name": "Vestibular and eye movement screen",
+  "category": "Neurological",
+  "aliases": [
+   "ocular",
+   "eye tracking",
+   "saccade",
+   "smooth pursuit",
+   "vestibulo ocular",
+   "vestibular screen",
+   "head impulse",
+   "oculomotor",
+   "vomS",
+   "voms"
+  ]
+ },
+ {
+  "id": "walking_aid",
+  "name": "Walking aid trial",
+  "category": "Function",
+  "aliases": [
+   "walking aid",
+   "walking frame",
+   "rollator",
+   "crutches",
+   "walking stick",
+   "aid trial",
+   "fit an aid"
   ]
  }
 ]

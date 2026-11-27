@@ -39,6 +39,10 @@ The [interactive folder demo](demo/case-file.html) shows the yellow cover, clipp
 
 The [expansion roster](demo/expansion-roster.html) previews 100 case briefs, portraits and 16-angle turning sheets. See the [case and asset handoff](docs/expansion.md) for practice areas, source data and app integration.
 
+## Daily cases
+
+Every day the website draws five random patients from the whole bank: the five authored cases plus the 100 expansion briefs in `cases/expansion/cases.psv`. The draw survives a refresh and changes the next day. See [docs/expansion.md](docs/expansion.md#how-the-website-plays-the-briefs) for how briefs play before they get full findings.
+
 ## Characters
 
 The patients come from the [turnaround sheet](assets/characters/patient-turnarounds.png). See [docs/characters.md](docs/characters.md) for the style and the turn-and-zoom rules.

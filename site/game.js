@@ -45,7 +45,7 @@
     "Pelvic health": ["#ff9fc4", "#c7b8ff", "#ffe08a"], "Vestibular and headache": ["#a9d6ff", "#b69cff", "#ffd36e"],
     "Occupational and community": ["#ffb057", "#9fe0c6", "#7fb0ff"], "Persistent pain and complex care": ["#c7b8ff", "#ff9a8a", "#9fe0c6"]
   };
-  const GENERIC = new Set(["pain", "related", "syndrome", "disorder", "injury", "dysfunction", "impairment", "with", "and", "the", "for", "from", "left", "right", "acute", "chronic", "grade", "possible", "likely", "risk", "need", "needs", "assess", "assessment", "examination", "pattern", "consistent", "clinical", "early", "specialist", "presentation", "after", "before", "possible", "consider", "review", "history", "during", "then", "over", "across", "based", "check", "compare", "symptoms", "symptom", "task", "tasks", "measure", "monitor", "appropriate", "typical", "immediately", "suitable"]);
+  const GENERIC = new Set(["pain", "related", "syndrome", "disorder", "injury", "dysfunction", "impairment", "with", "and", "the", "for", "from", "left", "right", "acute", "chronic", "grade", "possible", "likely", "risk", "need", "needs", "assess", "assessment", "examination", "pattern", "consistent", "clinical", "early", "specialist", "presentation", "after", "before", "possible", "consider", "review", "history", "during", "then", "over", "across", "based", "check", "compare", "symptoms", "symptom", "task", "tasks", "measure", "monitor", "appropriate", "typical", "immediately", "suitable", "suspected", "suspect", "sport", "sports", "requiring", "further", "probable"]);
   const keywordsOf = (answer) => [...new Set(norm(answer).split(" ").filter((w) => w.length >= 3 && !GENERIC.has(w)).map((w) => w.slice(0, 6)))];
   // Everyday names players type, expanded to the clinical words in the answers.
   const SYNONYMS = {
@@ -56,9 +56,11 @@
     "ms": "multiple sclerosis", "copd": "chronic obstructive pulmonary", "dvt": "deep vein thrombosis", "pe": "pulmonary embolism",
     "crps": "complex regional pain", "oa": "osteoarthritis", "ra": "rheumatoid arthritis", "tka": "total knee arthroplasty", "tkr": "total knee arthroplasty",
     "thr": "total hip arthroplasty", "tha": "total hip arthroplasty", "tmj": "temporomandibular", "mtss": "medial tibial stress", "uti": "urinary tract infection",
-    "stroke": "stroke cva", "heart attack": "cardiac myocardial", "concussion": "concussion"
+    "stroke": "stroke cva", "plantar fasciitis": "plantar heel", "plantar fasciopathy": "plantar heel", "itb": "iliotibial lateral knee overuse", "it band": "iliotibial lateral knee overuse", "iliotibial": "lateral knee overuse", "high ankle sprain": "syndesmotic ankle", "syndesmosis": "syndesmotic", "ac joint": "acromioclavicular joint", "stress fracture": "bone stress", "heart attack": "cardiac myocardial", "concussion": "concussion"
   };
   const expand = (text) => { const t = " " + norm(text) + " "; let extra = ""; for (const [k, v] of Object.entries(SYNONYMS)) if (t.includes(" " + norm(k) + " ")) extra += " " + v; return norm(text + extra); };
+  // The text with everyday names (like "frozen shoulder") taken out, so their words don't count as naming another answer.
+  const plain = (text) => { let t = " " + norm(text) + " "; for (const k of Object.keys(SYNONYMS)) t = t.split(" " + norm(k) + " ").join(" " + SYNONYMS[k] + " "); return t.trim(); };
   // Mark answers on their core: the part before "with", "and", "plus", a comma or a semicolon.
   const coreOf = (answer) => answer.split(/,|;|\bwith\b|\bplus\b|\bwhile\b/i)[0];
   function briefCase(r, illustrated) {
@@ -68,10 +70,13 @@
     const ids = [...new Set(parts.map((x) => resolve(x, { findings: {} })).filter(Boolean).map((a) => a.id).filter((id) => id !== "hpc"))];
     const findings = { hpc: r.subjective, brief_key: r.finding };
     ids.forEach((id) => (findings[id] = r.finding));
+    // Words the background already gives you (like "stroke" in "after stroke") don't count towards the answer.
+    const given = new Set(keywordsOf(expand(r.setting))), core = keywordsOf(coreOf(r.answer)).length ? keywordsOf(coreOf(r.answer)) : keywordsOf(r.answer);
+    const keywords = core.filter((k) => !given.has(k)).length ? core.filter((k) => !given.has(k)) : core;
     return {
       id: r.id, name: first, age: +r.age, area: r.area, brief: true, draft: !illustrated.has(r.id),
       situation: `${first}, ${r.age}, ${setting}.`, palette: AREA_PALETTE[r.area] || ["#b69cff", "#ffd86b", "#ff9fc4"],
-      diagnosis: r.answer, answers: [r.answer], close: [], keywords: keywordsOf(coreOf(r.answer)).length ? keywordsOf(coreOf(r.answer)) : keywordsOf(r.answer), allKeywords: keywordsOf(expand(r.answer)),
+      diagnosis: r.answer, answers: [r.answer], close: [], keywords, allKeywords: keywordsOf(expand(r.answer)),
       briefTest: r.assessment, briefWords: keywordsOf(r.assessment),
       findings, given: ["hpc"], safety: [], key: ids, atlas: `assets/characters/expansion/atlases/${r.id}.png`
     };
@@ -165,7 +170,7 @@
     const least = Math.min(...p.keywords.map((k) => DF.get(k) || 0));
     const rareHit = p.keywords.filter((k) => (DF.get(k) || 0) === least).some((k) => hits.includes(k));
     // naming a distinctive word from a different answer (e.g. "urgency" for stress incontinence) caps it at close
-    const own = new Set([...p.keywords, ...(p.allKeywords || [])]), named = keywordsOf(expand(text)).filter((k) => !own.has(k) && (DF.get(k) || 0) > 0 && DF.get(k) <= 2);
+    const own = new Set([...p.keywords, ...(p.allKeywords || [])]), named = keywordsOf(expand(plain(text))).filter((k) => !own.has(k) && (DF.get(k) || 0) > 0 && DF.get(k) <= 2);
     if (hits.length >= need && rareHit && !named.length) return "correct";
     return hits.length ? "close" : "wrong";
   }

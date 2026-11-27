@@ -19,7 +19,7 @@ The [case briefs](../cases/expansion/cases.psv) cover 100 fictional patients bet
 
 ## Case file and engine handoff
 
-The UTF-8 pipe-delimited file has one row per case. Use `name`, `age`, `pronouns`, `setting` and `subjective` for the [opening folder](case-file.md). The `assessment`, `finding` and `answer` fields are author notes for building the debrief. Some targets are impairments, functional needs or escalation decisions. Keep those outcomes available alongside diagnosis in any case engine. For the urgent cases, prioritise recognising and escalating the concern in the scoring.
+The UTF-8 pipe-delimited file has one row per case. Use `name`, `age`, `pronouns`, `setting` and `subjective` for the [opening folder](case-file.md). The `assessment`, `finding` and `answer` fields are author notes for building the debrief. Some targets are impairments, functional needs or escalation decisions. Keep those outcomes available alongside diagnosis in any case engine. The `setting` shows on the card before any checks, so it says who the patient is and where you're seeing them, never the answer. A known condition the referral would mention (like "after stroke") is fine: the website doesn't count words that are already in the setting towards the answer. For the urgent cases, prioritise recognising and escalating the concern in the scoring.
 
 The entries are case briefs for expansion authoring. They need clinical educator review and full interactive assessment findings, scoring and acceptable answers before being enrolled in the playable case bank.
 

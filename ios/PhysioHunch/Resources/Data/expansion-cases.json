@@ -3033,5 +3033,661 @@
    "hpc"
   ],
   "atlas": "assets/characters/expansion/atlases/165.png"
+ },
+ {
+  "id": "166",
+  "name": "Miriam",
+  "age": 52,
+  "area": "Pelvic health",
+  "situation": "Miriam, 52, was referred from the menopause clinic. She gets sudden strong urges to wee and sometimes doesn't make it in time.",
+  "diagnosis": "Urgency urinary incontinence (overactive bladder)",
+  "answers": [
+   "urge incontinence",
+   "urgency incontinence",
+   "urge urinary incontinence",
+   "urgency urinary incontinence",
+   "overactive bladder",
+   "oab",
+   "detrusor overactiv",
+   "uui"
+  ],
+  "close": [
+   "stress incontinence",
+   "mixed incontinence",
+   "uti",
+   "bladder infection"
+  ],
+  "story": "Miriam's leaks come with a sudden urge, not with coughing or exercise. Her bladder diary shows small, frequent voids and she drinks lots of coffee. That's urgency urinary incontinence, and bladder training, caffeine reduction and pelvic floor urge suppression are the plan, with a medical check to exclude infection.",
+  "key": [
+   "questionnaire",
+   "associated",
+   "meds",
+   "red_flags"
+  ],
+  "findings": {
+   "hpc": "I get a sudden, really strong need to go and sometimes I leak before I get there. Hearing running water or putting my key in the door sets it off.",
+   "questionnaire": "Bladder diary shows 13 voids a day, mostly small amounts, and leaks only when a sudden urge hits.",
+   "associated": "Gets up twice a night to wee. No leaks with coughing or exercise. Bowels normal.",
+   "meds": "Started a diuretic for blood pressure last year.",
+   "red_flags": "No blood in the urine, no pain passing urine, no fever. Urine test is clear.",
+   "social": "Drinks five cups of coffee a day.",
+   "cough_test": "With consent, no leak with a strong cough. Pelvic floor contraction is fair.",
+   "pmhx": "Menopause two years ago.",
+   "goals": "Wants to get through a movie without rushing out."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/166.png"
+ },
+ {
+  "id": "167",
+  "name": "Paula",
+  "age": 37,
+  "area": "Pelvic health",
+  "situation": "Paula, 37, had a caesarean four months ago. She notices a bulge down the middle of her tummy when she does sit-ups.",
+  "diagnosis": "Postpartum abdominal separation (diastasis recti)",
+  "answers": [
+   "diastasis",
+   "rectus diastasis",
+   "drac",
+   "dra",
+   "abdominal separation",
+   "separated abdominal",
+   "separation of the abdominal"
+  ],
+  "close": [
+   "hernia",
+   "umbilical hernia",
+   "core weakness"
+  ],
+  "story": "Paula's rectus abdominis muscles have separated along the midline after pregnancy, with a gap of three finger widths and doming when she curls up. It isn't painful. Graded abdominal loading that controls the doming is the plan.",
+  "key": [
+   "palpation",
+   "observation",
+   "questionnaire",
+   "pain_score"
+  ],
+  "findings": {
+   "hpc": "Since the baby I see a ridge pop up down the middle of my tummy when I do a sit-up. It doesn't really hurt.",
+   "palpation": "With a curl-up there's a three-finger-wide gap between the muscles above the belly button. The tissue in the gap feels soft.",
+   "observation": "A ridge domes up along the midline when she lifts her head.",
+   "questionnaire": "No leaks or heaviness on a pelvic floor questionnaire.",
+   "pain_score": "No pain, just the look and feeling of weakness.",
+   "medical_notes": "Caesarean birth four months ago. Wound healed.",
+   "skin_wound": "Caesarean scar is healed and moves well.",
+   "goals": "Wants to go back to her gym classes."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/167.png"
+ },
+ {
+  "id": "168",
+  "name": "Renee",
+  "age": 34,
+  "area": "Pelvic health",
+  "situation": "Renee, 34, had a baby three months ago and had a bad tear during the birth. She has trouble holding in wind and sometimes leaks from her bowel.",
+  "diagnosis": "Anal incontinence after an obstetric anal sphincter injury. Specialist pathway",
+  "answers": [
+   "anal incontinence",
+   "faecal incontinence",
+   "fecal incontinence",
+   "bowel incontinence",
+   "sphincter",
+   "oasi",
+   "anal sphincter"
+  ],
+  "close": [
+   "pelvic floor weak",
+   "constipation",
+   "haemorrhoids"
+  ],
+  "story": "Renee's birth tear involved the anal sphincter. Since then she can't hold wind and sometimes leaks stool. She needs a specialist postpartum pelvic floor pathway, with consent-based assessment and pelvic floor and sphincter training.",
+  "key": [
+   "medical_notes",
+   "associated",
+   "questionnaire",
+   "cough_test"
+  ],
+  "findings": {
+   "hpc": "Since the birth I can't hold in wind, and a couple of times a week I've had a small bowel accident. It's really embarrassing.",
+   "medical_notes": "Vaginal birth with forceps. Third-degree tear repaired in theatre.",
+   "associated": "Urgency to open her bowels. No problems with her bladder.",
+   "questionnaire": "A bowel symptom score shows moderate anal incontinence, mostly wind and loose stool.",
+   "cough_test": "With consent, the squeeze of the anal sphincter is weak and doesn't hold for long.",
+   "red_flags": "No bleeding, no saddle numbness.",
+   "pain_score": "Some scar tenderness.",
+   "goals": "Wants to go out without worrying."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/168.png"
+ },
+ {
+  "id": "169",
+  "name": "Alex",
+  "age": 45,
+  "area": "Pelvic health",
+  "situation": "Alex, 45, has had pain right at the bottom of their spine for three months. Sitting on hard chairs and getting up are the worst.",
+  "diagnosis": "Coccydynia (tailbone pain)",
+  "answers": [
+   "coccydynia",
+   "coccygodynia",
+   "coccyx",
+   "tailbone",
+   "coccygeal"
+  ],
+  "close": [
+   "sacroiliac",
+   "sij",
+   "pilonidal",
+   "low back pain"
+  ],
+  "story": "Alex slipped and landed on their bottom on the stairs. Since then the coccyx hurts with sitting on hard surfaces and when getting up from sitting. It's tender to touch and there are no worrying features. That's coccydynia, managed with cushions, sitting changes and settling the area.",
+  "key": [
+   "palpation",
+   "pain_behaviour",
+   "red_flags",
+   "body_chart"
+  ],
+  "findings": {
+   "hpc": "I slipped on the stairs and landed on my bum three months ago. It still hurts when I sit on hard chairs, and especially when I stand up.",
+   "body_chart": "Pain in one small spot at the very bottom of the spine, between the buttocks.",
+   "pain_behaviour": "Worse sitting on hard chairs, leaning back and standing up from sitting. Better leaning forward or standing.",
+   "palpation": "Very tender right on the tip of the coccyx.",
+   "red_flags": "No weight loss, fever, night pain or bladder or bowel changes. No lump or discharge.",
+   "rom_lumbar": "Full and doesn't bring on the pain.",
+   "slr": "Negative.",
+   "sij": "Pain provocation tests are negative.",
+   "neuro_symptoms": "None.",
+   "goals": "Wants to sit through a work meeting."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/169.png"
+ },
+ {
+  "id": "170",
+  "name": "Jodie",
+  "age": 31,
+  "area": "Pelvic health",
+  "situation": "Jodie, 31, had a baby five months ago and wants to start running again. She can walk comfortably, but jumping brings on pressure and leaks.",
+  "diagnosis": "Pelvic floor symptoms with impact, not ready to return to running yet",
+  "answers": [
+   "not ready to run",
+   "not ready for running",
+   "running readiness",
+   "return to run"
+  ],
+  "close": [
+   "prolapse",
+   "diastasis",
+   "weakness",
+   "pelvic floor",
+   "stress urinary incontinence",
+   "stress incontinence"
+  ],
+  "story": "Jodie copes with walking and step-downs, but repeated hopping brings on vaginal pressure and leaking. Her pelvic floor isn't ready for running impact yet, so she needs graded pelvic floor and impact training before a return to run.",
+  "key": [
+   "hop_squat",
+   "questionnaire",
+   "cough_test",
+   "standing_balance"
+  ],
+  "findings": {
+   "hpc": "Walking is fine, but when I tried a few jumps with the kids I felt pressure and leaked.",
+   "hop_squat": "After 12 single-leg hops she feels pressure and leaks. Step-downs and squats are fine.",
+   "questionnaire": "Leaks only with jumping and running. No urgency.",
+   "cough_test": "With consent, the pelvic floor contraction is fair but tires after 5 seconds.",
+   "standing_balance": "Steady on one leg for 30 seconds.",
+   "medical_notes": "Vaginal birth five months ago, small tear.",
+   "mmt": "Glutes and calves have good strength.",
+   "goals": "Wants to run 5 km."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/170.png"
+ },
+ {
+  "id": "171",
+  "name": "Ravi",
+  "age": 56,
+  "area": "Vestibular and headache",
+  "situation": "Ravi, 56, has been referred to the dizziness clinic. For a week the room has spun for a few seconds every time he rolls onto his right side in bed.",
+  "diagnosis": "Right posterior canal BPPV",
+  "answers": [
+   "bppv",
+   "benign paroxysmal",
+   "posterior canal",
+   "canalith",
+   "crystals"
+  ],
+  "close": [
+   "vestibular",
+   "labyrinthitis",
+   "vestibular neuritis",
+   "menieres"
+  ],
+  "story": "Ravi's vertigo lasts seconds and comes with rolling right and looking up. The right Dix-Hallpike brings on brief upbeating torsional nystagmus, which is right posterior canal BPPV, treated with the Epley manoeuvre.",
+  "key": [
+   "positional_test",
+   "dizziness",
+   "vestibular_ocular",
+   "cranial_nerves"
+  ],
+  "findings": {
+   "hpc": "When I roll onto my right side in bed, the room spins for a few seconds. It also happens when I look up to a high shelf.",
+   "dizziness": "True spinning that lasts under a minute, only with head position changes.",
+   "positional_test": "Right Dix-Hallpike brings on spinning after a short delay, with upbeating torsional nystagmus that fades within 30 seconds. Left side is negative.",
+   "vestibular_ocular": "Head impulse test is normal both ways.",
+   "cranial_nerves": "Normal. No double vision, slurred speech or weakness.",
+   "rom_cervical": "Full, safe for positional testing.",
+   "standing_balance": "Steady.",
+   "red_flags": "No hearing loss or ringing.",
+   "goals": "Wants to sleep on his right side again."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/171.png"
+ },
+ {
+  "id": "172",
+  "name": "Leanne",
+  "age": 63,
+  "area": "Vestibular and headache",
+  "situation": "Leanne, 63, has been referred to the dizziness clinic. The room spins briefly when she rolls over in bed either way, worse rolling left.",
+  "diagnosis": "Left horizontal canal BPPV",
+  "answers": [
+   "horizontal canal",
+   "lateral canal",
+   "horizontal bppv",
+   "lateral canal bppv",
+   "hc bppv"
+  ],
+  "close": [
+   "bppv",
+   "posterior canal",
+   "benign paroxysmal",
+   "vestibular"
+  ],
+  "story": "Leanne's supine roll test brings on horizontal nystagmus beating towards the ground on both sides, stronger to the left. That's left horizontal canal BPPV, which needs a different repositioning manoeuvre than the posterior canal type.",
+  "key": [
+   "positional_test",
+   "dizziness",
+   "cranial_nerves",
+   "vestibular_ocular"
+  ],
+  "findings": {
+   "hpc": "When I roll over in bed the room spins for a bit. It happens both ways, but rolling left is worse.",
+   "dizziness": "Spinning lasting under a minute, brought on by rolling in bed.",
+   "positional_test": "Dix-Hallpike gives no torsional nystagmus. The supine roll test brings on horizontal nystagmus beating towards the ground on both sides, stronger when turned to the left.",
+   "cranial_nerves": "Normal. No double vision or speech changes.",
+   "vestibular_ocular": "Head impulse test normal.",
+   "red_flags": "No new headache, weakness or hearing change.",
+   "standing_balance": "Steady.",
+   "goals": "Wants the spinning to stop."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/172.png"
+ },
+ {
+  "id": "173",
+  "name": "Tariq",
+  "age": 50,
+  "area": "Vestibular and headache",
+  "situation": "Tariq, 50, had a bad bout of spinning vertigo two months ago that kept him in bed for days. He's better, but quick head turns still make things blur and he feels unsteady.",
+  "diagnosis": "Right unilateral vestibular hypofunction",
+  "answers": [
+   "vestibular hypofunction",
+   "unilateral vestibular",
+   "vestibular loss",
+   "uvh",
+   "vestibular deficit"
+  ],
+  "close": [
+   "vestibular neuritis",
+   "labyrinthitis",
+   "bppv",
+   "vestibular"
+  ],
+  "story": "After vestibular neuritis Tariq's right inner ear isn't fully working. A head impulse to the right shows a catch-up saccade, and his vision blurs with quick head movement. Gaze stability exercises and balance training are the plan.",
+  "key": [
+   "vestibular_ocular",
+   "standing_balance",
+   "positional_test",
+   "cranial_nerves"
+  ],
+  "findings": {
+   "hpc": "Two months ago I had spinning that kept me in bed for three days. That's gone, but if I turn my head quickly things blur and I feel off.",
+   "vestibular_ocular": "Head impulse to the right shows a catch-up saccade. Dynamic visual acuity drops four lines when his head moves.",
+   "standing_balance": "Sways a lot standing on foam with his eyes closed.",
+   "positional_test": "Dix-Hallpike negative both sides.",
+   "cranial_nerves": "Normal.",
+   "dizziness": "Not spinning now. Feels off balance with quick movements.",
+   "gait": "Veers when turning his head while walking.",
+   "goals": "Wants to drive and play tennis again."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/173.png"
+ },
+ {
+  "id": "174",
+  "name": "Maja",
+  "age": 32,
+  "area": "Vestibular and headache",
+  "situation": "Maja, 32, has had episodes of dizziness for a year. She's had migraines since she was a teenager.",
+  "diagnosis": "Possible vestibular migraine (needs a medical diagnosis)",
+  "answers": [
+   "vestibular migraine",
+   "migraine associated vertigo",
+   "migrainous vertigo",
+   "migraine-associated vertigo"
+  ],
+  "close": [
+   "menieres",
+   "bppv",
+   "vestibular"
+  ],
+  "story": "Maja's dizzy spells last hours and come with light and sound sensitivity, often alongside her migraine headaches. Positional testing and the inner ear checks are normal. That points to vestibular migraine, which needs a medical diagnosis and migraine management.",
+  "key": [
+   "dizziness",
+   "associated",
+   "positional_test",
+   "red_flags"
+  ],
+  "findings": {
+   "hpc": "The dizzy spells last a few hours. Lights and sounds feel really intense during them, and some come with my usual headaches.",
+   "dizziness": "Episodes last 1 to 6 hours, about twice a month. Swaying and spinning.",
+   "associated": "Light and sound sensitivity and nausea during episodes. Often around her period and after poor sleep.",
+   "positional_test": "Dix-Hallpike and roll tests are negative.",
+   "vestibular_ocular": "Normal between episodes.",
+   "red_flags": "No hearing loss, double vision, weakness or sudden severe headache.",
+   "cranial_nerves": "Normal.",
+   "goals": "Wants to stop missing work."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/174.png"
+ },
+ {
+  "id": "175",
+  "name": "Thandi",
+  "age": 43,
+  "area": "Vestibular and headache",
+  "situation": "Thandi, 43, had an inner ear problem a year ago that got better. But most days she still feels like the floor is moving, especially in supermarkets and crowds.",
+  "diagnosis": "Possible persistent postural-perceptual dizziness (PPPD)",
+  "answers": [
+   "pppd",
+   "persistent postural",
+   "postural perceptual",
+   "functional dizziness",
+   "visual vertigo"
+  ],
+  "close": [
+   "vestibular hypofunction",
+   "anxiety",
+   "vestibular migraine",
+   "bppv"
+  ],
+  "story": "Thandi's original inner ear problem has healed, but she's had non-spinning dizziness most days for months, worse upright and in visually busy places. Clinical tests are normal. That fits persistent postural-perceptual dizziness, treated with habituation exercises and graded exposure.",
+  "key": [
+   "dizziness",
+   "vestibular_ocular",
+   "questionnaire",
+   "standing_balance"
+  ],
+  "findings": {
+   "hpc": "Most days I feel like the floor's unstable, like being on a boat. Supermarket aisles and crowds are the worst.",
+   "dizziness": "Non-spinning unsteadiness most days for nine months. Worse standing and walking, better lying down.",
+   "vestibular_ocular": "Head impulse is normal both ways. Watching moving stripes makes her feel worse.",
+   "questionnaire": "High score on a dizziness handicap questionnaire. Anxiety about going out.",
+   "standing_balance": "Holds herself stiffly, but her balance tests are within normal limits.",
+   "positional_test": "Negative.",
+   "cranial_nerves": "Normal.",
+   "goals": "Wants to do her grocery shopping."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/175.png"
+ },
+ {
+  "id": "176",
+  "name": "Arthur",
+  "age": 75,
+  "area": "Vestibular and headache",
+  "situation": "Arthur, 75, has been referred to the balance clinic. Things bounce when he walks and his balance is much worse in dim light.",
+  "diagnosis": "Possible bilateral vestibular hypofunction",
+  "answers": [
+   "bilateral vestibular",
+   "bilateral vestibulopathy",
+   "bilateral hypofunction",
+   "bilateral vestibular loss",
+   "oscillopsia"
+  ],
+  "close": [
+   "vestibular hypofunction",
+   "peripheral neuropathy",
+   "cerebellar"
+  ],
+  "story": "Arthur had a course of strong IV antibiotics last year. Both head impulse directions show catch-up saccades, his vision bounces with walking and he relies on vision for balance. That's possible bilateral vestibular loss, which needs specialist confirmation and balance and gaze training.",
+  "key": [
+   "vestibular_ocular",
+   "standing_balance",
+   "proprioception",
+   "meds"
+  ],
+  "findings": {
+   "hpc": "When I walk, the world bounces up and down so I can't read signs. In the dark I'm all over the place.",
+   "vestibular_ocular": "Head impulses to both sides show catch-up saccades. Dynamic visual acuity drops five lines.",
+   "standing_balance": "Steady with his eyes open on a firm floor. Falls on foam with his eyes closed.",
+   "proprioception": "Normal at the toes.",
+   "meds": "Had a long course of gentamicin for an infection last year.",
+   "dermatomes": "Normal sensation in the feet.",
+   "coordination": "Normal finger to nose and heel to shin.",
+   "falls_history": "Fell in the garden at dusk.",
+   "goals": "Wants to walk safely at night."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/176.png"
+ },
+ {
+  "id": "177",
+  "name": "Julia",
+  "age": 48,
+  "area": "Vestibular and headache",
+  "situation": "Julia, 48, works long hours at a computer. She gets a headache on one side that starts near the back of her neck.",
+  "diagnosis": "Possible cervicogenic headache",
+  "answers": [
+   "cervicogenic",
+   "neck related headache",
+   "neck-related headache",
+   "cervical headache"
+  ],
+  "close": [
+   "tension headache",
+   "tension-type",
+   "migraine",
+   "neck pain"
+  ],
+  "story": "Julia's one-sided headache starts at the neck, comes on after long sessions at the desk and is reproduced by pressure on her upper neck joints. Her neck rotation is limited. That fits cervicogenic headache, once red flags are excluded.",
+  "key": [
+   "rom_cervical",
+   "paivm",
+   "red_flags",
+   "dnf"
+  ],
+  "findings": {
+   "hpc": "It starts at the back of my neck on the right and spreads over my head to behind my eye, usually after long days at the computer.",
+   "red_flags": "No sudden worst-ever headache, fever, neuro changes, visual loss or jaw pain on chewing.",
+   "rom_cervical": "Flexion-rotation test is limited to 25 degrees on the right and brings on her headache.",
+   "paivm": "Pressing on the right C1 to C2 joint reproduces her familiar headache.",
+   "dnf": "Deep neck flexor endurance is 12 seconds.",
+   "cervical_arterial": "No signs of arterial problems.",
+   "neuro_symptoms": "None.",
+   "body_chart": "Pain on the right side of the neck spreading to behind the right eye. Always the same side.",
+   "goals": "Wants to work a full day without a headache."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/177.png"
+ },
+ {
+  "id": "178",
+  "name": "Sami",
+  "age": 59,
+  "area": "Vestibular and headache",
+  "situation": "Sami, 59, has walked in with severe dizziness that hasn't stopped since this morning. He's seeing double and struggling to stand.",
+  "diagnosis": "Possible posterior circulation stroke. Emergency escalation",
+  "answers": [
+   "stroke",
+   "posterior circulation",
+   "cerebellar stroke",
+   "brainstem",
+   "vertebrobasilar",
+   "cva",
+   "tia"
+  ],
+  "close": [
+   "vestibular neuritis",
+   "central vertigo",
+   "bppv",
+   "labyrinthitis"
+  ],
+  "story": "Continuous vertigo with new double vision, a normal head impulse, nystagmus that changes direction and not being able to sit or stand without help are central warning signs. That's a possible posterior circulation stroke, so call an ambulance now.",
+  "key": [
+   "cranial_nerves",
+   "vestibular_ocular",
+   "sitting_balance",
+   "red_flags"
+  ],
+  "findings": {
+   "hpc": "It started this morning and hasn't stopped. I'm seeing double and I can't stand without holding on.",
+   "cranial_nerves": "New double vision on looking to the left. Slightly slurred speech.",
+   "vestibular_ocular": "Head impulse is normal both ways. Nystagmus changes direction with gaze. Skew deviation on cover test.",
+   "sitting_balance": "Can't sit upright without support.",
+   "red_flags": "High blood pressure, smoker, sudden onset this morning.",
+   "coordination": "Clumsy finger to nose on the left.",
+   "obs": "Blood pressure 190/100.",
+   "positional_test": "Not appropriate. These signs need emergency care.",
+   "dizziness": "Continuous, not brought on by position."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/178.png"
+ },
+ {
+  "id": "179",
+  "name": "Tess",
+  "age": 27,
+  "area": "Vestibular and headache",
+  "situation": "Tess, 27, had a concussion a month ago and is struggling to read. Screens and busy places bring on dizziness and headaches.",
+  "diagnosis": "Visual and vestibular symptoms after concussion",
+  "answers": [
+   "visual vestibular",
+   "vestibular ocular",
+   "oculomotor",
+   "convergence insufficiency",
+   "convergence",
+   "vestibulo ocular",
+   "vor"
+  ],
+  "close": [
+   "post concussion syndrome",
+   "vestibular",
+   "migraine"
+  ],
+  "story": "A month after concussion, eye tracking, near focusing and visual motion all bring on Tess's symptoms, and her near point of convergence is far out. That's a visual-vestibular problem after concussion, treated with graded oculomotor and vestibular exercises.",
+  "key": [
+   "vestibular_ocular",
+   "dizziness",
+   "positional_test",
+   "cognition"
+  ],
+  "findings": {
+   "hpc": "I can't read for long, and screens or busy shopping centres make me dizzy and give me a headache.",
+   "vestibular_ocular": "Smooth pursuits and saccades bring on headache and dizziness. Near point of convergence is 14 cm. Head turns while looking at a target make it worse.",
+   "dizziness": "A floating feeling with screens and busy places.",
+   "positional_test": "Negative.",
+   "cognition": "Slow reading, loses their place.",
+   "rom_cervical": "Full, mild upper neck tightness.",
+   "red_flags": "No worsening headache, vomiting or weakness.",
+   "goals": "Wants to get back to study."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/179.png"
+ },
+ {
+  "id": "180",
+  "name": "Anita",
+  "age": 68,
+  "area": "Vestibular and headache",
+  "situation": "Anita, 68, has had spinning attacks that last hours. Her left ear feels full, rings and her hearing comes and goes.",
+  "diagnosis": "Possible Ménière's disease. Refer for diagnostic assessment",
+  "answers": [
+   "meniere",
+   "ménière",
+   "menière",
+   "endolymphatic hydrops"
+  ],
+  "close": [
+   "vestibular migraine",
+   "labyrinthitis",
+   "acoustic neuroma",
+   "bppv"
+  ],
+  "story": "Anita has episodes of spinning lasting hours, along with fullness, ringing and fluctuating hearing in the left ear. Between attacks her positional tests are normal. That pattern fits Ménière's disease, which needs ENT and audiology assessment to confirm.",
+  "key": [
+   "dizziness",
+   "associated",
+   "positional_test",
+   "imaging"
+  ],
+  "findings": {
+   "hpc": "The attacks of spinning last a couple of hours. Before one, my left ear feels full and rings, and my hearing goes muffled.",
+   "dizziness": "Attacks of true spinning lasting 2 to 4 hours, every few weeks. Vomits during them.",
+   "associated": "Ringing, fullness and fluctuating low hearing in the left ear before and during attacks.",
+   "positional_test": "Dix-Hallpike and roll tests negative between attacks.",
+   "vestibular_ocular": "Head impulse normal between attacks.",
+   "imaging": "An audiogram is needed. MRI may be ordered to rule out other causes.",
+   "cranial_nerves": "Normal apart from reduced hearing on the left.",
+   "goals": "Wants to stop the attacks."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/180.png"
  }
 ]

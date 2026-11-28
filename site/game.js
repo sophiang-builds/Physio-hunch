@@ -4,9 +4,20 @@
   Data comes from the app's JSON so web and iOS always share one case bank.
 */
 (async () => {
+  function showReviewNotice() {
+    const heading = document.createElement("h1");
+    heading.textContent = "Paused for clinical review";
+    document.body.replaceChildren(heading);
+  }
+
+  // A cached game page must also respect the review hold.
+  if (!document.documentElement.hasAttribute("data-play-enabled")) {
+    showReviewNotice();
+    return;
+  }
+
   const DATA = "ios/PhysioHunch/Resources/Data/";
   const ATLAS = (p) => p.atlas || `assets/characters/pose-atlases/${p.id}.png`;
-  const BRIEFS = "cases/expansion/cases.psv";            // 100 expansion briefs, read at runtime (only those with finished art play)
   const PER_DAY = 5;                                     // random patients per day
   const VIEWS = ["front", "right", "back", "left"];
   // zooms from assets/characters/turn-clips/manifest.json; push-ins centre on the face
@@ -23,6 +34,11 @@
     return;
   }
 
+  if (C.length === 0) {
+    showReviewNotice();
+    return;
+  }
+
   // ---------- resolver ----------
   const norm = (s) => { let o = ""; for (const ch of s.toLowerCase()) { if (ch === "’" || ch === "'") o += "'"; else if (/[\p{L}\p{N}]/u.test(ch)) o += ch; else o += " "; } return o.split(" ").filter(Boolean).join(" "); };
   const contains = (a, t) => (" " + t + " ").includes(a.length <= 3 ? ` ${a} ` : ` ${a}`);
@@ -35,16 +51,6 @@
   const shuffle = (arr, r) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const seedOf = (s, salt) => [...s].reduce((h, c) => (h * 33 + c.charCodeAt(0)) % 2147483647, 5381 + salt);
 
-  // ---------- expansion briefs: turn each row into a playable case ----------
-  // A brief has one key test and its finding. Typing anything that resolves to that test reveals it;
-  // the opening complaint is given up front. The answer is marked on its key words.
-  const AREA_PALETTE = {
-    "Musculoskeletal": ["#b69cff", "#ffd86b", "#ff9fc4"], "Sports and performance": ["#ffb057", "#e3f05c", "#ff7a59"],
-    "Neurological": ["#9cc9f2", "#c7b8ff", "#ffd1a8"], "Cardiorespiratory and acute": ["#9fe0c6", "#a9d6ff", "#ffe08a"],
-    "Older adults and falls": ["#c7b8ff", "#ffd1a8", "#9cc9f2"], "Paediatric and adolescent": ["#ffd86b", "#9fe0c6", "#ff9fc4"],
-    "Pelvic health": ["#ff9fc4", "#c7b8ff", "#ffe08a"], "Vestibular and headache": ["#a9d6ff", "#b69cff", "#ffd36e"],
-    "Occupational and community": ["#ffb057", "#9fe0c6", "#7fb0ff"], "Persistent pain and complex care": ["#c7b8ff", "#ff9a8a", "#9fe0c6"]
-  };
   const GENERIC = new Set(["pain", "related", "syndrome", "disorder", "injury", "dysfunction", "impairment", "with", "and", "the", "for", "from", "left", "right", "acute", "chronic", "grade", "possible", "likely", "risk", "need", "needs", "assess", "assessment", "examination", "pattern", "consistent", "clinical", "early", "specialist", "presentation", "after", "before", "possible", "consider", "review", "history", "during", "then", "over", "across", "based", "check", "compare", "symptoms", "symptom", "task", "tasks", "measure", "monitor", "appropriate", "typical", "immediately", "suitable", "suspected", "suspect", "sport", "sports", "requiring", "further", "probable"]);
   const keywordsOf = (answer) => [...new Set(norm(answer).split(" ").filter((w) => w.length >= 3 && !GENERIC.has(w)).map((w) => w.slice(0, 6)))];
   // Everyday names players type, expanded to the clinical words in the answers.
@@ -63,32 +69,6 @@
   const plain = (text) => { let t = " " + norm(text) + " "; for (const k of Object.keys(SYNONYMS)) t = t.split(" " + norm(k) + " ").join(" " + SYNONYMS[k] + " "); return t.trim(); };
   // Mark answers on their core: the part before "with", "and", "plus", a comma or a semicolon.
   const coreOf = (answer) => answer.split(/,|;|\bwith\b|\bplus\b|\bwhile\b/i)[0];
-  function briefCase(r, illustrated) {
-    const first = r.name.split(" ")[0];
-    const setting = r.setting ? r.setting[0].toLowerCase() + r.setting.slice(1) : "";
-    const parts = [r.assessment, ...r.assessment.split(/,|;|\/|\band\b|\bor\b|\bthen\b|\bwith\b/i)].map((x) => x.trim()).filter((x) => x.length > 2);
-    const ids = [...new Set(parts.map((x) => resolve(x, { findings: {} })).filter(Boolean).map((a) => a.id).filter((id) => id !== "hpc"))];
-    const findings = { hpc: r.subjective, brief_key: r.finding };
-    ids.forEach((id) => (findings[id] = r.finding));
-    // Words the background already gives you (like "stroke" in "after stroke") don't count towards the answer.
-    const given = new Set(keywordsOf(expand(r.setting))), core = keywordsOf(coreOf(r.answer)).length ? keywordsOf(coreOf(r.answer)) : keywordsOf(r.answer);
-    const keywords = core.filter((k) => !given.has(k)).length ? core.filter((k) => !given.has(k)) : core;
-    return {
-      id: r.id, name: first, age: +r.age, area: r.area, brief: true, draft: !illustrated.has(r.id),
-      situation: `${first}, ${r.age}, ${setting}.`, palette: AREA_PALETTE[r.area] || ["#b69cff", "#ffd86b", "#ff9fc4"],
-      diagnosis: r.answer, answers: [r.answer], close: [], keywords, allKeywords: keywordsOf(expand(r.answer)),
-      briefTest: r.assessment, briefWords: keywordsOf(r.assessment),
-      findings, given: ["hpc"], safety: [], key: ids, atlas: `assets/characters/expansion/atlases/${r.id}.png`
-    };
-  }
-  try {
-    const [psv, ill, full] = await Promise.all([fetch(BRIEFS).then((r) => r.text()), fetch("assets/characters/expansion/illustrated.json").then((r) => r.json()).catch(() => []), fetch(DATA + "expansion-cases.json").then((r) => r.json()).catch(() => [])]);
-    const [head, ...rows] = psv.trim().split(/\r?\n/);
-    const cols = head.split("|"), illustrated = new Set(ill.map(String));
-    // Written cases play like the original five: their own findings for each check, and a list of accepted answers.
-    const written = new Map(full.map((c) => [String(c.id), { ...c, palette: AREA_PALETTE[c.area] || ["#b69cff", "#ffd86b", "#ff9fc4"] }]));
-    rows.forEach((line) => { const v = line.split("|"); const r = Object.fromEntries(cols.map((c, i) => [c, (v[i] || "").trim()])); if (r.id && r.answer && illustrated.has(r.id)) C.push(written.get(r.id) || briefCase(r, illustrated)); });   // finished art only; drafts join when listed in illustrated.json
-  } catch (e) { /* the original cases still play if the briefs can't load */ }
   // How many answers each keyword appears in, to spot the distinctive ones.
   const DF = new Map();
   C.forEach((c) => (c.keywords || keywordsOf(c.diagnosis)).forEach((k) => DF.set(k, (DF.get(k) || 0) + 1)));

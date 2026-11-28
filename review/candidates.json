@@ -1,0 +1,1684 @@
+[
+ {
+  "id": "101",
+  "name": "Aisha",
+  "age": 31,
+  "area": "Musculoskeletal",
+  "situation": "Aisha, 31, works in an office and has just started playing tennis again. The outside of her right elbow has been sore for six weeks.",
+  "diagnosis": "Lateral elbow tendinopathy (tennis elbow)",
+  "answers": [
+   "tennis elbow",
+   "lateral elbow tendinopathy",
+   "lateral epicondyl",
+   "extensor tendinopathy",
+   "common extensor",
+   "ecrb",
+   "lateral elbow tendin",
+   "extensor carpi radialis brevis"
+  ],
+  "close": [
+   "tendinopathy",
+   "tendinitis",
+   "tendonitis",
+   "epicondyl",
+   "extensor strain"
+  ],
+  "story": "Aisha went back to social tennis twice a week after five years off, on top of long days at the keyboard. The load on her wrist extensors outran their capacity and the common extensor origin became painful. Gripping and resisted wrist extension reproduce it, the neck and nerves are clear.",
+  "key": [
+   "elbow_tendon",
+   "grip",
+   "palpation",
+   "rom_wrist"
+  ],
+  "findings": {
+   "hpc": "It came on gradually after I went back to tennis. Lifting a full kettle or hitting a backhand really hurts on the outside of my elbow.",
+   "body_chart": "Pain on the outside of the right elbow, sometimes spreading a little way down the back of the forearm.",
+   "pain_score": "5/10 when gripping, 1/10 at rest.",
+   "pain_behaviour": "Worse with gripping, lifting a mug, shaking hands and backhands. Settles with rest.",
+   "pain_24h": "Stiff and achy first thing, worse at the end of a day at the computer.",
+   "previous_episodes": "Never had this before.",
+   "goals": "Wants to keep playing tennis twice a week.",
+   "observation": "No swelling, redness or deformity around the elbow.",
+   "palpation": "Very tender just in front of and below the lateral epicondyle, over the common extensor origin.",
+   "elbow_tendon": "Resisted wrist extension with the elbow straight reproduces her familiar lateral elbow pain. Resisted middle finger extension does too.",
+   "grip": "Pain-free grip 14 kg on the right against 29 kg on the left, and the right one hurts on the outside of the elbow.",
+   "rom_elbow": "Full range. Pain only at the end of passive wrist flexion with the elbow straight.",
+   "rom_wrist": "Full range. Stretching the wrist into flexion with the elbow straight pulls on the sore spot.",
+   "rom_cervical": "Full and pain free. Doesn't change the elbow pain.",
+   "spurling": "Negative.",
+   "ulnt": "Radial nerve tension test is no different from the left side.",
+   "neuro_symptoms": "No pins and needles or numbness.",
+   "rom_shoulder": "Full and pain free."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/101.png"
+ },
+ {
+  "id": "103",
+  "name": "Keira",
+  "age": 54,
+  "area": "Musculoskeletal",
+  "situation": "Keira, 54, works in retail. Her left shoulder has been getting stiffer for four months and she's changed how she gets dressed.",
+  "diagnosis": "Adhesive capsulitis (frozen shoulder)",
+  "answers": [
+   "frozen shoulder",
+   "adhesive capsulitis",
+   "capsulitis",
+   "frozen"
+  ],
+  "close": [
+   "capsular",
+   "stiff shoulder",
+   "shoulder stiffness",
+   "capsule"
+  ],
+  "story": "Keira's shoulder became painful and then steadily stiffer with no injury. Both active and passive movement are restricted, with external rotation the most limited, the capsular pattern of a frozen shoulder. She has type 2 diabetes, a known risk factor.",
+  "key": [
+   "prom_shoulder",
+   "rom_shoulder",
+   "pmhx",
+   "imaging"
+  ],
+  "findings": {
+   "hpc": "There was no injury. It started as a nagging ache and over four months it's got stiffer and stiffer. I can't get my arm into a jacket sleeve or do up my bra any more.",
+   "body_chart": "Deep ache across the whole left shoulder and upper arm.",
+   "pain_score": "4/10 most of the time, 8/10 if she moves it suddenly.",
+   "pain_behaviour": "Sharp pain if she reaches quickly or someone bumps her arm. Can't reach behind her back.",
+   "pain_24h": "Wakes her most nights, especially lying on the left.",
+   "previous_episodes": "Nothing like this before.",
+   "pmhx": "Type 2 diabetes for eight years.",
+   "meds": "Metformin.",
+   "goals": "Wants to dress herself easily and reach the top shelves at work.",
+   "observation": "Holds the left arm close to her side. Mild wasting around the shoulder.",
+   "rom_shoulder": "Active elevation to 95 degrees, external rotation to 10 degrees, hand behind back only to her buttock.",
+   "prom_shoulder": "Passive range is just as limited as active. External rotation is the most restricted, then abduction, then internal rotation. Firm end feel.",
+   "cuff_tests": "Strength is fair within the range she has. Resisted movements are only mildly sore.",
+   "painful_arc": "Can't tell, she can't lift far enough.",
+   "imaging": "X-ray normal. No arthritis or calcification.",
+   "rom_cervical": "Full and doesn't change the shoulder.",
+   "neuro_symptoms": "No pins and needles."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/103.png"
+ },
+ {
+  "id": "105",
+  "name": "Hassan",
+  "age": 66,
+  "area": "Musculoskeletal",
+  "situation": "Hassan, 66, is a retired chef who likes walking to the shops. His right knee has been aching for a year.",
+  "diagnosis": "Knee osteoarthritis",
+  "answers": [
+   "osteoarthritis",
+   "knee oa",
+   "arthritis",
+   "degenerative",
+   "oa"
+  ],
+  "close": [
+   "wear and tear",
+   "joint degeneration",
+   "meniscal"
+  ],
+  "story": "Hassan's knee pain has built up slowly over a year with activity-related pain, short morning stiffness and age over 45, which together meet the clinical criteria for knee osteoarthritis. Range is a little reduced with crepitus, and there are no red flags.",
+  "key": [
+   "pain_24h",
+   "rom_knee",
+   "sit_to_stand",
+   "palpation"
+  ],
+  "findings": {
+   "hpc": "It's built up over about a year. It aches on the inside of my knee the further I walk. It's stiff first thing but that goes within 15 minutes.",
+   "body_chart": "Ache on the inside of the right knee.",
+   "pain_score": "5/10 after a long walk, 1/10 at rest.",
+   "pain_behaviour": "Worse with longer walks, stairs and getting out of a low chair. Better with rest.",
+   "pain_24h": "Stiff for about 10 minutes when he gets up. Loosens with moving. Achy in the evening after a busy day.",
+   "previous_episodes": "None. Years of standing in kitchens.",
+   "pmhx": "High blood pressure, well controlled.",
+   "goals": "Wants to keep walking to the shops and back, about 2 km.",
+   "red_flags": "No weight loss, fever, night sweats or hot swollen joint.",
+   "observation": "Slight bony enlargement on the inside of the knee and a little bow legged.",
+   "palpation": "Tender along the medial joint line. Bony swelling there.",
+   "rom_knee": "Flexion 115 degrees against 135 on the left, missing the last 5 degrees of extension. Creaking through the range.",
+   "effusion": "Small effusion on the sweep test.",
+   "sit_to_stand": "Uses his hands to get up and the right knee hurts.",
+   "gait": "Slightly antalgic on the right.",
+   "imaging": "Not needed for the diagnosis. An old X-ray showed narrowing on the inside of the joint.",
+   "lachman": "Firm end point.",
+   "meniscal": "McMurray's gives joint line pain but no click."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/105.png"
+ },
+ {
+  "id": "106",
+  "name": "Li Mei",
+  "age": 44,
+  "area": "Musculoskeletal",
+  "situation": "Li Mei, 44, is a barista who's on her feet most of her shift. Her left heel has been sore for three months.",
+  "diagnosis": "Plantar heel pain (plantar fasciopathy)",
+  "answers": [
+   "plantar fascii",
+   "plantar fasciopathy",
+   "plantar heel",
+   "plantar fasc",
+   "heel pain"
+  ],
+  "close": [
+   "heel spur",
+   "fat pad",
+   "calcaneal"
+  ],
+  "story": "Long shifts on a hard floor in flat shoes overloaded the plantar fascia where it attaches to the heel. First-step pain in the morning that eases and then returns after long standing is the classic pattern, and the windlass test reproduces it.",
+  "key": [
+   "palpation",
+   "windlass",
+   "pain_24h",
+   "rom_ankle"
+  ],
+  "findings": {
+   "hpc": "It's been coming on for about three months. The first few steps in the morning are awful, then it eases off, and it comes back after a long shift.",
+   "body_chart": "Sharp pain under the inside of the left heel.",
+   "pain_score": "7/10 on the first steps in the morning, 3/10 midday.",
+   "pain_behaviour": "Worse with first steps after rest and after standing for hours. Eases once she gets going.",
+   "pain_24h": "Worst first thing, better midday, worse again at the end of a shift.",
+   "previous_episodes": "None.",
+   "social": "Wears flat shoes at work on a concrete floor. Recently put on some weight.",
+   "goals": "Wants to work her full shift without limping.",
+   "observation": "No swelling or bruising. Feet look normal.",
+   "palpation": "Very tender at the plantar-medial heel where the fascia attaches.",
+   "windlass": "Lifting her big toe reproduces her familiar heel pain.",
+   "rom_ankle": "Dorsiflexion is tight: knee to wall 5 cm on the left against 10 cm on the right.",
+   "calf_raise": "12 single-leg raises on the left, 22 on the right.",
+   "thompson": "Negative.",
+   "neuro_symptoms": "No numbness or burning in the foot.",
+   "gait": "Short stance on the left first thing.",
+   "imaging": "None needed."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/106.png"
+ },
+ {
+  "id": "110",
+  "name": "Arjun",
+  "age": 49,
+  "area": "Musculoskeletal",
+  "situation": "Arjun, 49, is a delivery driver who lifts parcels all day. His lower back has flared up again this week.",
+  "diagnosis": "Non-specific (mechanical) low back pain",
+  "answers": [
+   "non specific low back",
+   "nonspecific low back",
+   "non-specific low back",
+   "mechanical low back",
+   "mechanical back",
+   "simple back pain",
+   "nslbp",
+   "non specific back"
+  ],
+  "close": [
+   "low back pain",
+   "back strain",
+   "lumbar strain",
+   "muscle strain",
+   "facet"
+  ],
+  "story": "Arjun has recurring episodes of back pain linked to repeated lifting and long hours sitting in the van. The pain stays in his back, changes with movement and there are no red flags or neurological signs, so it's non-specific low back pain to manage actively.",
+  "key": [
+   "red_flags",
+   "neuro_symptoms",
+   "rom_lumbar",
+   "slr"
+  ],
+  "findings": {
+   "hpc": "It flared up on Tuesday after a big day of lifting. It's happened a few times a year. It actually feels better once I get moving.",
+   "body_chart": "Ache across the lower back above the belt line. Nothing into the buttocks or legs.",
+   "pain_score": "5/10 bending, 2/10 walking.",
+   "pain_behaviour": "Worse bending, lifting and after long drives. Better walking and moving.",
+   "pain_24h": "Stiff for half an hour in the morning, better through the day.",
+   "previous_episodes": "Three or four similar flare-ups a year that settle in a couple of weeks.",
+   "red_flags": "No weight loss, fever, night pain, cancer history, trauma or steroid use.",
+   "cauda_equina": "No saddle numbness, no bladder or bowel changes.",
+   "neuro_symptoms": "No leg pain, numbness or weakness.",
+   "beliefs": "Worried his back is 'wearing out'.",
+   "goals": "Wants to keep working without flare-ups.",
+   "rom_lumbar": "Flexion is stiff and sore at the end but improves with repeated movement. Extension is fine.",
+   "slr": "Negative both sides, 80 degrees.",
+   "slump": "Negative.",
+   "myotomes": "5/5 throughout.",
+   "reflexes": "Normal and equal.",
+   "dermatomes": "Normal sensation.",
+   "imaging": "Not indicated. No scan needed.",
+   "palpation": "General tenderness through the lower back muscles."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/110.png"
+ },
+ {
+  "id": "112",
+  "name": "Callum",
+  "age": 19,
+  "area": "Sports and performance",
+  "situation": "Callum, 19, is a sprinter. He pulled up halfway through a race yesterday, holding the back of his right thigh.",
+  "diagnosis": "Acute hamstring strain",
+  "answers": [
+   "hamstring strain",
+   "hamstring tear",
+   "hamstring",
+   "biceps femoris",
+   "pulled hamstring"
+  ],
+  "close": [
+   "muscle strain",
+   "muscle tear",
+   "thigh strain"
+  ],
+  "story": "Callum felt a sudden sharp pain at the back of his thigh during the acceleration phase. Local tenderness, painful weak resisted knee flexion and a reduced straight leg raise point to a hamstring strain, most likely biceps femoris. No sciatic nerve symptoms.",
+  "key": [
+   "palpation",
+   "mmt",
+   "slr",
+   "gait"
+  ],
+  "findings": {
+   "hpc": "I was driving hard out of the blocks and felt a sudden grab at the back of my thigh. Nobody touched me. I couldn't keep running.",
+   "body_chart": "Sharp pain at the back of the right thigh, about halfway up.",
+   "pain_score": "6/10 walking fast, 2/10 at rest.",
+   "pain_behaviour": "Worse walking fast, bending to tie shoes and stretching.",
+   "pain_24h": "Settles with rest.",
+   "previous_episodes": "Tight hamstrings before but never an injury.",
+   "goals": "Wants to race at state champs in six weeks.",
+   "observation": "Small bruise starting at the back of the thigh.",
+   "palpation": "Tender 12 cm above the knee crease over the outer hamstring. No gap felt.",
+   "mmt": "Resisted knee flexion is 4/5 and painful on the right.",
+   "slr": "Straight leg raise limited to 50 degrees on the right by pain at the back of the thigh, 85 on the left.",
+   "slump": "Thigh pain doesn't change with neck movement, so it isn't nerve tension.",
+   "gait": "Shortened stride on the right.",
+   "rom_lumbar": "Full and pain free.",
+   "rom_knee": "Full.",
+   "neuro_symptoms": "No pins and needles."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/112.png"
+ },
+ {
+  "id": "114",
+  "name": "Mpho",
+  "age": 24,
+  "area": "Sports and performance",
+  "situation": "Mpho, 24, plays volleyball. The front of their right knee has been sore for two months, since training stepped up.",
+  "diagnosis": "Patellar tendinopathy (jumper's knee)",
+  "answers": [
+   "patellar tendin",
+   "patella tendin",
+   "jumper's knee",
+   "jumpers knee",
+   "patellar tendon",
+   "infrapatellar tendin"
+  ],
+  "close": [
+   "tendinopathy",
+   "tendinitis",
+   "patellofemoral",
+   "osgood"
+  ],
+  "story": "Mpho added an extra jump session each week before the finals. The patellar tendon couldn't keep up with the energy-storage load. Pain sits right at the lower pole of the kneecap and comes on with decline squats and jumping, then settles with rest.",
+  "key": [
+   "palpation",
+   "hop_squat",
+   "patellofemoral",
+   "effusion"
+  ],
+  "findings": {
+   "hpc": "Our coach added an extra jumping session before the finals. Now the spot just under my kneecap hurts when I jump and land.",
+   "body_chart": "Pain in one spot just below the right kneecap.",
+   "pain_score": "6/10 jumping, 0/10 at rest.",
+   "pain_behaviour": "Worse jumping, landing and squatting deep. Sitting for a long time makes it ache a little. Warms up during training then hurts afterwards.",
+   "pain_24h": "Sore the morning after training.",
+   "previous_episodes": "None.",
+   "goals": "Wants to play the finals.",
+   "observation": "No swelling.",
+   "palpation": "Very tender right at the lower tip of the kneecap, where the tendon attaches.",
+   "hop_squat": "A single-leg decline squat reproduces the pain at the lower pole of the kneecap, worse the deeper Mpho goes. Hops hurt too.",
+   "patellofemoral": "Patellar compression is comfortable. Pain is in the tendon, not around the kneecap.",
+   "effusion": "No effusion.",
+   "rom_knee": "Full range.",
+   "lachman": "Normal.",
+   "meniscal": "Negative.",
+   "mmt": "Quads strong but painful when loaded at depth."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/114.png"
+ },
+ {
+  "id": "119",
+  "name": "Tane",
+  "age": 28,
+  "area": "Sports and performance",
+  "situation": "Tane, 28, plays rugby. He landed on the point of his left shoulder in a tackle on Saturday.",
+  "diagnosis": "Acromioclavicular (AC) joint sprain",
+  "answers": [
+   "acromioclavicular",
+   "acj",
+   "ac joint",
+   "shoulder separation",
+   "ac sprain",
+   "ac separation"
+  ],
+  "close": [
+   "shoulder sprain",
+   "clavicle",
+   "collarbone",
+   "dislocation"
+  ],
+  "story": "Tane fell directly onto the top of his shoulder. Point tenderness over the AC joint, a small step and pain with cross-body adduction show an AC joint sprain. The cuff is strong and the shoulder isn't unstable.",
+  "key": [
+   "acj",
+   "palpation",
+   "observation",
+   "instability"
+  ],
+  "findings": {
+   "hpc": "I got tackled and landed right on the point of my shoulder. It hurts on top, and reaching across my chest is the worst.",
+   "body_chart": "Pain on the very top of the left shoulder.",
+   "pain_score": "6/10 reaching across, 2/10 at rest.",
+   "pain_behaviour": "Worse reaching across his body, lying on that side and lifting overhead.",
+   "pain_24h": "Uncomfortable lying on it.",
+   "previous_episodes": "None.",
+   "goals": "Wants to play in three weeks.",
+   "observation": "A small bump where the collarbone meets the top of the shoulder.",
+   "palpation": "Point tenderness right over the AC joint.",
+   "acj": "Cross-body adduction reproduces his pain over the top of the shoulder. O'Brien's hurts on top too.",
+   "rom_shoulder": "Full, with pain at the top of the range.",
+   "cuff_tests": "Strong and pain free.",
+   "instability": "Apprehension test negative. The shoulder isn't unstable.",
+   "drop_arm": "Negative.",
+   "neuro_symptoms": "No pins and needles.",
+   "imaging": "X-ray shows a slight widening at the AC joint, no fracture."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/119.png"
+ },
+ {
+  "id": "120",
+  "name": "Rosa",
+  "age": 32,
+  "area": "Sports and performance",
+  "situation": "Rosa, 32, is a dancer. She strained her left calf two months ago and is back at rehearsals.",
+  "diagnosis": "Residual calf (plantar flexor) weakness after a calf strain",
+  "answers": [
+   "plantar flexor weak",
+   "plantarflexor weak",
+   "calf weak",
+   "calf strength",
+   "calf endurance",
+   "calf deficit",
+   "plantar flexor deficit",
+   "weak calf"
+  ],
+  "close": [
+   "calf strain",
+   "weakness",
+   "deconditioning"
+  ],
+  "story": "Rosa's calf strain has healed for daily life, but her calf still can't match the other side for strength and endurance. It tires during repeated jumps and take-offs. The deficit shows on repeated calf raises and hopping, not at rest.",
+  "key": [
+   "calf_raise",
+   "hop_squat",
+   "mmt",
+   "palpation"
+  ],
+  "findings": {
+   "hpc": "I strained my calf about two months ago. Walking is fine now, but in rehearsal it tires quickly when I do lots of jumps.",
+   "body_chart": "A tired feeling in the left calf. No sharp pain.",
+   "pain_score": "1/10 after rehearsals.",
+   "pain_behaviour": "Tires with repeated jumps and relevés. Fine walking.",
+   "pain_24h": "No pain overnight.",
+   "previous_episodes": "The calf strain two months ago.",
+   "goals": "Wants to dance a full show.",
+   "observation": "Left calf looks slightly smaller.",
+   "calf_raise": "14 single-leg heel raises on the left, 30 on the right. Height drops off after 10.",
+   "hop_squat": "Hops on the left are lower and control fades after 15. The right is fine.",
+   "mmt": "Left plantarflexion is weaker on a hand-held test.",
+   "palpation": "No tenderness in the calf now.",
+   "thompson": "Negative.",
+   "rom_ankle": "Full and equal.",
+   "standing_balance": "Slightly less steady on the left.",
+   "neuro_symptoms": "None."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/120.png"
+ },
+ {
+  "id": "121",
+  "name": "Nadia",
+  "age": 72,
+  "area": "Neurological",
+  "situation": "Nadia, 72, had a stroke three weeks ago and is on the rehabilitation ward.",
+  "diagnosis": "Left spatial neglect after stroke",
+  "answers": [
+   "neglect",
+   "inattention",
+   "hemispatial",
+   "hemineglect",
+   "visuospatial"
+  ],
+  "close": [
+   "hemianopia",
+   "visual field",
+   "perception",
+   "right parietal"
+  ],
+  "story": "Nadia's right-hemisphere stroke has left her ignoring things on her left side. She bumps into doorframes on the left and misses food on the left of her plate. Cancellation and scanning tasks show left-sided omissions.",
+  "key": [
+   "neglect",
+   "cranial_nerves",
+   "observation",
+   "cognition"
+  ],
+  "findings": {
+   "hpc": "The nurses say she keeps missing things on her left and bumped into the left side of the doorway. She doesn't think anything's wrong.",
+   "medical_notes": "Right middle cerebral artery stroke three weeks ago.",
+   "observation": "Head and eyes turned to the right. Leaves food on the left side of her plate.",
+   "neglect": "In a cancellation task she misses most targets on the left half of the page. Draws a clock with all the numbers on the right.",
+   "cranial_nerves": "Visual fields are full when tested one side at a time, but she misses the left side when both are tested together.",
+   "cognition": "Alert and oriented. Doesn't think anything is wrong with her left side.",
+   "tone": "Slightly increased tone in the left arm.",
+   "mmt": "Left arm 3/5, left leg 4/5.",
+   "sitting_balance": "Sits well unsupported.",
+   "gait": "Walks with a frame, drifts and bumps into things on the left.",
+   "proprioception": "Mildly reduced on the left.",
+   "goals": "Wants to go home to her unit.",
+   "social": "Lives alone."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/121.png"
+ },
+ {
+  "id": "122",
+  "name": "Kwame",
+  "age": 64,
+  "area": "Neurological",
+  "situation": "Kwame, 64, has had Parkinson's disease for six years. He's been having trouble walking through doorways and turning.",
+  "diagnosis": "Freezing of gait",
+  "answers": [
+   "freezing",
+   "freeze",
+   "fog"
+  ],
+  "close": [
+   "festination",
+   "bradykinesia",
+   "shuffling",
+   "parkinsonian gait"
+  ],
+  "story": "Kwame's feet feel glued to the floor at doorways and turns, especially when he's rushing. That's freezing of gait. A deliberate external cue like a line on the floor or a rhythm gets him going again.",
+  "key": [
+   "gait",
+   "tug",
+   "standing_balance",
+   "falls_history"
+  ],
+  "findings": {
+   "hpc": "My feet feel stuck at doorways and when I turn around, especially if I'm rushing for the phone.",
+   "medical_notes": "Parkinson's disease for six years.",
+   "meds": "Levodopa three times a day. Worse when it wears off.",
+   "falls_history": "Two near falls turning in the kitchen this month.",
+   "gait": "Short shuffling steps. Stops suddenly at the doorway, feet stuck for a few seconds. A line on the floor to step over gets him going again.",
+   "tug": "18 seconds, with a freeze at the turn.",
+   "standing_balance": "Steps back three times when pulled backwards.",
+   "tone": "Lead pipe rigidity in both arms.",
+   "coordination": "Slow finger taps that get smaller.",
+   "observation": "Stooped posture, reduced arm swing.",
+   "cognition": "Normal.",
+   "goals": "Wants to move around the house without getting stuck.",
+   "sit_to_stand": "Takes two goes to stand."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/122.png"
+ },
+ {
+  "id": "124",
+  "name": "Benji",
+  "age": 23,
+  "area": "Neurological",
+  "situation": "Benji, 23, is in rehab after an incomplete spinal cord injury. They keep tripping over their right foot.",
+  "diagnosis": "Foot drop (weak ankle dorsiflexors)",
+  "answers": [
+   "foot drop",
+   "drop foot",
+   "dorsiflexor weak",
+   "weak dorsiflex",
+   "tibialis anterior weak"
+  ],
+  "close": [
+   "weakness",
+   "toe drag",
+   "steppage"
+  ],
+  "story": "Benji's right ankle dorsiflexors are weak after the spinal cord injury, so the toes drag in swing and they trip. Passive range is fine, so it's weakness rather than stiffness, and an ankle-foot orthosis is worth trying.",
+  "key": [
+   "gait",
+   "mmt",
+   "rom_ankle",
+   "myotomes"
+  ],
+  "findings": {
+   "hpc": "I keep tripping because my right toes catch on the floor, especially when I'm tired.",
+   "medical_notes": "Incomplete spinal cord injury six months ago after a fall.",
+   "gait": "The right toes drag in swing and they hitch the hip to clear the foot.",
+   "mmt": "Right ankle dorsiflexion 2/5. Plantarflexion 4/5.",
+   "myotomes": "Right L4 weak, other myotomes mostly fine.",
+   "rom_ankle": "Passive dorsiflexion is full. No contracture.",
+   "tone": "Mildly increased in the right calf.",
+   "proprioception": "Reduced at the right big toe.",
+   "standing_balance": "Steady standing.",
+   "goals": "Wants to walk around campus without tripping.",
+   "walking_aid": "An ankle-foot orthosis trial helps clear the foot."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/124.png"
+ },
+ {
+  "id": "126",
+  "name": "Omar",
+  "age": 35,
+  "area": "Neurological",
+  "situation": "Omar, 35, had a brain injury in a car accident a year ago. He walks well in a quiet hallway but loses balance when he's talking.",
+  "diagnosis": "Dual-task gait impairment",
+  "answers": [
+   "dual task",
+   "dual-task",
+   "divided attention",
+   "cognitive motor interference"
+  ],
+  "close": [
+   "balance impairment",
+   "attention",
+   "cognitive"
+  ],
+  "story": "Omar walks well when he can concentrate, but his speed and balance drop when he has to talk, think or turn at the same time. That's a dual-task gait problem, which matters for crossing roads and busy places.",
+  "key": [
+   "gait",
+   "tug",
+   "cognition",
+   "standing_balance"
+  ],
+  "findings": {
+   "hpc": "In a quiet hallway I'm fine, but if someone talks to me while I'm walking or I have to turn, I lose my balance.",
+   "medical_notes": "Traumatic brain injury in a car accident a year ago.",
+   "gait": "Walks 10 m in 7 seconds normally. Counting backwards by threes, he takes 11 seconds and veers.",
+   "tug": "10 seconds normally, 16 seconds while naming animals, with a stumble at the turn.",
+   "cognition": "Slower processing and trouble concentrating.",
+   "standing_balance": "Steady standing still.",
+   "mmt": "Normal strength.",
+   "coordination": "Normal.",
+   "goals": "Wants to walk through the shopping centre with his kids.",
+   "social": "Lives with his partner and two kids."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/126.png"
+ },
+ {
+  "id": "127",
+  "name": "Mira",
+  "age": 60,
+  "area": "Neurological",
+  "situation": "Mira, 60, is seen at home by the community physio. Over the past year she's become unsteady and clumsy.",
+  "diagnosis": "Cerebellar ataxia (coordination and balance impairment)",
+  "answers": [
+   "cerebellar",
+   "dysmetria",
+   "incoordination"
+  ],
+  "close": [
+   "coordination",
+   "balance impairment",
+   "vestibular",
+   "ataxia",
+   "ataxic"
+  ],
+  "story": "Mira overshoots when she reaches, walks on a wide base and staggers in tight spaces. Her eyes being open doesn't fix it and sensation is normal, so the problem is coordination from the cerebellum rather than sensory loss.",
+  "key": [
+   "coordination",
+   "gait",
+   "standing_balance",
+   "proprioception"
+  ],
+  "findings": {
+   "hpc": "I sway when I reach for things and I stagger in narrow spaces like the hallway.",
+   "medical_notes": "Referred by her neurologist for balance and mobility.",
+   "coordination": "Finger to nose overshoots and shakes more as she gets close. Heel to shin is jerky. Rapid alternating hand movements are slow and irregular.",
+   "gait": "Wide-based, unsteady gait. Can't walk heel to toe.",
+   "standing_balance": "Sways with her feet together whether her eyes are open or closed.",
+   "proprioception": "Normal at the toes.",
+   "dermatomes": "Normal sensation.",
+   "mmt": "5/5 throughout.",
+   "tone": "Slightly low.",
+   "cranial_nerves": "Jerky eye movements and slightly slurred speech.",
+   "falls_history": "Two falls in the last six months.",
+   "goals": "Wants to keep living in her own home.",
+   "social": "Lives alone in a single-storey house."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/127.png"
+ },
+ {
+  "id": "130",
+  "name": "Leo",
+  "age": 70,
+  "area": "Neurological",
+  "situation": "Leo, 70, finished chemotherapy last year and has been referred to the balance clinic. He feels unsteady, especially in the dark.",
+  "diagnosis": "Sensory ataxia from peripheral neuropathy",
+  "answers": [
+   "sensory ataxia",
+   "neuropathy",
+   "peripheral neuropathy",
+   "proprioceptive loss",
+   "proprioception loss",
+   "cipn"
+  ],
+  "close": [
+   "ataxia",
+   "sensory loss",
+   "vestibular"
+  ],
+  "story": "Chemotherapy damaged the nerves to Leo's feet. He has lost vibration and joint position sense, so he relies on his eyes for balance, and Romberg's test is positive. That's sensory ataxia.",
+  "key": [
+   "proprioception",
+   "standing_balance",
+   "dermatomes",
+   "reflexes"
+  ],
+  "findings": {
+   "hpc": "I'm unsteady when it's dark, and I can't really feel the floor through my feet.",
+   "medical_notes": "Bowel cancer, chemotherapy finished a year ago.",
+   "proprioception": "Can't tell if his big toe is moved up or down. Vibration is absent at both ankles.",
+   "standing_balance": "Steady with his eyes open, but sways a lot and nearly falls with his eyes closed. Positive Romberg.",
+   "dermatomes": "Reduced light touch in a stocking pattern up to the mid shins.",
+   "reflexes": "Ankle reflexes absent.",
+   "coordination": "Finger to nose normal. Heel to shin a little clumsy.",
+   "mmt": "5/5, with slight weakness in the toes.",
+   "gait": "Watches his feet. Wider base and slaps his feet down.",
+   "falls_history": "Fell in the bathroom at night last month.",
+   "goals": "Wants to walk safely at night."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/130.png"
+ },
+ {
+  "id": "135",
+  "name": "Elena",
+  "age": 36,
+  "area": "Cardiorespiratory and acute",
+  "situation": "Elena, 36, is seen by the community respiratory physio. She's had a wet cough every day for years.",
+  "diagnosis": "Bronchiectasis with poor airway clearance",
+  "answers": [
+   "bronchiectasis",
+   "airway clearance",
+   "retained secretion",
+   "sputum retention"
+  ],
+  "close": [
+   "chronic bronchitis",
+   "copd",
+   "chest infection",
+   "cystic fibrosis"
+  ],
+  "story": "Elena has bronchiectasis, with daily productive cough and lots of sputum on waking. Her airway clearance technique is inconsistent, so secretions build up. Teaching an effective clearance routine is the priority.",
+  "key": [
+   "cough_sputum",
+   "auscultation",
+   "cough_test",
+   "imaging"
+  ],
+  "findings": {
+   "hpc": "I've coughed up phlegm every day for years. It's worst when I wake up.",
+   "cough_sputum": "About half a cup of thick yellow-green sputum a day, mostly in the morning.",
+   "auscultation": "Coarse crackles over both lower lobes that change after coughing.",
+   "cough_test": "Her huffing technique is rushed and doesn't move much sputum.",
+   "imaging": "CT shows widened airways in both lower lobes.",
+   "obs": "Saturation 96% on room air.",
+   "medical_notes": "Lots of chest infections since childhood.",
+   "spirometry": "Mild obstruction.",
+   "breathlessness": "Puffed on hills only.",
+   "smoking": "Never smoked.",
+   "goals": "Wants fewer chest infections."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/135.png"
+ },
+ {
+  "id": "141",
+  "name": "Edna",
+  "age": 89,
+  "area": "Older adults and falls",
+  "situation": "Edna, 89, lives alone and has fallen twice this month. The physio is visiting her at home.",
+  "diagnosis": "Falls risk from several causes, including hazards at home",
+  "answers": [
+   "multifactorial",
+   "multiple causes",
+   "home hazard",
+   "environmental",
+   "falls risk",
+   "fall risk",
+   "trip hazard"
+  ],
+  "close": [
+   "balance",
+   "nocturia",
+   "weakness",
+   "dizziness"
+  ],
+  "story": "Edna falls rushing to the toilet at night, through a dark hallway with a rug and clutter, and her turning is slow. Several risks add up, so a multifactorial plan covers lighting, removing rugs, the toilet route, strength and balance.",
+  "key": [
+   "falls_history",
+   "tug",
+   "social",
+   "standing_balance"
+  ],
+  "findings": {
+   "hpc": "Both times I fell rushing from the lounge to the toilet at night.",
+   "falls_history": "Two falls this month, both at night going to the toilet. Couldn't get up for an hour the second time.",
+   "social": "Lives alone. Dim hallway, loose rug, a footstool in the way. Gets up three times a night to pass urine.",
+   "tug": "19 seconds. Slow, shuffling turn.",
+   "standing_balance": "Can't stand with feet together and eyes closed for 10 seconds.",
+   "sit_to_stand": "Uses her hands.",
+   "meds": "Seven medications, including a sleeping tablet.",
+   "obs": "Blood pressure doesn't drop when she stands.",
+   "cognition": "Normal.",
+   "goals": "Wants to stay in her own home.",
+   "walking_aid": "Has a stick but doesn't use it at night."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/141.png"
+ },
+ {
+  "id": "142",
+  "name": "Diego",
+  "age": 81,
+  "area": "Older adults and falls",
+  "situation": "Diego, 81, has been referred by his GP because he gets dizzy when he stands up.",
+  "diagnosis": "Orthostatic (postural) hypotension. Needs a medical review",
+  "answers": [
+   "orthostatic",
+   "postural hypotension",
+   "postural drop",
+   "low blood pressure on standing",
+   "blood pressure drop"
+  ],
+  "close": [
+   "bppv",
+   "vestibular",
+   "dehydration",
+   "syncope"
+  ],
+  "story": "Diego's blood pressure falls by more than 20 mmHg when he stands, bringing on his dizziness, and he recently started a new blood pressure tablet. That's orthostatic hypotension, which needs a medication review with his GP.",
+  "key": [
+   "obs",
+   "dizziness",
+   "meds",
+   "positional_test"
+  ],
+  "findings": {
+   "hpc": "When I get out of bed I feel faint and everything goes grey. It gets better if I sit back down.",
+   "dizziness": "Light-headed, not spinning. Only when he stands up.",
+   "obs": "Lying 148/82. Standing for three minutes 118/70, with his dizziness.",
+   "meds": "Started a new blood pressure tablet a month ago.",
+   "positional_test": "Dix-Hallpike is negative.",
+   "vestibular_ocular": "Normal.",
+   "falls_history": "Nearly fell getting up at night.",
+   "standing_balance": "Steady once the dizziness passes.",
+   "goals": "Wants to get up at night without feeling faint.",
+   "pmhx": "High blood pressure, diabetes."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/142.png"
+ },
+ {
+  "id": "143",
+  "name": "Hana",
+  "age": 76,
+  "area": "Older adults and falls",
+  "situation": "Hana, 76, has joined a community strength class. She needs both arms to get out of a chair and finds carrying shopping harder.",
+  "diagnosis": "Low muscle strength, possible sarcopenia",
+  "answers": [
+   "sarcopenia",
+   "sarcopaenia",
+   "low muscle strength",
+   "muscle loss",
+   "muscle weakness",
+   "low strength"
+  ],
+  "close": [
+   "deconditioning",
+   "frailty",
+   "weakness"
+  ],
+  "story": "Hana's grip is weak and her five-times sit-to-stand is slow, both signs of low muscle strength consistent with probable sarcopenia. Resistance training and protein intake are the plan, with further assessment of muscle mass.",
+  "key": [
+   "grip",
+   "sit_to_stand",
+   "mmt",
+   "gait"
+  ],
+  "findings": {
+   "hpc": "I need both arms to get up from a chair now, and the shopping feels heavier than it used to.",
+   "grip": "15 kg, below the cut-off for women.",
+   "sit_to_stand": "Five times takes 17 seconds, slower than expected.",
+   "mmt": "Hip and knee muscles 4/5 on both sides.",
+   "gait": "Walking speed 0.9 m/s.",
+   "social": "Lives with her husband. Eats a small amount of protein.",
+   "falls_history": "No falls.",
+   "goals": "Wants to carry her own shopping.",
+   "standing_balance": "Fair.",
+   "pmhx": "Nothing major."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/143.png"
+ },
+ {
+  "id": "144",
+  "name": "Graham",
+  "age": 84,
+  "area": "Older adults and falls",
+  "situation": "Graham, 84, had surgery for a broken hip three weeks ago. He wants to walk to his garden but avoids putting weight on the operated leg.",
+  "diagnosis": "Reduced mobility after hip fracture surgery",
+  "answers": [
+   "functional mobility",
+   "mobility deficit",
+   "reduced mobility",
+   "weight bearing avoidance",
+   "avoids weight bearing"
+  ],
+  "close": [
+   "deconditioning",
+   "weakness",
+   "pain",
+   "fear of falling"
+  ],
+  "story": "Graham is allowed full weight on his hip, but fear and weakness mean he leans away and walks unevenly. Building confidence and weight acceptance on the operated side is the key to walking further.",
+  "key": [
+   "gait",
+   "medical_notes",
+   "sit_to_stand",
+   "beliefs"
+  ],
+  "findings": {
+   "hpc": "I want to walk out to my garden, but I don't trust the operated leg so I keep my weight off it.",
+   "medical_notes": "Hip pinned three weeks ago. Fully weight bearing as tolerated.",
+   "gait": "Takes short steps on the right with a frame and leans his weight to the left.",
+   "sit_to_stand": "Pushes up mostly through the left leg.",
+   "beliefs": "Thinks putting weight on it will break the repair.",
+   "pain_score": "3/10 walking.",
+   "mmt": "Right hip 3/5.",
+   "tug": "28 seconds with a frame.",
+   "goals": "Wants to walk to his vegetable garden.",
+   "social": "Lives with his wife."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/144.png"
+ },
+ {
+  "id": "146",
+  "name": "Betty",
+  "age": 91,
+  "area": "Older adults and falls",
+  "situation": "Betty, 91, lives in residential aged care and has dementia. Staff find her harder to transfer than they used to.",
+  "diagnosis": "Transfers affected by cognition (needs simple, one-step cues)",
+  "answers": [
+   "cognitive",
+   "one step",
+   "simple cue",
+   "verbal cue",
+   "cueing"
+  ],
+  "close": [
+   "weakness",
+   "deconditioning",
+   "delirium"
+  ],
+  "story": "Betty can stand and transfer well when given one simple instruction at a time in a quiet space, but she freezes with several instructions at once. Her strength is fine. Changing how staff cue her makes transfers safer.",
+  "key": [
+   "cognition",
+   "sit_to_stand",
+   "mmt",
+   "observation"
+  ],
+  "findings": {
+   "hpc": "The staff say she gets stuck and won't stand when they give her lots of instructions at once.",
+   "cognition": "Moderate dementia. Can follow one-step commands but not two-step.",
+   "sit_to_stand": "Stands on her own with 'hands on the arms, now stand up' given one step at a time. Freezes if told several things at once.",
+   "mmt": "Legs 4/5, enough to stand.",
+   "observation": "Calmer in a quiet room. Distracted by noise.",
+   "standing_balance": "Steady once up.",
+   "medical_notes": "No new medical problems or infection.",
+   "goals": "Staff want her transfers to be safe."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/146.png"
+ },
+ {
+  "id": "148",
+  "name": "Moana",
+  "age": 79,
+  "area": "Older adults and falls",
+  "situation": "Moana, 79, has just come home from hospital after an infection. She used to walk to her neighbours' houses but now tires after a short walk around the house.",
+  "diagnosis": "Deconditioning after a hospital stay",
+  "answers": [
+   "deconditioning",
+   "deconditioned",
+   "hospital associated",
+   "hospital-associated",
+   "reduced endurance",
+   "loss of fitness"
+  ],
+  "close": [
+   "weakness",
+   "sarcopenia",
+   "fatigue"
+  ],
+  "story": "Ten days in bed with an infection has cost Moana endurance and walking speed, with no new neurological or heart problem. That's hospital-associated deconditioning, which responds to a graded walking and strength programme.",
+  "key": [
+   "prior_function",
+   "six_mwt",
+   "gait",
+   "mmt"
+  ],
+  "findings": {
+   "hpc": "Before hospital I walked to visit my neighbours. Now I'm worn out after walking around the house.",
+   "medical_notes": "10 days in hospital for a kidney infection. Now treated.",
+   "prior_function": "Walked 500 m to visit neighbours every day.",
+   "six_mwt": "Walks 180 m and stops twice.",
+   "gait": "Slow but even. No limp.",
+   "mmt": "4/5 throughout, equal on both sides.",
+   "obs": "Normal at rest and after walking.",
+   "neuro_symptoms": "None new.",
+   "goals": "Wants to visit her neighbours again."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/148.png"
+ },
+ {
+  "id": "149",
+  "name": "Yusuf",
+  "age": 85,
+  "area": "Older adults and falls",
+  "situation": "Yusuf, 85, walks carefully on kerbs and feels less steady carrying shopping. He wants help with walking outdoors.",
+  "diagnosis": "Outdoor mobility limitation likely to improve with a walking aid (four-wheeled walker)",
+  "answers": [
+   "walking aid",
+   "walker",
+   "rollator",
+   "four wheeled",
+   "4ww",
+   "frame"
+  ],
+  "close": [
+   "stick",
+   "cane",
+   "balance"
+  ],
+  "story": "Yusuf's balance outdoors is reduced, especially when carrying shopping. Trialling aids on real surfaces shows a properly adjusted four-wheeled walker steadies him and lets him rest on the way.",
+  "key": [
+   "walking_aid",
+   "gait",
+   "standing_balance",
+   "tug"
+  ],
+  "findings": {
+   "hpc": "I'm careful on kerbs now and feel wobbly carrying the shopping home.",
+   "walking_aid": "Trial over kerbs and grass: a four-wheeled walker adjusted to wrist height steadies him and the seat lets him rest.",
+   "gait": "Slow and cautious outdoors. Wider base on uneven ground.",
+   "standing_balance": "Sways turning his head.",
+   "tug": "15 seconds.",
+   "falls_history": "No falls.",
+   "social": "Walks 400 m to the shops twice a week.",
+   "goals": "Wants to keep going to the shops himself."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/149.png"
+ },
+ {
+  "id": "150",
+  "name": "Ingrid",
+  "age": 71,
+  "area": "Older adults and falls",
+  "situation": "Ingrid, 71, has been referred to a falls prevention class. She fell last year and now avoids uneven paths.",
+  "diagnosis": "Fear of falling with slow balance-recovery steps",
+  "answers": [
+   "reactive balance",
+   "protective step",
+   "fear of falling",
+   "falls concern",
+   "balance recovery",
+   "stepping response"
+  ],
+  "close": [
+   "balance",
+   "weakness",
+   "vestibular"
+  ],
+  "story": "Since her fall Ingrid has been avoiding uneven ground and her confidence has dropped. When she's nudged off balance, her protective steps are slow. Training reactive balance and building confidence go together.",
+  "key": [
+   "standing_balance",
+   "questionnaire",
+   "berg",
+   "falls_history"
+  ],
+  "findings": {
+   "hpc": "I fell on a gravel path last year. I don't have any new pain, but I avoid uneven paths now.",
+   "falls_history": "One fall last year on gravel.",
+   "standing_balance": "When nudged backwards she's slow to step and needs several steps to recover.",
+   "questionnaire": "High score on a fear-of-falling questionnaire.",
+   "berg": "48/56.",
+   "tug": "12 seconds.",
+   "mmt": "5/5.",
+   "goals": "Wants to walk the coastal path with friends again.",
+   "pain_score": "No pain."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/150.png"
+ },
+ {
+  "id": "152",
+  "name": "Hugo",
+  "age": 12,
+  "area": "Paediatric and adolescent",
+  "situation": "Hugo, 12, is having a growth spurt and plays footy. The front of his left knee, just below the kneecap, hurts when he runs.",
+  "diagnosis": "Osgood-Schlatter disease",
+  "answers": [
+   "osgood",
+   "schlatter",
+   "tibial tubercle apophys",
+   "tibial tuberosity",
+   "traction apophys"
+  ],
+  "close": [
+   "patellar tendin",
+   "jumper's knee",
+   "sinding larsen",
+   "growing pains"
+  ],
+  "story": "In a growth spurt and playing a lot of sport, Hugo has a tender, prominent tibial tubercle and pain with resisted knee extension. That's Osgood-Schlatter, which settles with load management.",
+  "key": [
+   "palpation",
+   "mmt",
+   "observation",
+   "hop_squat"
+  ],
+  "findings": {
+   "hpc": "It hurts just below my knee when I run and kneel. It gets better when I rest.",
+   "body_chart": "Pain at the bump just below the left kneecap.",
+   "observation": "The bump below the left knee is bigger than the right.",
+   "palpation": "Very tender on the tibial tubercle. The kneecap tendon above it isn't tender.",
+   "mmt": "Resisted knee extension reproduces the pain at the bump.",
+   "hop_squat": "Kneeling and hopping hurt below the knee.",
+   "rom_knee": "Full.",
+   "effusion": "None.",
+   "social": "Grew 8 cm this year. Plays footy three times a week.",
+   "goals": "Wants to keep playing footy."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/152.png"
+ },
+ {
+  "id": "153",
+  "name": "Aya",
+  "age": 10,
+  "area": "Paediatric and adolescent",
+  "situation": "Aya, 10, has been referred for help with coordination. She's taking much longer than her friends to learn to ride a bike or catch a ball.",
+  "diagnosis": "Possible developmental coordination disorder (needs a team assessment)",
+  "answers": [
+   "developmental coordination",
+   "dcd",
+   "dyspraxia"
+  ],
+  "close": [
+   "clumsy",
+   "adhd",
+   "hypotonia"
+  ],
+  "story": "Aya's coordination is well below what's expected for her age and affects her daily life, without a neurological or intellectual cause. That fits developmental coordination disorder, confirmed through a team assessment.",
+  "key": [
+   "questionnaire",
+   "coordination",
+   "cognition",
+   "reflexes"
+  ],
+  "findings": {
+   "hpc": "She's taking much longer than her friends to ride a bike or catch a ball. She gets frustrated at sport.",
+   "questionnaire": "A standardised motor test puts her below the 5th percentile for her age.",
+   "coordination": "Clumsy catching and slow, untidy handwriting. Can't hop in a rhythm.",
+   "cognition": "Doing well with schoolwork.",
+   "reflexes": "Normal.",
+   "tone": "Normal to slightly low.",
+   "mmt": "Normal strength.",
+   "standing_balance": "Can only stand on one leg for 4 seconds.",
+   "prior_function": "Walked at 15 months.",
+   "goals": "Wants to ride a bike with her friends."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/153.png"
+ },
+ {
+  "id": "156",
+  "name": "Millie",
+  "age": 11,
+  "area": "Paediatric and adolescent",
+  "situation": "Millie, 11, broke her forearm and the cast came off a week ago. She's still using her other hand to get dressed.",
+  "diagnosis": "Stiffness and protective avoidance after the cast was removed",
+  "answers": [
+   "stiffness",
+   "stiff",
+   "avoidance",
+   "guarding",
+   "immobilisation",
+   "disuse",
+   "reduced range"
+  ],
+  "close": [
+   "crps",
+   "non union",
+   "weakness"
+  ],
+  "story": "After six weeks in a cast Millie's forearm rotation is limited and she guards it, so she's protecting it by not using it. The fracture is healed, so encouraging normal use and range through play is the plan.",
+  "key": [
+   "rom_wrist",
+   "imaging",
+   "grip",
+   "observation"
+  ],
+  "findings": {
+   "hpc": "The cast is off and the doctor says it's healed, but she still uses her other hand for dressing.",
+   "imaging": "X-ray shows the fracture has healed.",
+   "rom_wrist": "Turning her palm up is limited to 40 degrees and her wrist is a bit stiff.",
+   "grip": "Weaker on the injured side.",
+   "observation": "Holds her arm close to her body. No swelling or colour change.",
+   "pain_score": "2/10 moving.",
+   "dermatomes": "Normal sensation.",
+   "goals": "Wants to get back to netball."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/156.png"
+ },
+ {
+  "id": "167",
+  "name": "Paula",
+  "age": 37,
+  "area": "Pelvic health",
+  "situation": "Paula, 37, had a caesarean four months ago. She notices a bulge down the middle of her tummy when she does sit-ups.",
+  "diagnosis": "Postpartum abdominal separation (diastasis recti)",
+  "answers": [
+   "diastasis",
+   "rectus diastasis",
+   "drac",
+   "dra",
+   "abdominal separation",
+   "separated abdominal",
+   "separation of the abdominal"
+  ],
+  "close": [
+   "hernia",
+   "umbilical hernia",
+   "core weakness"
+  ],
+  "story": "Paula's rectus abdominis muscles have separated along the midline after pregnancy, with a gap of three finger widths and doming when she curls up. It isn't painful. Graded abdominal loading that controls the doming is the plan.",
+  "key": [
+   "palpation",
+   "observation",
+   "questionnaire",
+   "pain_score"
+  ],
+  "findings": {
+   "hpc": "Since the baby I see a ridge pop up down the middle of my tummy when I do a sit-up. It doesn't really hurt.",
+   "palpation": "With a curl-up there's a three-finger-wide gap between the muscles above the belly button. The tissue in the gap feels soft.",
+   "observation": "A ridge domes up along the midline when she lifts her head.",
+   "questionnaire": "No leaks or heaviness on a pelvic floor questionnaire.",
+   "pain_score": "No pain, just the look and feeling of weakness.",
+   "medical_notes": "Caesarean birth four months ago. Wound healed.",
+   "skin_wound": "Caesarean scar is healed and moves well.",
+   "goals": "Wants to go back to her gym classes."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/167.png"
+ },
+ {
+  "id": "169",
+  "name": "Alex",
+  "age": 45,
+  "area": "Pelvic health",
+  "situation": "Alex, 45, has had pain right at the bottom of their spine for three months. Sitting on hard chairs and getting up are the worst.",
+  "diagnosis": "Coccydynia (tailbone pain)",
+  "answers": [
+   "coccydynia",
+   "coccygodynia",
+   "coccyx",
+   "tailbone",
+   "coccygeal"
+  ],
+  "close": [
+   "sacroiliac",
+   "sij",
+   "pilonidal",
+   "low back pain"
+  ],
+  "story": "Alex slipped and landed on their bottom on the stairs. Since then the coccyx hurts with sitting on hard surfaces and when getting up from sitting. It's tender to touch and there are no worrying features. That's coccydynia, managed with cushions, sitting changes and settling the area.",
+  "key": [
+   "palpation",
+   "pain_behaviour",
+   "red_flags",
+   "body_chart"
+  ],
+  "findings": {
+   "hpc": "I slipped on the stairs and landed on my bum three months ago. It still hurts when I sit on hard chairs, and especially when I stand up.",
+   "body_chart": "Pain in one small spot at the very bottom of the spine, between the buttocks.",
+   "pain_behaviour": "Worse sitting on hard chairs, leaning back and standing up from sitting. Better leaning forward or standing.",
+   "palpation": "Very tender right on the tip of the coccyx.",
+   "red_flags": "No weight loss, fever, night pain or bladder or bowel changes. No lump or discharge.",
+   "rom_lumbar": "Full and doesn't bring on the pain.",
+   "slr": "Negative.",
+   "sij": "Pain provocation tests are negative.",
+   "neuro_symptoms": "None.",
+   "goals": "Wants to sit through a work meeting."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/169.png"
+ },
+ {
+  "id": "173",
+  "name": "Tariq",
+  "age": 50,
+  "area": "Vestibular and headache",
+  "situation": "Tariq, 50, had a bad bout of spinning vertigo two months ago that kept him in bed for days. He's better, but quick head turns still make things blur and he feels unsteady.",
+  "diagnosis": "Right unilateral vestibular hypofunction",
+  "answers": [
+   "vestibular hypofunction",
+   "unilateral vestibular",
+   "vestibular loss",
+   "uvh",
+   "vestibular deficit"
+  ],
+  "close": [
+   "vestibular neuritis",
+   "labyrinthitis",
+   "bppv",
+   "vestibular"
+  ],
+  "story": "After vestibular neuritis Tariq's right inner ear isn't fully working. A head impulse to the right shows a catch-up saccade, and his vision blurs with quick head movement. Gaze stability exercises and balance training are the plan.",
+  "key": [
+   "vestibular_ocular",
+   "standing_balance",
+   "positional_test",
+   "cranial_nerves"
+  ],
+  "findings": {
+   "hpc": "Two months ago I had spinning that kept me in bed for three days. That's gone, but if I turn my head quickly things blur and I feel off.",
+   "vestibular_ocular": "Head impulse to the right shows a catch-up saccade. Dynamic visual acuity drops four lines when his head moves.",
+   "standing_balance": "Sways a lot standing on foam with his eyes closed.",
+   "positional_test": "Dix-Hallpike negative both sides.",
+   "cranial_nerves": "Normal.",
+   "dizziness": "Not spinning now. Feels off balance with quick movements.",
+   "gait": "Veers when turning his head while walking.",
+   "goals": "Wants to drive and play tennis again."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/173.png"
+ },
+ {
+  "id": "176",
+  "name": "Arthur",
+  "age": 75,
+  "area": "Vestibular and headache",
+  "situation": "Arthur, 75, has been referred to the balance clinic. Things bounce when he walks and his balance is much worse in dim light.",
+  "diagnosis": "Possible bilateral vestibular hypofunction",
+  "answers": [
+   "bilateral vestibular",
+   "bilateral vestibulopathy",
+   "bilateral hypofunction",
+   "bilateral vestibular loss",
+   "oscillopsia"
+  ],
+  "close": [
+   "vestibular hypofunction",
+   "peripheral neuropathy",
+   "cerebellar"
+  ],
+  "story": "Arthur had a course of strong IV antibiotics last year. Both head impulse directions show catch-up saccades, his vision bounces with walking and he relies on vision for balance. That's possible bilateral vestibular loss, which needs specialist confirmation and balance and gaze training.",
+  "key": [
+   "vestibular_ocular",
+   "standing_balance",
+   "proprioception",
+   "meds"
+  ],
+  "findings": {
+   "hpc": "When I walk, the world bounces up and down so I can't read signs. In the dark I'm all over the place.",
+   "vestibular_ocular": "Head impulses to both sides show catch-up saccades. Dynamic visual acuity drops five lines.",
+   "standing_balance": "Steady with his eyes open on a firm floor. Falls on foam with his eyes closed.",
+   "proprioception": "Normal at the toes.",
+   "meds": "Had a long course of gentamicin for an infection last year.",
+   "dermatomes": "Normal sensation in the feet.",
+   "coordination": "Normal finger to nose and heel to shin.",
+   "falls_history": "Fell in the garden at dusk.",
+   "goals": "Wants to walk safely at night."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/176.png"
+ },
+ {
+  "id": "181",
+  "name": "Darren",
+  "age": 40,
+  "area": "Occupational and community",
+  "situation": "Darren, 40, works in a warehouse and has been off for six weeks with his back. He's planning to go back but he's nervous about lifting stock all day.",
+  "diagnosis": "Work limited by fear and low lifting tolerance after back pain (graded return to work)",
+  "answers": [
+   "graded return",
+   "return to work",
+   "work hardening",
+   "work conditioning",
+   "fear avoidance",
+   "fear of lifting",
+   "lifting tolerance",
+   "fear of movement",
+   "kinesiophobia"
+  ],
+  "close": [
+   "low back pain",
+   "deconditioning",
+   "disc"
+  ],
+  "story": "Darren's back has settled and his neuro screen is clear. Light lifts are fine, but his worry climbs and his lifting stiffens as the repetitions build. A graded return to work with lifting practice, and a plan worked out with his employer, is the answer.",
+  "key": [
+   "beliefs",
+   "questionnaire",
+   "hop_squat",
+   "red_flags"
+  ],
+  "findings": {
+   "hpc": "Walking's fine now. I just don't trust my back with lifting boxes all shift, over and over.",
+   "beliefs": "Thinks bending will 'put his disc out' again. Worry goes up with each lift.",
+   "questionnaire": "High score on a fear-avoidance questionnaire for work.",
+   "hop_squat": "Lifts a 10 kg box from the floor five times comfortably. By 15 he's holding his breath and keeping his back rigid.",
+   "red_flags": "No red flags.",
+   "neuro_symptoms": "None.",
+   "rom_lumbar": "Full, a little guarded on bending.",
+   "slr": "Negative.",
+   "social": "Job involves lifting up to 15 kg repeatedly for eight hours.",
+   "goals": "Wants to get back to full shifts."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/181.png"
+ },
+ {
+  "id": "183",
+  "name": "Kofi",
+  "age": 47,
+  "area": "Occupational and community",
+  "situation": "Kofi, 47, uses a wheelchair and drives for work. His shoulders have started aching after he gets in and out of the car many times a day.",
+  "diagnosis": "Shoulder overload from repeated transfers",
+  "answers": [
+   "transfer related",
+   "repetitive load",
+   "rotator cuff",
+   "cuff tendin",
+   "shoulder overuse",
+   "shoulder overload",
+   "transfer overload",
+   "transfer overuse"
+  ],
+  "close": [
+   "frozen shoulder",
+   "arthritis",
+   "impingement",
+   "overload",
+   "overuse"
+  ],
+  "story": "Kofi does around 20 car transfers a day, pushing his whole body weight through his arms each time. His shoulders ache with the repeated load, and push-up transfers reproduce it. Changing his car and transfer setup and strengthening his shoulders are the plan.",
+  "key": [
+   "cuff_tests",
+   "painful_arc",
+   "social",
+   "rom_shoulder"
+  ],
+  "findings": {
+   "hpc": "I'm in and out of the car about 20 times a day. By the afternoon both shoulders ache, the right more.",
+   "social": "Paraplegic for 15 years. Lifts his wheelchair into the car himself.",
+   "cuff_tests": "Resisted external rotation and empty can reproduce the ache, slightly weak on the right.",
+   "painful_arc": "Painful between 80 and 120 degrees on the right.",
+   "rom_shoulder": "Full range.",
+   "prom_shoulder": "Full passive range.",
+   "observation": "Push-up transfer to the car seat brings on his shoulder pain.",
+   "rom_cervical": "Full.",
+   "goals": "Wants to keep driving for work without pain."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/183.png"
+ },
+ {
+  "id": "185",
+  "name": "Mackenzie",
+  "age": 23,
+  "area": "Occupational and community",
+  "situation": "Mackenzie, 23, is a hospital orderly coming back to work after a back strain. They lose confidence when they have to move patients they don't know.",
+  "diagnosis": "Needs graded manual handling practice to return to work",
+  "answers": [
+   "manual handling",
+   "patient handling",
+   "graded practice",
+   "return to work",
+   "handling training"
+  ],
+  "close": [
+   "low back pain",
+   "fear avoidance"
+  ],
+  "story": "Mackenzie's back has recovered, but unfamiliar patients shake their confidence. With a slide sheet and clear talking with the patient, their technique and confidence improve. Graded handling practice before full duties is the plan.",
+  "key": [
+   "observation",
+   "beliefs",
+   "red_flags",
+   "goals"
+  ],
+  "findings": {
+   "hpc": "With patients I know I'm fine, but when it's someone new I freeze up and worry I'll hurt my back again.",
+   "observation": "With a slide sheet and talking the patient through it, their technique is smooth. Without them they rush and twist.",
+   "beliefs": "Worried about reinjury, mostly with heavier or confused patients.",
+   "red_flags": "No red flags. Back strain has settled.",
+   "rom_lumbar": "Full and pain free.",
+   "neuro_symptoms": "None.",
+   "goals": "Wants to go back to full shifts on the wards."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/185.png"
+ },
+ {
+  "id": "187",
+  "name": "Marlene",
+  "age": 57,
+  "area": "Occupational and community",
+  "situation": "Marlene, 57, lives on a farm two hours from town. She wants to get her shoulder working again after surgery, but she can't get to weekly appointments.",
+  "diagnosis": "Can't access weekly rehab in person. Suits a hybrid plan with telehealth",
+  "answers": [
+   "telehealth",
+   "hybrid",
+   "remote",
+   "video",
+   "virtual",
+   "home program",
+   "home exercise"
+  ],
+  "close": [
+   "frozen shoulder",
+   "rotator cuff"
+  ],
+  "story": "Marlene's shoulder rehab is on track, but transport is the barrier. She has reliable video on her phone and safe space at home, so a hybrid plan with occasional in-person visits and video check-ins in between works.",
+  "key": [
+   "social",
+   "goals",
+   "rom_shoulder",
+   "medical_notes"
+  ],
+  "findings": {
+   "hpc": "I want to get my shoulder going again, but it's two hours each way to town and I can't drive yet.",
+   "social": "Lives on a farm two hours from the clinic. Reliable phone video. Space at home to exercise. Her husband can drive her once a month.",
+   "medical_notes": "Rotator cuff repair eight weeks ago. Recovery on track.",
+   "rom_shoulder": "Elevation to 120 degrees, improving.",
+   "cuff_tests": "Not tested yet, too early after the repair.",
+   "goals": "Wants to hang washing and help on the farm."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/187.png"
+ },
+ {
+  "id": "189",
+  "name": "Sharon",
+  "age": 52,
+  "area": "Occupational and community",
+  "situation": "Sharon, 52, has long-term pain and started using a walking stick a few months ago. Since then her right wrist has been sore.",
+  "diagnosis": "Wrist overload from the walking stick",
+  "answers": [
+   "stick height",
+   "cane height",
+   "handle height",
+   "too short",
+   "wrong height",
+   "wrist extension",
+   "wrist overload",
+   "wrist overuse"
+  ],
+  "close": [
+   "carpal tunnel",
+   "de quervain",
+   "arthritis",
+   "overload",
+   "overuse"
+  ],
+  "story": "Sharon leans heavily through a straight-handled cane set too low, which forces her wrist into extension. Her wrist pain eases when the handle height is adjusted and an ergonomic handle is used.",
+  "key": [
+   "walking_aid",
+   "rom_wrist",
+   "palpation",
+   "gait"
+  ],
+  "findings": {
+   "hpc": "My right wrist has hurt ever since I started leaning on my walking stick.",
+   "walking_aid": "Her cane is 6 cm too short. With the right height and a moulded handle, her wrist pain drops from 6 to 2.",
+   "rom_wrist": "Full, but extension with weight through her hand hurts.",
+   "palpation": "Tender over the back of the wrist.",
+   "gait": "Leans heavily on the cane, wrist bent back.",
+   "carpal_tunnel": "Negative.",
+   "finkelstein": "Negative.",
+   "goals": "Wants to keep walking with the stick without wrist pain."
+  },
+  "safety": [],
+  "given": [
+   "hpc"
+  ],
+  "atlas": "assets/characters/expansion/atlases/189.png"
+ }
+]

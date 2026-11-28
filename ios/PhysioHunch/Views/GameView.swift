@@ -220,6 +220,6 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    ReviewNotice()
         .tint(Brand.violet)
 }

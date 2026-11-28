@@ -3,10 +3,17 @@
 import Foundation
 
 let dataDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "ios/PhysioHunch/Resources/Data")
-let library = try Library(directory: dataDir)
+let release = try Library(directory: dataDir)
+let fixtureURL = URL(fileURLWithPath: "ios/EngineTests/Fixtures/cases.json")
+let fixtures = try JSONDecoder().decode([PatientCase].self, from: Data(contentsOf: fixtureURL))
+let library = Library(assessments: release.assessments, cases: fixtures)
 var failures = 0
 func expect(_ ok: Bool, _ message: String) { if !ok { failures += 1; print("FAIL:", message) } }
 func patient(_ id: String) -> PatientCase { library.cases.first { $0.id == id }! }
+expect(release.cases.isEmpty, "the release bank must stay empty during review")
+let expansionData = try Data(contentsOf: dataDir.appendingPathComponent("expansion-cases.json"))
+let expansion = try JSONDecoder().decode([PatientCase].self, from: expansionData)
+expect(expansion.isEmpty, "the expansion release bank must stay empty during review")
 let resolver = Resolver(assessments: library.assessments)
 
 // Resolver

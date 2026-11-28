@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 42" shape-rendering="crispEdges">
-  <path fill="none" stroke="#514c56" stroke-width="5" stroke-linejoin="bevel" d="M17 12V5l-3-3H6L3 5v31l3 3h7l4-4V13l-3-3h-4l-2 2v21"/>
-  <path fill="none" stroke="#a7a2b0" stroke-width="2" stroke-linejoin="bevel" d="M17 12V5l-3-3H6L3 5v31l3 3h7l4-4V13l-3-3h-4l-2 2v21"/>
-  <path fill="#ece5ed" d="M6 2h7v1H6zM3 7h1v24H3z"/>
-</svg>

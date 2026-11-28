@@ -2,7 +2,7 @@
 
 [View the five-patient turnaround sheet](../assets/characters/patient-turnarounds.png).
 
-The sheet is the art reference for the current five-patient roster. See [the README](../README.md#characters) for the in-app sprites. It shows each patient front-on, facing screen-right, from behind, and facing screen-left. Use the crisp pixel edges, plum contours, limited tonal steps and shadows under the jaw and sleeves as the shared style. Preserve the same silhouette, costume and light direction across each patient's four views.
+The sheet is the art reference for the current five-patient roster. It shows each patient front-on, facing screen-right, from behind, and facing screen-left. Use the crisp pixel edges, plum contours, limited tonal steps and shadows under the jaw and sleeves as the shared style. Preserve the same silhouette, costume and light direction across each patient's four views.
 
 | Patient | Age | Case | Visual identifiers |
 | --- | ---: | --- | --- |
@@ -17,8 +17,6 @@ The sheet is the art reference for the current five-patient roster. See [the REA
 On the first discovery of a scored finding, advance one view in the order front → facing screen-right → back → facing screen-left → front. Keep a single patient in place with a shared anchor across the views. An assessment result can spend a slot without revealing a new scored finding. Repeated questions, consent and safety acknowledgements can leave the portrait in place.
 
 For a gradual reveal, keep zoom independent of the turn. Try `1.0×`, `1.05×`, `1.10×` and a cap of `1.15×`. Set the transform origin near the centre of the portrait and preserve room for the dialogue. Swap frames directly when reduced motion is requested. Use the front view for dialogue when a reply needs a visible expression, while keeping the discovered angle available to revisit.
-
-For the code-drawn implementation, use the sheet to author four per-patient views on a shared logical pixel grid, with matching origins and restrained expression layers on the visible faces. Render at an integer scale with crisp pixel edges. Add diagonal views if the turn needs in-between frames. The PNG is a concept sheet. Its row labels, background and variable framing require cleanup or redrawing before use as individual game sprites.
 
 ## Individual turn clips
 

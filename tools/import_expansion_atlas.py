@@ -1,6 +1,5 @@
 """Register one individually illustrated character atlas from a green-screen 4 × 4 sheet."""
 import argparse
-import csv
 import json
 from pathlib import Path
 
@@ -49,11 +48,11 @@ def register(source):
     return atlas
 
 
-def refresh_contact_sheet(cases):
+def refresh_contact_sheet(ids):
     size = 72
     board = Image.new("RGB", (size * 10, size * 10), "#f7f3ea")
-    for index, case in enumerate(cases):
-        with Image.open(ART / "portraits" / f"{case['id']}.png") as portrait:
+    for index, case_id in enumerate(sorted(ids, key=int)):
+        with Image.open(ART / "portraits" / f"{case_id}.png") as portrait:
             thumb = portrait.convert("RGBA").resize((size, size), Image.Resampling.NEAREST)
             board.paste(thumb, (index % 10 * size, index // 10 * size), thumb)
     board.save(ART / "contact-sheet.png", optimize=True)
@@ -64,18 +63,14 @@ def main():
     parser.add_argument("case_id")
     parser.add_argument("source", type=Path)
     args = parser.parse_args()
-    with (ROOT / "cases/expansion/cases.psv").open(encoding="utf-8", newline="") as file:
-        cases = list(csv.DictReader(file, delimiter="|"))
-    if args.case_id not in {case["id"] for case in cases}:
-        parser.error("Unknown case ID.")
+    ids = set(json.loads(ILLUSTRATED.read_text()))
+    if args.case_id not in ids:
+        parser.error("Unknown artwork ID.")
 
     atlas = register(args.source)
     atlas.save(ART / "atlases" / f"{args.case_id}.png", optimize=True)
     atlas.crop((0, 0, CELL, CELL)).save(ART / "portraits" / f"{args.case_id}.png", optimize=True)
-    ids = set(json.loads(ILLUSTRATED.read_text())) if ILLUSTRATED.exists() else set()
-    ids.add(args.case_id)
-    ILLUSTRATED.write_text(json.dumps(sorted(ids), indent=2) + "\n")
-    refresh_contact_sheet(cases)
+    refresh_contact_sheet(ids)
     print(f"Registered 16 poses and a front portrait for case {args.case_id}.")
 
 
